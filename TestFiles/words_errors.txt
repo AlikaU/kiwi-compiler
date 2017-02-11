@@ -1,0 +1,11 @@
+
+// ids start with underscore (invalid): 2 ids, 2 errors
+_wejt_we _a1_
+
+// bad float next to id or res word: 1 id, 2 res w, 3 errors
+0.banana 3.if 20.00for
+
+// illegal chars next to ids or res words: 4 ids, 6 res w, 11 errors
+a_! bk@ #qk $bla %if else^ and& \not "or' float~
+
+// total: 7 ids, 8 res w, 16 errors

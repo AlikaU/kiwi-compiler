@@ -1,0 +1,678 @@
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a m (ascii 109) 
+DEBUG: current state is: WORD and we just read a m (ascii 109) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: Entering line comment
+
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a / (ascii 47) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: Entering line comment
+
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a V (ascii 86) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a / (ascii 47) 
+TOKEN: IDENTIFIER: "ValidToken", line 5, column 1
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a N (ascii 78) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a b (ascii 98) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a m (ascii 109) 
+DEBUG: current state is: WORD and we just read a m (ascii 109) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 0 (ascii 48) 
+DEBUG: current state is: INT_ZERO and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering block comment level 1
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a * (ascii 42) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: Exiting block comment level 1
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering block comment level 1
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 	 (ascii 9) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering block comment level 2
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a $ (ascii 36) 
+DEBUG: current state is: START and we just read a $ (ascii 36) 
+DEBUG: current state is: START and we just read a # (ascii 35) 
+DEBUG: current state is: START and we just read a $ (ascii 36) 
+DEBUG: current state is: START and we just read a # (ascii 35) 
+DEBUG: current state is: START and we just read a % (ascii 37) 
+DEBUG: current state is: START and we just read a # (ascii 35) 
+DEBUG: current state is: START and we just read a ^ (ascii 94) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 	 (ascii 9) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Exiting block comment level 2
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a _ (ascii 95) 
+DEBUG: current state is: START and we just read a _ (ascii 95) 
+DEBUG: current state is: START and we just read a _ (ascii 95) 
+DEBUG: current state is: START and we just read a _ (ascii 95) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a / (ascii 47) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: Exiting block comment level 1
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a b (ascii 98) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering block comment level 1
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 	 (ascii 9) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Exiting block comment level 1
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a V (ascii 86) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "ValidToken", line 17, column 4
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering block comment level 1
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a N (ascii 78) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: Exiting block comment level 1
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a b (ascii 98) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a V (ascii 86) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "ValidToken", line 23, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering block comment level 1
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: Exiting block comment level 1
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a / (ascii 47) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a   (ascii 32) 
+DEBUG: Entering block comment level 1
+
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a N (ascii 78) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a A (ascii 65) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: Exiting block comment level 1
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a V (ascii 86) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "ValidToken", line 30, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a / (ascii 47) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a * (ascii 42) 
+DEBUG: current state is: OPEN_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a * (ascii 42) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a * (ascii 42) 
+DEBUG: current state is: MULTIPLY and we just read a / (ascii 47) 
+DEBUG: current state is: CLOSE_COMMENT and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a V (ascii 86) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a T (ascii 84) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a k (ascii 107) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "ValidToken", line 35, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a / (ascii 47) 
+DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
+DEBUG: current state is: LINE_COMMENT and we just read a t (ascii 116) 
+DEBUG: Entering line comment
+
+DEBUG: current state is: START and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a : (ascii 58) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 4 (ascii 52) 
+DEBUG: current state is: INT and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+DEBUG: 
+Exiting line comment
+
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: End of file reached. Attempting to create a token with last characters read
+DEBUG: No new tokens found

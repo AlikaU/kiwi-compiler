@@ -1,0 +1,20 @@
+// mixed numbers with other things (17 ints, 1 floats, 17 errors)
+1_ 0 _13 _10.4_ 
+3!2@3#4$5%6^7&0#0$9~8\8:8'7	
+
+// trailing zero (1 ints, 1 floats, 2 operators, 3 errors)
+12.20 0.00000 0.000..00.01
+
+// malformed float (2 punctuation, 2 ids, 10 errors)
+1.a01
+0.lsm
+0.$
+0.
+1.
+0._ 3., 8.]
+
+// total: 18 ints, 2 floats, 2 operators, 2 punctuations, 2 ids, 30 errors
+
+
+
+
