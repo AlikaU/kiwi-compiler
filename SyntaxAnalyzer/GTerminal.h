@@ -3,14 +3,13 @@
 
 class GTerminal : public GSymbol {
 
-
 public:
-
+	GTerminal(Token* t);
 	enum TerminalTypes {
 
 		// numbers
-		INT,
-		FLOAT,
+		INTNUM,	  // a number that is an integer
+		FLOATNUM, // a number that is a float
 
 		// operators
 		EQ, // equals
@@ -48,13 +47,21 @@ public:
 		ELSE,
 		FOR,
 		CLASS,
-		INT,
-		FLOAT,
+		INTWORD,	// the reserved word "int"
+		FLOATWORD,	// the reserved word "float"
 		GET,
 		PUT,
 		RETURN,
 		PROGRAM
 	};
+	bool isTerminal() const { return true; }
+	TerminalTypes getType() const { return type; }
 
-	bool isTerminal() { return true; }
+private:
+	std::string value;
+	std::pair<int, int> position;
+	TerminalTypes type;
+	TerminalTypes OperatorToTerminalType(std::string tempValue);
+	TerminalTypes PunctuationToTerminalType(std::string tempValue);
+	TerminalTypes ReservedWordToTerminalType(std::string tempValue);
 };

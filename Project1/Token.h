@@ -15,6 +15,8 @@ public:
 	Token(TokenTypes t, std::string v, std::pair<int, int> p);
 	std::string toString();
 	TokenTypes getType() const { return type; }
+	std::string getValue() const { return value; }
+	std::pair<int, int> getPosition() const {return position; }
 
 private:
 	TokenTypes type;

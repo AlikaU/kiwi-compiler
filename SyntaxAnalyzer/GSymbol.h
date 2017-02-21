@@ -1,9 +1,8 @@
 #pragma once
+#include "..\Project1\Token.h"
 
-class GSymbol {
-
-
+class GSymbol {	
 
 public: 
-	virtual bool isTerminal() = 0;
+	virtual bool isTerminal() const = 0;
 };
