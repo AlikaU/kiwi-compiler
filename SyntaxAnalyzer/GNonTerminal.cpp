@@ -3,9 +3,9 @@
 GNonTerminal::GNonTerminal() {
 
 }
-GNonTerminal::GNonTerminal(NonTerminalTypes t) { symbolType: t; }
+GNonTerminal::GNonTerminal(NonTerminalTypes t) { symbolType = t; }
 
-std::string GNonTerminal::NonTerminalTypeStings[56] = {
+std::string GNonTerminal::NonTerminalTypeStrings[NUM_OF_NONTERMTYPES] = {
 	"prog",
 	"classDeclList",
 	"classDecl",
@@ -68,5 +68,10 @@ std::string GNonTerminal::NonTerminalTypeStings[56] = {
 bool GNonTerminal::isTerminal() const { return false; }
 
 GNonTerminal::NonTerminalTypes GNonTerminal::stringToType(std::string s) {
-
+	for (int i = 0; i < NUM_OF_NONTERMTYPES; ++i) {
+		if (s == GNonTerminal::NonTerminalTypeStrings[i]) {
+			return static_cast<NonTerminalTypes>(i);
+		}
+	}
+	return wrongType;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "GSymbol.h"
+#define NUM_OF_NONTERMTYPES 56
 
 class GNonTerminal : public GSymbol {
 
@@ -64,17 +65,18 @@ public:
 		assignOp = 52,
 		relOp = 53,
 		addOp = 54,
-		multOp = 55
+		multOp = 55,
+		wrongType = -1
 	};
 
 	
 	GNonTerminal(NonTerminalTypes t);
 	bool isTerminal() const;
 	NonTerminalTypes getType() const { return type; }
-	NonTerminalTypes stringToType(std::string s);
+	static NonTerminalTypes stringToType(std::string s);
 
 private:
 
 	NonTerminalTypes symbolType;
-	static std::string NonTerminalTypeStings[56];
+	static std::string NonTerminalTypeStrings[NUM_OF_NONTERMTYPES];
 };

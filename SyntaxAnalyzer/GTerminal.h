@@ -1,5 +1,6 @@
 #pragma once
 #include "GSymbol.h"
+#define NUM_OF_TERMTYPES 37
 
 class GTerminal : public GSymbol {
 
@@ -8,54 +9,57 @@ public:
 	enum TerminalTypes {
 
 		// numbers
-		INTNUM,	  // a number that is an integer
-		FLOATNUM, // a number that is a float
+		INTNUM = 0,	  // a number that is an integer
+		FLOATNUM = 1, // a number that is a float
 
 		// operators
-		EQ, // equals
-		NE, // not equals
-		LT, // less than
-		LE, // less than or equals
-		GT, // greater than
-		GE, // greater than or equals
-		DOT,
-		PLUS,
-		MINUS,
-		MULT,
-		DIVIDE,
-		ASSIGN,
-		AND,
-		NOT,
-		OR,
+		EQ = 2, // equals
+		NE = 3, // not equals
+		LT = 4, // less than
+		LE = 5, // less than or equals
+		GT = 6, // greater than
+		GE = 7, // greater than or equals
+		DOT = 8,
+		PLUS = 9,
+		MINUS = 10,
+		MULT = 11,
+		DIVIDE = 12,
+		ASSIGN = 13,
+		AND = 14,
+		NOT = 15,
+		OR = 16,
 
 		// punctuation
-		SEMI,
-		COMMA,
-		OPENPAR,
-		CLOSEPAR,
-		OPENCURLY,
-		CLOSECURLY,
-		OPENSQUARE,
-		CLOSESQUARE,
+		SEMI = 17,
+		COMMA = 18,
+		OPENPAR = 19,
+		CLOSEPAR = 20,
+		OPENCURLY = 21,
+		CLOSECURLY = 22,
+		OPENSQUARE = 23,
+		CLOSESQUARE = 24,
 
 		// identifier
-		ID,
+		ID = 25,
 
 		// reserved words
-		IF,
-		THEN,
-		ELSE,
-		FOR,
-		CLASS,
-		INTWORD,	// the reserved word "int"
-		FLOATWORD,	// the reserved word "float"
-		GET,
-		PUT,
-		RETURN,
-		PROGRAM
+		IF = 26,
+		THEN = 27,
+		ELSE = 28,
+		FOR = 29,
+		CLASS = 30,
+		INTWORD = 31,	// the reserved word "int"
+		FLOATWORD = 32,	// the reserved word "float"
+		GET = 33,
+		PUT = 34,
+		RETURN = 35,
+		PROGRAM = 36,
+		wrongType = -1
 	};
+	GTerminal(TerminalTypes t);
 	bool isTerminal() const { return true; }
 	TerminalTypes getType() const { return type; }
+	static TerminalTypes stringToType(std::string s);
 
 private:
 	std::string value;
@@ -64,4 +68,5 @@ private:
 	TerminalTypes OperatorToTerminalType(std::string tempValue);
 	TerminalTypes PunctuationToTerminalType(std::string tempValue);
 	TerminalTypes ReservedWordToTerminalType(std::string tempValue);
+	static std::string TerminalTypeStrings[NUM_OF_TERMTYPES];
 };

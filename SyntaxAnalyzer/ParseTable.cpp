@@ -1,6 +1,7 @@
 #include "ParseTable.h"
 
 #include "GNonTerminal.h"
+#include "GTerminal.h"
 #include <stdexcept> 
 
 
@@ -52,6 +53,9 @@ void  ParseTable::skipXcharsAndClearBuffer(int toSkip) {
 		if (!tableFileStream.get(c)) break;
 	}
 }
+
+
+
 
 bool ParseTable::init() {
 	/*
@@ -117,52 +121,86 @@ bool ParseTable::init() {
 	};
 	*/
 
+	initRules();
+	return initTerminalsToIndices() && initTable();
+}
 
-	rules = new std::list<GSymbol>[98];
-	int ruleNo = 0;
-
+void ParseTable::initRules() {
+	rules = new std::list<GSymbol*>[99];
+	int ruleNo = 1;
+	memset(buffer, 0, sizeof(buffer)); // clear buffer
 	rulesFileStream.getline(buffer, BUFLEN);
 	while (buffer) {
 
-		int idx=0;
-		// skip chars until you see a first letter, which is the LHS of the rule
-		char c = buffer[idx];
-		while (c < 97 && c > 122) {
-			++idx;
-			c = buffer[idx];
-		}
+		rulestringidx = 0;
+		initLHSOfRule(ruleNo);
+		initRHSOfRule(ruleNo);
 
-		// get LHS (left hand side) of the rule
-		std::string LHS = "";
-		while (c != ' ') {
-			LHS += c;
-			++idx;
-			c = buffer[idx];
-		}
-
-		rules[ruleNo].push_back(LHS);
-
-		// skip 3 chars, which are " -> "
-		idx += 3; 
-
-
-
-
-
+		ruleNo++;
 		rulesFileStream.getline(buffer, BUFLEN);
+		std::cout << "\n\nline " << ruleNo << ": " << buffer << "\n";
 		if (buffer[0] == '\0') {
 			break;
 		}
 	}
-
-	return initTerminalsToIndices() && initTable();
-
-
-
 	rulesFileStream.close();
-	
+}
 
-	return initTerminalsToIndices() && initTable();
+void ParseTable::initLHSOfRule(int ruleNo) {
+	// skip chars until you see a first letter, which is the LHS of the rule
+	char c = buffer[rulestringidx];
+	while ((int)c < 97 || (int)c > 122) {
+		++rulestringidx;
+		c = buffer[rulestringidx];
+	}
+
+	// get LHS (left hand side) of the rule
+	std::string LHS = "";
+	while (c != ' ') {
+		LHS += c;
+		c = buffer[++rulestringidx];
+	}
+	std::cout << "\nLHS of rule: " << LHS;
+	GNonTerminal nonterm(GNonTerminal::stringToType(LHS));
+	rules[ruleNo].push_back(&nonterm);
+
+	// skip 3 chars, which are " -> "
+	rulestringidx += 5;
+}
+
+void ParseTable::initRHSOfRule(int ruleNo) {
+	std::cout << "\nRHS of rule: ";
+
+	// read nonterminals until you see a tab character
+	char c = buffer[rulestringidx];
+	while ((int)c != 9) {
+
+		// read characters until you see a space or a tab
+		std::string RHSelement = "";
+		while ((int)c != 32 && (int)c != 9) {
+			RHSelement += c;
+			c = buffer[++rulestringidx];
+		}
+		std::cout << RHSelement << " ";
+
+		// if it starts with a ', then we're dealing with a terminal
+		if (RHSelement[0] == '\'') {
+			GTerminal term(GTerminal::stringToType(RHSelement));
+			rules[ruleNo].push_back(&term);
+		}
+		// otherwise, it's a nonterminal
+		else {
+			GNonTerminal nonterm(GNonTerminal::stringToType(RHSelement));
+			rules[ruleNo].push_back(&nonterm);
+		}
+
+		// skip the spaces between symbols
+		if (c != 9) {
+			c = buffer[++rulestringidx];
+		}		
+	}
+	memset(buffer, 0, sizeof(buffer)); // clear buffer
+	rulestringidx = 0;
 }
 
 bool ParseTable::initTable() {

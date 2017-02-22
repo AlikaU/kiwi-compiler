@@ -26,7 +26,7 @@ GTerminal::GTerminal(Token* t) {
 		throw "Unknown token type " + type;
 	}
 }
-
+GTerminal::GTerminal(TerminalTypes t) { type = t; }
 GTerminal::TerminalTypes GTerminal::OperatorToTerminalType(std::string tempValue) {
 	// switch statement doesn't work with strings :( 
 	if (tempValue == "==")
@@ -104,4 +104,19 @@ GTerminal::TerminalTypes GTerminal::ReservedWordToTerminalType(std::string tempV
 	else if (tempValue == "program")
 		return GTerminal::TerminalTypes::PROGRAM;
 	else throw "Unknown reserved word value " + tempValue + "!";
+}
+
+std::string GTerminal::TerminalTypeStrings[NUM_OF_TERMTYPES] = {
+	"'numInt'", "'numFloat'", "'=='", "'<>'", "'<'", "'<='", "'>'", "'>='", "'.'", "'+'", "'-'", "'*'", "'/'", "'='",
+	"'and'", "'not'", "'or'", "';'", "','", "'('", "')'", "'{'", "'}'", "'['", "']'", "'id'", "'if'", "'then'", "'else'",
+	"'for'", "'class'", "'int'", "'float'", "'get'", "'put'", "'return'", "'program'"
+};
+
+GTerminal::TerminalTypes GTerminal::stringToType(std::string s) {
+	for (int i = 0; i < NUM_OF_TERMTYPES; ++i) {
+		if (s == GTerminal::TerminalTypeStrings[i]) {
+			return static_cast<TerminalTypes>(i);
+		}
+	}
+	return wrongType;
 }
