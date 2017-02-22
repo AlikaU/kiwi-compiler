@@ -1,6 +1,8 @@
 #pragma once
 #include <map>
 #include"GSymbol.h"
+#include "GNonTerminal.h"
+#include "GTerminal.h"
 #include <list>
 #include <iostream>     
 #include <fstream>
@@ -35,6 +37,8 @@ class ParseTable {
 	void initLHSOfRule(int ruleNo);
 	void initRHSOfRule(int ruleNo);
 	int rulestringidx;
+	int numRules;
+
 
 public:
 	ParseTable(std::string tablePath, std::string rulesPath) : tableFileStream(tablePath), 
@@ -52,5 +56,8 @@ public:
 			exit(1);
 		}
 	}
+	int getRuleNo(GNonTerminal* nonterm, GTerminal* term);
+	int getNumRules() { return numRules; }
+	std::list<GSymbol*> getRule(int ruleNo) { return rules[ruleNo]; }
 	~ParseTable (){} // TODO
 };

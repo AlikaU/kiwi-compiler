@@ -1,7 +1,5 @@
 #include "ParseTable.h"
 
-#include "GNonTerminal.h"
-#include "GTerminal.h"
 #include <stdexcept> 
 
 
@@ -125,25 +123,43 @@ bool ParseTable::init() {
 	return initTerminalsToIndices() && initTable();
 }
 
+int ParseTable::getRuleNo(GNonTerminal* nonterm, GTerminal* term) {
+	
+	// +1, because the 0th row is filled with zeroes in our table,
+	// so we shift everything by 1
+	int nontermindice = static_cast<int>(nonterm->getType()) + 1;
+	
+	try {
+		int termindice = terminalsToIndices.at(term->getValue());
+		return table[nontermindice][termindice];
+	}
+	catch(const std::out_of_range& oor){
+		std::cerr << "Out of Range error: " << oor.what() << '\n';
+		std::cerr << "Token that caused error: " << term->getValue();
+		exit(1);
+	}	
+}
+
 void ParseTable::initRules() {
 	rules = new std::list<GSymbol*>[99];
-	int ruleNo = 1;
+	numRules = 1;
 	memset(buffer, 0, sizeof(buffer)); // clear buffer
 	rulesFileStream.getline(buffer, BUFLEN);
 	while (buffer) {
 
 		rulestringidx = 0;
-		initLHSOfRule(ruleNo);
-		initRHSOfRule(ruleNo);
+		initLHSOfRule(numRules);
+		initRHSOfRule(numRules);
 
-		ruleNo++;
+		numRules++;
 		rulesFileStream.getline(buffer, BUFLEN);
-		std::cout << "\n\nline " << ruleNo << ": " << buffer << "\n";
+		std::cout << "\n\nline " << numRules << ": " << buffer << "\n";
 		if (buffer[0] == '\0') {
 			break;
 		}
 	}
 	rulesFileStream.close();
+	--numRules;
 }
 
 void ParseTable::initLHSOfRule(int ruleNo) {
