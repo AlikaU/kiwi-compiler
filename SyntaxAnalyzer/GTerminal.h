@@ -1,6 +1,6 @@
 #pragma once
 #include "GSymbol.h"
-#define NUM_OF_TERMTYPES 38
+#define NUM_OF_TERMTYPES 39
 
 class GTerminal : public GSymbol {
 
@@ -55,12 +55,14 @@ public:
 		RETURN = 35,
 		PROGRAM = 36,
 		EPSILON = 37,
+		DOLLAR_SIGN = 38,
 		wrongType = -1
 	};
 	GTerminal(TerminalTypes t);
 	bool isTerminal() const { return true; }
 	TerminalTypes getType() const { return type; }
 	static TerminalTypes stringToType(std::string s);
+	bool isDollarSign() const { return type == TerminalTypes::DOLLAR_SIGN; }
 
 private:
 	std::string value;

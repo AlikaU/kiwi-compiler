@@ -74,6 +74,7 @@ public:
 	bool isTerminal() const;
 	NonTerminalTypes getType() const { return type; }
 	static NonTerminalTypes stringToType(std::string s);
+	bool isDollarSign() const { return false; }
 
 private:
 

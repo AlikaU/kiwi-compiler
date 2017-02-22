@@ -113,6 +113,7 @@
     <ClInclude Include="GNonTerminal.h" />
     <ClInclude Include="GSymbol.h" />
     <ClInclude Include="GTerminal.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="ParseTable.h" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +121,7 @@
     <ClCompile Include="GNonTerminal.cpp" />
     <ClCompile Include="GSymbol.cpp" />
     <ClCompile Include="GTerminal.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="ParseTable.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
