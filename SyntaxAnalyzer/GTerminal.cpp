@@ -109,7 +109,7 @@ GTerminal::TerminalTypes GTerminal::ReservedWordToTerminalType(std::string tempV
 std::string GTerminal::TerminalTypeStrings[NUM_OF_TERMTYPES] = {
 	"'numInt'", "'numFloat'", "'=='", "'<>'", "'<'", "'<='", "'>'", "'>='", "'.'", "'+'", "'-'", "'*'", "'/'", "'='",
 	"'and'", "'not'", "'or'", "';'", "','", "'('", "')'", "'{'", "'}'", "'['", "']'", "'id'", "'if'", "'then'", "'else'",
-	"'for'", "'class'", "'int'", "'float'", "'get'", "'put'", "'return'", "'program'"
+	"'for'", "'class'", "'int'", "'float'", "'get'", "'put'", "'return'", "'program'", "epsilon"
 };
 
 GTerminal::TerminalTypes GTerminal::stringToType(std::string s) {

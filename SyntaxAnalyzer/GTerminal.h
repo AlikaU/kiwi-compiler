@@ -1,6 +1,6 @@
 #pragma once
 #include "GSymbol.h"
-#define NUM_OF_TERMTYPES 37
+#define NUM_OF_TERMTYPES 38
 
 class GTerminal : public GSymbol {
 
@@ -54,6 +54,7 @@ public:
 		PUT = 34,
 		RETURN = 35,
 		PROGRAM = 36,
+		EPSILON = 37,
 		wrongType = -1
 	};
 	GTerminal(TerminalTypes t);

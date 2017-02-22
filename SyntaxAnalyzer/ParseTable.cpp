@@ -181,17 +181,25 @@ void ParseTable::initRHSOfRule(int ruleNo) {
 			RHSelement += c;
 			c = buffer[++rulestringidx];
 		}
-		std::cout << RHSelement << " ";
+		
 
+		// if we have a negative char, it's cause we see an epsilon character
+		if (RHSelement[0] < 0) {
+			GTerminal term(GTerminal::TerminalTypes::EPSILON);
+			rules[ruleNo].push_back(&term);
+			std::cout << "epsilon ";
+		}
 		// if it starts with a ', then we're dealing with a terminal
-		if (RHSelement[0] == '\'') {
+		else if (RHSelement[0] == '\'') {
 			GTerminal term(GTerminal::stringToType(RHSelement));
 			rules[ruleNo].push_back(&term);
+			std::cout << RHSelement << " ";
 		}
 		// otherwise, it's a nonterminal
 		else {
 			GNonTerminal nonterm(GNonTerminal::stringToType(RHSelement));
 			rules[ruleNo].push_back(&nonterm);
+			std::cout << RHSelement << " ";
 		}
 
 		// skip the spaces between symbols
