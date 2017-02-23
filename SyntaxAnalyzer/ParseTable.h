@@ -1,6 +1,6 @@
 #pragma once
 #include <map>
-#include"GSymbol.h"
+#include "GSymbol.h"
 #include "GNonTerminal.h"
 #include "GTerminal.h"
 #include <list>

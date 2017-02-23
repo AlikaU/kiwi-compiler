@@ -65,6 +65,7 @@ public:
 	bool isDollarSign() const { return type == TerminalTypes::DOLLAR_SIGN; }
 	std::string getValue() { return value; }
 	std::pair<int, int> getPosition() { return position; }
+	static std::string getTerminalTypeString(int idx) { return TerminalTypeStrings[idx]; }
 
 private:
 	std::string value;

@@ -72,9 +72,10 @@ public:
 	
 	GNonTerminal(NonTerminalTypes t);
 	bool isTerminal() const;
-	NonTerminalTypes getType() const { return type; }
+	NonTerminalTypes getType() const { return symbolType; }
 	static NonTerminalTypes stringToType(std::string s);
 	bool isDollarSign() const { return false; }
+	static std::string getNonTerminalTypeString(int idx) { return NonTerminalTypeStrings[idx]; }
 
 private:
 

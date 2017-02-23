@@ -8,6 +8,8 @@ Parser::Parser(Scanner* s, ParseTable* t) {
 
 bool Parser::parse() {
 
+	std::cout << "\nParsing begins!";
+
 	GTerminal dollarsign(GTerminal::DOLLAR_SIGN);
 	parsingStack.push(&dollarsign);
 
@@ -29,6 +31,7 @@ bool Parser::parse() {
 				scannedToken = scanner->getNextToken();
 			}
 			else {
+				std::cout << "\nParsing error encountered at token " << term.getValue();
 				skipErrors();
 				error = true;
 			}
@@ -46,6 +49,7 @@ bool Parser::parse() {
 				inverseRHSMultiplePush(ruleNo);
 			}
 			else {
+				std::cout << "\nParsing error encountered at token " << term.getValue();
 				skipErrors();
 				error = true;
 			}
@@ -68,5 +72,6 @@ void Parser::inverseRHSMultiplePush(int ruleNo) {
 }
 
 void Parser::skipErrors() {
-	
+	std::getchar();
+	exit(1);
 }

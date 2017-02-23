@@ -153,13 +153,33 @@ void ParseTable::initRules() {
 
 		numRules++;
 		rulesFileStream.getline(buffer, BUFLEN);
-		std::cout << "\n\nline " << numRules << ": " << buffer << "\n";
+		//std::cout << "\n\nline " << numRules << ": " << buffer << "\n";
 		if (buffer[0] == '\0') {
 			break;
 		}
 	}
 	rulesFileStream.close();
 	--numRules;
+
+	/*
+
+	std::cout << "\nHERE ARE THE RULES:";
+	for (int i = 0; i < 99; i++) {
+		std::list<GSymbol*> rule = rules[i];
+		for (GSymbol* symbol : rule) {
+			if (symbol->isTerminal()) {
+				GTerminal* term = static_cast<GTerminal*>(symbol);
+				std::cout << GTerminal::getTerminalTypeString(static_cast<int>(term->getType()));
+			}
+			else {
+				GNonTerminal* nonterm = static_cast<GNonTerminal*>(symbol);
+				std::cout << GNonTerminal::getNonTerminalTypeString(static_cast<int>(nonterm->getType()));
+			}
+			std::cout << ", ";
+		}
+		std::cout << "\n";
+	}
+	*/
 }
 
 void ParseTable::initLHSOfRule(int ruleNo) {
@@ -176,16 +196,16 @@ void ParseTable::initLHSOfRule(int ruleNo) {
 		LHS += c;
 		c = buffer[++rulestringidx];
 	}
-	std::cout << "\nLHS of rule: " << LHS;
-	GNonTerminal nonterm(GNonTerminal::stringToType(LHS));
-	rules[ruleNo].push_back(&nonterm);
+	//std::cout << "\nLHS of rule: " << LHS;
+	GNonTerminal* nonterm = new GNonTerminal(GNonTerminal::stringToType(LHS));
+	rules[ruleNo].push_back(nonterm);
 
 	// skip 3 chars, which are " -> "
 	rulestringidx += 5;
 }
 
 void ParseTable::initRHSOfRule(int ruleNo) {
-	std::cout << "\nRHS of rule: ";
+	//std::cout << "\nRHS of rule: ";
 
 	// read nonterminals until you see a tab character
 	char c = buffer[rulestringidx];
@@ -201,21 +221,21 @@ void ParseTable::initRHSOfRule(int ruleNo) {
 
 		// if we have a negative char, it's cause we see an epsilon character
 		if (RHSelement[0] < 0) {
-			GTerminal term(GTerminal::TerminalTypes::EPSILON);
-			rules[ruleNo].push_back(&term);
-			std::cout << "epsilon ";
+			GTerminal* term = new GTerminal(GTerminal::TerminalTypes::EPSILON);
+			rules[ruleNo].push_back(term);
+			//std::cout << "epsilon ";
 		}
 		// if it starts with a ', then we're dealing with a terminal
 		else if (RHSelement[0] == '\'') {
-			GTerminal term(GTerminal::stringToType(RHSelement));
-			rules[ruleNo].push_back(&term);
-			std::cout << RHSelement << " ";
+			GTerminal* term = new GTerminal(GTerminal::stringToType(RHSelement));
+			rules[ruleNo].push_back(term);
+			//std::cout << RHSelement << " ";
 		}
 		// otherwise, it's a nonterminal
 		else {
-			GNonTerminal nonterm(GNonTerminal::stringToType(RHSelement));
-			rules[ruleNo].push_back(&nonterm);
-			std::cout << RHSelement << " ";
+			GNonTerminal* nonterm = new GNonTerminal(GNonTerminal::stringToType(RHSelement));
+			rules[ruleNo].push_back(nonterm);
+			//std::cout << RHSelement << " ";
 		}
 
 		// skip the spaces between symbols

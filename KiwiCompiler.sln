@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LexicalAnalyzer", "Project1\Project1.vcxproj", "{2516CB81-DB1D-40A7-9531-A53F077564B0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest_KiwiCompiler", "UnitTest_KiwiCompiler\UnitTest_KiwiCompiler.vcxproj", "{45654EB4-CC72-435C-B4E0-16CEB62D2389}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF9A4A02-0DEC-40F4-B62C-C47ED9AF8B99} = {FF9A4A02-0DEC-40F4-B62C-C47ED9AF8B99}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyntaxAnalyzer", "SyntaxAnalyzer\SyntaxAnalyzer.vcxproj", "{FF9A4A02-0DEC-40F4-B62C-C47ED9AF8B99}"
 EndProject
