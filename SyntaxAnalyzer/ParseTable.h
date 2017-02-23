@@ -6,10 +6,11 @@
 #include <list>
 #include <iostream>     
 #include <fstream>
-#define BUFLEN 255
+#define BUFLEN 300
 #define SKIPLEN 3
 #define TABLEROWS 57
 #define TABLECOLUMNS 34
+#define NUM_RULES 107
 
 class ParseTable {
 

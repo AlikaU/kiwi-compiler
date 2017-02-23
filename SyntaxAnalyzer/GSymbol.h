@@ -6,4 +6,5 @@ class GSymbol {
 public: 
 	virtual bool isTerminal() const = 0;
 	virtual bool isDollarSign() const = 0;
+	virtual bool isEpsilon() const = 0;
 };

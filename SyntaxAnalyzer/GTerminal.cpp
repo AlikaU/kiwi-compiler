@@ -1,5 +1,11 @@
 #include "GTerminal.h"
 
+GTerminal::GTerminal(GTerminal* term) {
+	value = term->getValue();
+	position = term->getPosition();
+	type = term->getType();
+}
+
 GTerminal::GTerminal(Token* t) {
 	value = t->getValue();
 	position = t->getPosition();

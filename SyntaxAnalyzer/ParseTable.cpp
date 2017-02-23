@@ -128,20 +128,21 @@ int ParseTable::getRuleNo(GNonTerminal* nonterm, GTerminal* term) {
 	// +1, because the 0th row is filled with zeroes in our table,
 	// so we shift everything by 1
 	int nontermindice = static_cast<int>(nonterm->getType()) + 1;
-	
+	int termindice;
 	try {
-		int termindice = terminalsToIndices.at(term->getValue());
+		termindice = terminalsToIndices.at(GTerminal::getTerminalTypeStringNoQuotes(static_cast<int>(term->getType())));
 		return table[nontermindice][termindice];
 	}
 	catch(const std::out_of_range& oor){
 		std::cerr << "Out of Range error: " << oor.what() << '\n';
 		std::cerr << "Token that caused error: " << term->getValue();
+		std::getchar();
 		exit(1);
 	}	
 }
 
 void ParseTable::initRules() {
-	rules = new std::list<GSymbol*>[99];
+	rules = new std::list<GSymbol*>[NUM_RULES + 1];
 	numRules = 1;
 	memset(buffer, 0, sizeof(buffer)); // clear buffer
 	rulesFileStream.getline(buffer, BUFLEN);
@@ -324,7 +325,7 @@ bool ParseTable::initTerminalsToIndices() {
 		if (terminalsToIndicesString[i] == '"') {
 			terminalsToIndices.insert(std::pair<std::string, int>("$", numOfTerminals));
 			if (numOfTerminals >(TABLECOLUMNS - 1)) {
-				std::cout << "Unexpected number of terminals!";
+				std::cout << "\nUnexpected number of terminals!";
 				return false;
 			}
 			break;

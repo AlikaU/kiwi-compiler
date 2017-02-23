@@ -104,3 +104,162 @@ DEBUG: current state is: START and we just read a ; (ascii 59)
 DEBUG: current state is: SEMICOLON and we just read a 
  (ascii 10) 
 TOKEN: PUNCTUATION: ";", line 3, column 30
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a f (ascii 102) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "float", line 4, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a v (ascii 118) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a 2 (ascii 50) 
+DEBUG: current state is: WORD and we just read a ; (ascii 59) 
+TOKEN: IDENTIFIER: "var2", line 4, column 7
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 4, column 11
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "int", line 5, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a f (ascii 102) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a M (ascii 77) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a ( (ascii 40) 
+TOKEN: IDENTIFIER: "findMax", line 5, column 5
+DEBUG: current state is: START and we just read a ( (ascii 40) 
+DEBUG: current state is: OPENPAR and we just read a i (ascii 105) 
+TOKEN: PUNCTUATION: "(", line 5, column 12
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "int", line 5, column 13
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a y (ascii 121) 
+DEBUG: current state is: WORD and we just read a [ (ascii 91) 
+TOKEN: IDENTIFIER: "array", line 5, column 17
+DEBUG: current state is: START and we just read a [ (ascii 91) 
+DEBUG: current state is: OPENSQUARE and we just read a 1 (ascii 49) 
+TOKEN: PUNCTUATION: "[", line 5, column 22
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a 0 (ascii 48) 
+DEBUG: current state is: INT and we just read a 0 (ascii 48) 
+DEBUG: current state is: INT and we just read a ] (ascii 93) 
+TOKEN: INT: "100", line 5, column 23
+DEBUG: current state is: START and we just read a ] (ascii 93) 
+DEBUG: current state is: CLOSESQUARE and we just read a ) (ascii 41) 
+TOKEN: PUNCTUATION: "]", line 5, column 26
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ")", line 5, column 27
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a { (ascii 123) 
+DEBUG: current state is: OPENCURLY and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: "{", line 6, column 1
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "int", line 7, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a m (ascii 109) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a V (ascii 86) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a u (ascii 117) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a ; (ascii 59) 
+TOKEN: IDENTIFIER: "maxValue", line 7, column 5
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 7, column 13
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "int", line 8, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a ; (ascii 59) 
+TOKEN: IDENTIFIER: "idx", line 8, column 5
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 8, column 8
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a m (ascii 109) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a V (ascii 86) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a u (ascii 117) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "maxValue", line 9, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a = (ascii 61) 
+DEBUG: current state is: ASSIGNMENT and we just read a   (ascii 32) 
+TOKEN: OPERATOR: "=", line 9, column 10
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a y (ascii 121) 
+DEBUG: current state is: WORD and we just read a [ (ascii 91) 
+TOKEN: IDENTIFIER: "array", line 9, column 12
+DEBUG: current state is: START and we just read a [ (ascii 91) 
+DEBUG: current state is: OPENSQUARE and we just read a 1 (ascii 49) 
+TOKEN: PUNCTUATION: "[", line 9, column 17
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a 0 (ascii 48) 
+DEBUG: current state is: INT and we just read a 0 (ascii 48) 
+DEBUG: current state is: INT and we just read a ] (ascii 93) 
+TOKEN: INT: "100", line 9, column 18
+DEBUG: current state is: START and we just read a ] (ascii 93) 
+DEBUG: current state is: CLOSESQUARE and we just read a ; (ascii 59) 
+TOKEN: PUNCTUATION: "]", line 9, column 21
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 9, column 22
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a f (ascii 102) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a ( (ascii 40) 
+TOKEN: RESERVED_WORD: "for", line 10, column 1

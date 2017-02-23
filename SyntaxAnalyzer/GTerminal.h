@@ -6,6 +6,7 @@ class GTerminal : public GSymbol {
 
 public:
 	GTerminal(Token* t);
+	GTerminal(GTerminal* term);
 	enum TerminalTypes {
 
 		// numbers
@@ -63,16 +64,20 @@ public:
 	TerminalTypes getType() const { return type; }
 	static TerminalTypes stringToType(std::string s);
 	bool isDollarSign() const { return type == TerminalTypes::DOLLAR_SIGN; }
+	bool isEpsilon() const { return type == TerminalTypes::EPSILON; }
 	std::string getValue() { return value; }
 	std::pair<int, int> getPosition() { return position; }
 	static std::string getTerminalTypeString(int idx) { return TerminalTypeStrings[idx]; }
+	static std::string getTerminalTypeStringNoQuotes(int idx) { 
+		return TerminalTypeStrings[idx].substr(1, TerminalTypeStrings[idx].size() - 2);
+	}
 
 private:
 	std::string value;
 	std::pair<int, int> position;
 	TerminalTypes type;
-	TerminalTypes OperatorToTerminalType(std::string tempValue);
-	TerminalTypes PunctuationToTerminalType(std::string tempValue);
-	TerminalTypes ReservedWordToTerminalType(std::string tempValue);
+	static TerminalTypes OperatorToTerminalType(std::string tempValue);
+	static TerminalTypes PunctuationToTerminalType(std::string tempValue);
+	static TerminalTypes ReservedWordToTerminalType(std::string tempValue);
 	static std::string TerminalTypeStrings[NUM_OF_TERMTYPES];
 };

@@ -75,6 +75,7 @@ public:
 	NonTerminalTypes getType() const { return symbolType; }
 	static NonTerminalTypes stringToType(std::string s);
 	bool isDollarSign() const { return false; }
+	bool isEpsilon() const { return false; }
 	static std::string getNonTerminalTypeString(int idx) { return NonTerminalTypeStrings[idx]; }
 
 private:
