@@ -9,7 +9,7 @@
 #define BUFLEN 300
 #define SKIPLEN 3
 #define TABLEROWS 57
-#define TABLECOLUMNS 34
+#define TABLECOLUMNS 39
 #define NUM_RULES 107
 
 class ParseTable {

@@ -36,6 +36,9 @@ bool Parser::parse() {
 				derivationParsed.push_back(new GTerminal(&term));
 				derivationToBeParsed.pop_front();
 				scannedToken = scanner->getNextToken();
+				if (!scannedToken) {
+					break;
+				}
 			}
 			else {
 				std::cout << "\nParsing error encountered at token " << term.getValue()
@@ -67,14 +70,14 @@ bool Parser::parse() {
 		
 	} // end while
 
-	if (scannedToken->getType() != GTerminal::DOLLAR_SIGN || error) {
+	if (scannedToken || error) {
 		return false;
 	} 
 	return true;
 }
 
 void Parser::printDerivation() {
-	std::cout << "\n";
+	std::cout << "\n\n";
 	for (GSymbol* symbol : derivationParsed) {
 		std::cout << static_cast<GTerminal*>(symbol)->getValue() << " ";
 	}
