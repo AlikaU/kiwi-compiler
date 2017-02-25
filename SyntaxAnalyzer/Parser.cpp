@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include "..\Project1\Logger.h"
 
 Parser::Parser(Scanner* s, ParseTable* t) {
 	scanner = s;
@@ -10,6 +11,7 @@ Parser::Parser(Scanner* s, ParseTable* t) {
 bool Parser::parse() {
 
 	std::cout << "\nParsing begins!";
+	Logger::getLogger()->log(Logger::DERIVATION, "\nParsing begins!");
 
 	GTerminal dollarsign(GTerminal::DOLLAR_SIGN);
 	parsingStack.push(&dollarsign);
@@ -22,12 +24,16 @@ bool Parser::parse() {
 
 	while ( !(parsingStack.top()->isDollarSign()) ) {
 
-		printDerivation();
+		//printDerivation();
 
 		GSymbol* topSymbol = parsingStack.top();
 
 		// Terminal on top of stack
 		if (topSymbol->isTerminal()) {
+			if (!scannedToken) {
+				error = true;
+				break;
+			}
 			GTerminal term(scannedToken);
 
 			// if the scanned token is the same as the one we have on the top of the stack
@@ -35,14 +41,13 @@ bool Parser::parse() {
 				parsingStack.pop();
 				derivationParsed.push_back(new GTerminal(&term));
 				derivationToBeParsed.pop_front();
-				scannedToken = scanner->getNextToken();
-				if (!scannedToken) {
-					break;
-				}
+				scannedToken = scanner->getNextToken();				
 			}
 			else {
 				std::cout << "\nParsing error encountered at token " << term.getValue()
 					<< " at line " << term.getPosition().first << ", column " << term.getPosition().second;
+				Logger::getLogger()->log(Logger::DERIVATION, "\n error encountered at token " + term.getValue()
+					+ " at line " + std::to_string(term.getPosition().first) + ", column " + std::to_string(term.getPosition().second));
 				skipErrors();
 				error = true;
 			}
@@ -51,8 +56,12 @@ bool Parser::parse() {
 		// NonTerminal on top of stack
 		else {
 			GNonTerminal* nonterm = static_cast<GNonTerminal*>(topSymbol);
-			GTerminal term(scannedToken);
-
+			
+			GTerminal term(GTerminal::DOLLAR_SIGN);
+			if (scannedToken) {
+				term = new GTerminal(scannedToken);				
+			}
+			
 			// if table entry is not an error code
 			int ruleNo = table->getRuleNo(nonterm, &term);
 			if (ruleNo <= table->getNumRules()) {
@@ -62,6 +71,8 @@ bool Parser::parse() {
 			else {
 				std::cout << "\nParsing error encountered at token " << term.getValue()
 					<< " at line " << term.getPosition().first << ", column " << term.getPosition().second;
+				Logger::getLogger()->log(Logger::DERIVATION, "\nParsing error encountered at token " + term.getValue()
+					+ " at line " + std::to_string(term.getPosition().first) + ", column " + std::to_string(term.getPosition().second));
 				skipErrors();
 				error = true;
 			}
@@ -70,25 +81,32 @@ bool Parser::parse() {
 		
 	} // end while
 
-	if (scannedToken || error) {
+	printDerivation();
+
+	if (scannedToken || error || !(parsingStack.top()->isDollarSign())) {
 		return false;
 	} 
+	
 	return true;
 }
 
 void Parser::printDerivation() {
-	std::cout << "\n\n";
+	Logger::getLogger()->log(Logger::DERIVATION, "\n\n");
+	std::cout << "\n\nParsed derivation: ";
 	for (GSymbol* symbol : derivationParsed) {
+		Logger::getLogger()->log(Logger::DERIVATION, static_cast<GTerminal*>(symbol)->getValue() + " ");
 		std::cout << static_cast<GTerminal*>(symbol)->getValue() << " ";
 	}
+	std::cout << "\n\nTo be parsed derivation: ";
 	for (GSymbol* symbol : derivationToBeParsed) {
 		if (symbol->isTerminal()) {
-			std::cout << GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType())));
+			Logger::getLogger()->log(Logger::DERIVATION, GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) + " ");
+			std::cout << GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) << " ";
 		}
 		else {
-			std::cout << GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType())));
-		}
-		std::cout << " ";
+			Logger::getLogger()->log(Logger::DERIVATION, GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) + " ");
+			std::cout << GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) << " ";
+		}		
 	}
 }
 

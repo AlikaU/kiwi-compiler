@@ -69,7 +69,11 @@ public:
 	std::pair<int, int> getPosition() { return position; }
 	static std::string getTerminalTypeString(int idx) { return TerminalTypeStrings[idx]; }
 	static std::string getTerminalTypeStringNoQuotes(int idx) { 
-		return TerminalTypeStrings[idx].substr(1, TerminalTypeStrings[idx].size() - 2);
+		if (TerminalTypeStrings[idx].at(0) == '\'') {
+			return TerminalTypeStrings[idx].substr(1, TerminalTypeStrings[idx].size() - 2);
+		}
+		else return TerminalTypeStrings[idx];
+		
 	}
 
 private:

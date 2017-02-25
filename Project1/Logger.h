@@ -10,6 +10,7 @@ class Logger {
 
 	static std::ofstream logTokens;
 	static std::ofstream logDebug;
+	static std::ofstream logDerivation;
 	static std::ofstream logError;
 	static Logger* instance;
 	Logger();
@@ -22,7 +23,8 @@ public:
 	enum LOG_TYPE {
 		TOKEN,
 		DEBUG,
-		ERROR
+		ERROR,
+		DERIVATION
 	};
 
 	void log(LOG_TYPE t, std::string message);	

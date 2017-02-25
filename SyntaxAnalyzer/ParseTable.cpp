@@ -124,15 +124,13 @@ bool ParseTable::init() {
 }
 
 int ParseTable::getRuleNo(GNonTerminal* nonterm, GTerminal* term) {
-	if (term->getValue() == "+") {
-		std::cout << "here";
-	}
-	
+		
 	// +1, because the 0th row is filled with zeroes in our table,
 	// so we shift everything by 1
 	int nontermindice = static_cast<int>(nonterm->getType()) + 1;
 	int termindice;
 	try {
+	
 		termindice = terminalsToIndices.at(GTerminal::getTerminalTypeStringNoQuotes(static_cast<int>(term->getType())));
 		return table[nontermindice][termindice];
 	}
