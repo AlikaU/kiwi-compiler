@@ -17,10 +17,11 @@ class Parser {
 	std::list<GSymbol*> derivationParsed;
 	std::list<GSymbol*> derivationToBeParsed;
 	void printDerivation();
+	Token* currentScannedToken;
 
 public: 
 	Parser(Scanner* s, ParseTable* t);
-
+	~Parser();
 	bool parse();
-	void skipErrors();
+	void skipErrors(int errorCode);
 };

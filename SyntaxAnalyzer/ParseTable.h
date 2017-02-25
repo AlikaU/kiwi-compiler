@@ -11,6 +11,8 @@
 #define TABLEROWS 57
 #define TABLECOLUMNS 39
 #define NUM_RULES 107
+#define TABLE_PATH "../GrammarFiles/table.txt"
+#define RULES_PATH "../GrammarFiles/rules.txt"
 
 class ParseTable {
 
@@ -40,10 +42,9 @@ class ParseTable {
 	int rulestringidx;
 	int numRules;
 
-
 public:
-	ParseTable(std::string tablePath, std::string rulesPath) : tableFileStream(tablePath), 
-		rulesFileStream(rulesPath), numOfTerminals(0) {
+	ParseTable() : tableFileStream(TABLE_PATH),
+		rulesFileStream(RULES_PATH), numOfTerminals(0) {
 		
 		if (!tableFileStream.is_open()) {
 			std::cout << "Unable to open table input file";

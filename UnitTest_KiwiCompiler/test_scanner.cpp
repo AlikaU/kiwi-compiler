@@ -56,7 +56,7 @@ namespace UnitTest_KiwiCompiler
 		TEST_METHOD(TestCorrectNumbers)
 		{
 			initTest();
-			Scanner myScanner("../TestFiles/numbers_correct.txt");
+			Scanner myScanner("../TestFiles/Lexical/numbers_correct.txt");
 			while (myScanner.hasNext()) {
 				updateTokenCounts(myScanner.getNextToken());
 			}
@@ -72,7 +72,7 @@ namespace UnitTest_KiwiCompiler
 		TEST_METHOD(TestErrorNumbers)
 		{
 			initTest();
-			Scanner myScanner("../TestFiles/numbers_errors.txt");			
+			Scanner myScanner("../TestFiles/Lexical/numbers_errors.txt");			
 			while (myScanner.hasNext()) {											
 				updateTokenCounts(myScanner.getNextToken());							
 			}		
@@ -88,7 +88,7 @@ namespace UnitTest_KiwiCompiler
 		TEST_METHOD(TestCorrectIdsAndReservedWords)
 		{
 			initTest();
-			Scanner myScanner("../TestFiles/words_correct.txt");
+			Scanner myScanner("../TestFiles/Lexical/words_correct.txt");
 			while (myScanner.hasNext()) {
 				updateTokenCounts(myScanner.getNextToken());
 			}
@@ -104,7 +104,7 @@ namespace UnitTest_KiwiCompiler
 		TEST_METHOD(TestErrorIdsAndReservedWords)
 		{
 			initTest();
-			Scanner myScanner("../TestFiles/words_errors.txt");
+			Scanner myScanner("../TestFiles/Lexical/words_errors.txt");
 			while (myScanner.hasNext()) {
 				updateTokenCounts(myScanner.getNextToken());
 			}
@@ -120,7 +120,7 @@ namespace UnitTest_KiwiCompiler
 		TEST_METHOD(TestCorrectComments)
 		{
 			initTest();
-			Scanner myScanner("../TestFiles/comments_correct.txt");
+			Scanner myScanner("../TestFiles/Lexical/comments_correct.txt");
 			while (myScanner.hasNext()) {
 				updateTokenCounts(myScanner.getNextToken());
 			}
@@ -136,7 +136,7 @@ namespace UnitTest_KiwiCompiler
 		TEST_METHOD(TestErrorComments)
 		{
 			initTest();
-			Scanner myScanner("../TestFiles/comments_errors.txt");
+			Scanner myScanner("../TestFiles/Lexical/comments_errors.txt");
 			while (myScanner.hasNext()) {
 				updateTokenCounts(myScanner.getNextToken());
 			}
@@ -152,7 +152,7 @@ namespace UnitTest_KiwiCompiler
 		TEST_METHOD(TestOperatorsAndPunctuation)
 		{
 			initTest();
-			Scanner myScanner("../TestFiles/operators_punctuation.txt");
+			Scanner myScanner("../TestFiles/Lexical/operators_punctuation.txt");
 			while (myScanner.hasNext()) {
 				updateTokenCounts(myScanner.getNextToken());
 			}

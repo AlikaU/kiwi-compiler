@@ -8,8 +8,8 @@ int main(int argc, char** argv)
 
 	std::cout << "Hello Kiwi!"; 
 
-	ParseTable pTable("../GrammarFiles/table.txt", "../GrammarFiles/rules.txt");
-	Scanner scanner("../TestFiles/full_program.txt");
+	ParseTable pTable;
+	Scanner scanner("../TestFiles/Syntax/full_valid_program.txt");
 	Parser parser(&scanner, &pTable);
 	if (parser.parse()) {
 		std::cout << "parsing success!";

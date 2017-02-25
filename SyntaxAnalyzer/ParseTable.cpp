@@ -199,8 +199,7 @@ void ParseTable::initLHSOfRule(int ruleNo) {
 		c = buffer[++rulestringidx];
 	}
 	//std::cout << "\nLHS of rule: " << LHS;
-	GNonTerminal* nonterm = new GNonTerminal(GNonTerminal::stringToType(LHS));
-	rules[ruleNo].push_back(nonterm);
+	rules[ruleNo].push_back(new GNonTerminal(GNonTerminal::stringToType(LHS)));
 
 	// skip 3 chars, which are " -> "
 	rulestringidx += 5;
@@ -223,20 +222,17 @@ void ParseTable::initRHSOfRule(int ruleNo) {
 
 		// if we have a negative char, it's cause we see an epsilon character
 		if (RHSelement[0] < 0) {
-			GTerminal* term = new GTerminal(GTerminal::TerminalTypes::EPSILON);
-			rules[ruleNo].push_back(term);
+			rules[ruleNo].push_back(new GTerminal(GTerminal::TerminalTypes::EPSILON));
 			//std::cout << "epsilon ";
 		}
 		// if it starts with a ', then we're dealing with a terminal
 		else if (RHSelement[0] == '\'') {
-			GTerminal* term = new GTerminal(GTerminal::stringToType(RHSelement));
-			rules[ruleNo].push_back(term);
+			rules[ruleNo].push_back(new GTerminal(GTerminal::stringToType(RHSelement)));
 			//std::cout << RHSelement << " ";
 		}
 		// otherwise, it's a nonterminal
 		else {
-			GNonTerminal* nonterm = new GNonTerminal(GNonTerminal::stringToType(RHSelement));
-			rules[ruleNo].push_back(nonterm);
+			rules[ruleNo].push_back(new GNonTerminal(GNonTerminal::stringToType(RHSelement)));
 			//std::cout << RHSelement << " ";
 		}
 
