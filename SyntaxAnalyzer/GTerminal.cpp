@@ -126,3 +126,8 @@ GTerminal::TerminalTypes GTerminal::stringToType(std::string s) {
 	}
 	return wrongType;
 }
+
+GSymbol * GTerminal::clone() const {
+	return new GTerminal(*this);
+}
+

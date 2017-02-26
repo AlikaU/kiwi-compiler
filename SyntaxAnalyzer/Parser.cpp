@@ -10,11 +10,17 @@ Parser::Parser(Scanner* s, ParseTable* t) {
 
 Parser::~Parser() {
 	for (GSymbol* symbol : derivationParsed) {
-		delete symbol;
+		if (symbol) {
+			delete symbol;
+		}
+			
 	}
 	derivationParsed.clear();
 	for (GSymbol* symbol : derivationToBeParsed) {
-		delete symbol;
+		if (symbol) {
+			delete symbol;
+		}
+			
 	}
 	derivationToBeParsed.clear();
 }
@@ -84,8 +90,17 @@ bool Parser::parse() {
 			int ruleNo = table->getRuleNo(nonterm, term);
 			if (ruleNo <= table->getNumRules()) {
 				parsingStack.pop();
+				derivationToBeParsed.pop_front();
+
 				inverseRHSMultiplePush(ruleNo);
 			}
+
+			// check if it was just an empty file
+			else if (nonterm->getType() == GNonTerminal::prog && !currentScannedToken) {
+				parsingStack.pop();
+				break;
+			}
+
 			else {
 				std::cout << "\nParsing error encountered at token " << term->getValue()
 					<< " at line " << term->getPosition().first << ", column " << term->getPosition().second;
@@ -99,7 +114,7 @@ bool Parser::parse() {
 		
 	} // end while
 
-	printDerivation();
+	//printDerivation();
 
 	if (currentScannedToken || error || !(parsingStack.top()->isDollarSign())) {
 		return false;
@@ -133,7 +148,7 @@ void Parser::inverseRHSMultiplePush(int ruleNo) {
 	// make a copy of rule
 	std::list<GSymbol*> rule;
 	for (GSymbol* symbol : table->getRule(ruleNo)) {
-		rule.push_back(new GSymbol(symbol));
+		rule.push_back(symbol->clone());
 	}
 
 	if (static_cast<GNonTerminal*>(rule.front())->getType() == static_cast<GNonTerminal*>(derivationToBeParsed.front())->getType()) {

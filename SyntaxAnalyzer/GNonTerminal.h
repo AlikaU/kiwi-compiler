@@ -69,7 +69,8 @@ public:
 		wrongType = -1
 	};
 
-	
+	~GNonTerminal() {}
+	GSymbol * clone() const;
 	GNonTerminal(NonTerminalTypes t);
 	bool isTerminal() const;
 	NonTerminalTypes getType() const { return symbolType; }

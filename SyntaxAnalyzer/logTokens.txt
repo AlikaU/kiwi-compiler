@@ -1,2 +1,0 @@
-
-TOKEN: RESERVED_WORD: "class", line 1, column 1

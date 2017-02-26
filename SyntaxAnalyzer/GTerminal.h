@@ -5,6 +5,8 @@
 class GTerminal : public GSymbol {
 
 public:
+	~GTerminal() {}
+	GSymbol * clone() const;
 	GTerminal(Token* t);
 	GTerminal(GTerminal* term);
 	enum TerminalTypes {

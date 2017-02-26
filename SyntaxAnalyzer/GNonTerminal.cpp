@@ -75,3 +75,8 @@ GNonTerminal::NonTerminalTypes GNonTerminal::stringToType(std::string s) {
 	}
 	return wrongType;
 }
+
+GSymbol * GNonTerminal::clone() const {
+	return new GNonTerminal(*this);
+}
+

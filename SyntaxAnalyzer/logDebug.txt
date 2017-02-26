@@ -1,10 +1,5 @@
 
 ERROR: 
 Parsing begins!
-DEBUG: current state is: START and we just read a c (ascii 99) 
-DEBUG: current state is: WORD and we just read a l (ascii 108) 
-DEBUG: current state is: WORD and we just read a a (ascii 97) 
-DEBUG: current state is: WORD and we just read a s (ascii 115) 
-DEBUG: current state is: WORD and we just read a s (ascii 115) 
-DEBUG: current state is: WORD and we just read a   (ascii 32) 
-TOKEN: RESERVED_WORD: "class", line 1, column 1
+DEBUG: End of file reached. Attempting to create a token with last characters read
+DEBUG: No new tokens found
