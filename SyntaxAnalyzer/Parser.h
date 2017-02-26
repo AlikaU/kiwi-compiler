@@ -18,6 +18,16 @@ class Parser {
 	std::list<GSymbol*> derivationToBeParsed;
 	void printDerivation();
 	Token* currentScannedToken;
+	void delete_front(std::list<GSymbol*>* derivation) {
+		GSymbol* toDelete = derivation->front();
+		derivation->pop_front();
+		delete toDelete;
+	}
+	void delete_back(std::list<GSymbol*>* derivation) {
+		GSymbol* toDelete = derivation->back();
+		derivation->pop_back();
+		delete toDelete;
+	}
 
 public: 
 	Parser(Scanner* s, ParseTable* t);

@@ -72,7 +72,7 @@ Token* Scanner::getNextToken() {
 			if (state == StateTable::States::START || insideLineComment || 
 				nestedCommentLevel > 0 || lastState == StateTable::States::CLOSE_COMMENT) {
 				Logger::getLogger()->log(Logger::LOG_TYPE::DEBUG, "No new tokens found");
-				return NULL;
+				return new Token(Token::TokenTypes::DOLLAR_SIGN, "$", tokenPosition("$"));
 			}
 			else if (isValidToken(state, c)) {
 				token = createToken(state, buffer);
@@ -85,7 +85,7 @@ Token* Scanner::getNextToken() {
 			}
 			else {
 				Logger::getLogger()->log(Logger::LOG_TYPE::DEBUG, "No new tokens found");
-				return NULL;
+				return new Token(Token::TokenTypes::DOLLAR_SIGN, "$", tokenPosition("$"));
 			}
 		}
 	} while (token == NULL);

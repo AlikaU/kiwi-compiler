@@ -9,7 +9,8 @@ public:
 		OPERATOR = 2,
 		PUNCTUATION = 3,
 		IDENTIFIER = 4,
-		RESERVED_WORD = 5
+		RESERVED_WORD = 5,
+		DOLLAR_SIGN = 6
 	};
 	static const std::string TokenTypeStrings[12];
 	Token(TokenTypes t, std::string v, std::pair<int, int> p);

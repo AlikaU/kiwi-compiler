@@ -1,0 +1,62 @@
+prog 		-> classDeclList progBody
+classDeclList	-> classDecl classDeclList | EPSILON
+classDecl 	-> 'class' 'id' '{' varThenFuncList '}' ';'
+typeId          -> type 'id'
+varThenFuncList -> typeId varThenFuncList1 | EPSILON
+varThenFuncList1 -> arraySizeList ';' varThenFuncList | '(' fParams ')' funcBody ';' funcDefList
+varDeclList	-> varDecl varDeclList | EPSILON
+funcDefList 	-> funcDef funcDefList | EPSILON
+progBody 	-> 'program' funcBody ';' funcDefList
+funcHead	-> type 'id' '(' fParams ')'
+funcDef		-> funcHead funcBody ';'
+funcBody 	-> '{' varThenStatList '}'
+varThenStatList -> 'int' 'id' arraySizeList ';' varThenStatList | 'float' 'id' arraySizeList ';' varThenStatList 
+                | 'id' varThenStatList1 | statementNotAssign statementList | EPSILON
+varThenStatList1 -> 'id' arraySizeList ';' varThenStatList | assignStatTail
+assignStatTail -> indiceList assignStatTail1
+assignStatTail1 -> assignOp expr ';' statementList | '.' assignStatTail 
+statementList	-> statement statementList | EPSILON
+varDecl		-> type 'id' arraySizeList ';'
+arraySizeList	-> arraySize arraySizeList | EPSILON
+statement 	-> assignStat ';' | statementNotAssign
+statementNotAssign -> 'if' '(' expr ')' 'then' statBlock 'else' statBlock ';'
+		| 'for' '(' type 'id' assignOp expr ';' relExpr ';' assignStat ')' statBlock ';'
+		| 'get' '(' variable ')' ';' 
+                | 'put' '(' expr ')' ';' 
+                | 'return' '(' expr ')' ';'
+assignStat	-> variable assignOp expr
+statBlock	-> '{' statementList '}' | statement | EPSILON
+expr		-> term exprTail
+exprTail	-> addOp term exprTail | relOp arithExpr | EPSILON
+arithExpr	-> term arithExprTail
+relExpr         -> arithExpr relOp arithExpr
+arithExprTail	-> addOp term arithExprTail | EPSILON
+sign		-> '+' | '-'
+term		-> factor termTail
+termTail	-> EPSILON | multOp factor termTail
+factor		-> idNestListIdThenIndiceListOrAParams | 'numInt' | 'numFloat' | '(' arithExpr ')'  
+		| 'not' factor | sign factor
+variable 	-> idNestListThenIdThenIndiceList
+idNestListThenId -> 'id' idNestListThenId1
+idNestListThenId1 -> indiceList '.' idNestListThenId | EPSILON
+idNestListThenIdThenIndiceList -> 'id' indiceList idNestListThenIdThenIndiceList1
+idNestListThenIdThenIndiceList1 -> '.' idNestListThenIdThenIndiceList | EPSILON
+idNestListIdThenIndiceListOrAParams -> 'id'  idNestListIdThenIndiceListOrAParams1
+idNestListIdThenIndiceListOrAParams1 -> indiceList idNestListIdThenIndiceListOrAParams2 | '(' aParams ')'
+idNestListIdThenIndiceListOrAParams2 -> '.' idNestListIdThenIndiceListOrAParams | EPSILON
+idNest		-> 'id' indiceList '.'
+idNestList	-> idNest idNestList | EPSILON
+indice 		-> '[' arithExpr ']'
+indiceList	-> indice indiceList | EPSILON
+arraySize	-> '[' 'numInt' ']'
+type		-> 'int' | 'float' | 'id'
+fParams		-> type 'id' arraySizeList fParamsTailList | EPSILON
+fParamsTailList	-> fParamsTail fParamsTailList | EPSILON
+aParams		-> expr aParamsTailList | EPSILON
+aParamsTailList	-> aParamsTail aParamsTailList | EPSILON
+fParamsTail	-> ',' type 'id' arraySizeList
+aParamsTail	-> ',' expr
+assignOp	-> '='
+relOp		-> '==' | '<>' | '<' | '>' | '<=' | '>='
+addOp		-> '+' | '-' | 'or'
+multOp		-> '*' | '/' | 'and'

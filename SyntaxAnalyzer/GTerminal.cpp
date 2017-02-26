@@ -28,6 +28,9 @@ GTerminal::GTerminal(Token* t) {
 	case Token::TokenTypes::RESERVED_WORD:
 		type = ReservedWordToTerminalType(t->getValue());
 		break;
+	case Token::TokenTypes::DOLLAR_SIGN:
+		type = GTerminal::TerminalTypes::DOLLAR_SIGN;
+		break;
 	default:
 		throw "Unknown token type " + type;
 	}

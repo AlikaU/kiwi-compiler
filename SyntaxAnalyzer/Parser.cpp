@@ -35,7 +35,7 @@ bool Parser::parse() {
 
 	GNonTerminal prog(GNonTerminal::prog);
 	parsingStack.push(&prog);
-	derivationToBeParsed.push_front(&prog);
+	derivationToBeParsed.push_front(prog.clone());
 
 	currentScannedToken = scanner->getNextToken();
 
@@ -47,7 +47,7 @@ bool Parser::parse() {
 
 		// Terminal on top of stack
 		if (topSymbol->isTerminal()) {
-			if (!currentScannedToken) {
+			if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
 				error = true;
 				break;
 			}
@@ -57,9 +57,7 @@ bool Parser::parse() {
 			if (static_cast<GTerminal*>(topSymbol)->getType() == term.getType()) {
 				parsingStack.pop();
 				derivationParsed.push_back(new GTerminal(&term));
-				GSymbol* toDelete = derivationToBeParsed.front();
-				derivationToBeParsed.pop_front();
-				delete toDelete;
+				delete_front(&derivationToBeParsed);
 				currentScannedToken = scanner->getNextToken();				
 			}
 			else {
@@ -71,6 +69,10 @@ bool Parser::parse() {
 				// if there's a terminal on top of stack and it can't be matched, pop it
 				// pop error code is numRules + 1
 				skipErrors(table->getNumRules() + 2);
+				if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
+					std::cout << "\nEof reached!";
+					break;
+				}
 			}
 		}
 
@@ -78,35 +80,32 @@ bool Parser::parse() {
 		else {
 			GNonTerminal* nonterm = static_cast<GNonTerminal*>(topSymbol);
 			
-			GTerminal* term; 
-			if (currentScannedToken) {
-				term = new GTerminal(currentScannedToken);				
-			}
-			else {
-				term = new GTerminal(GTerminal::DOLLAR_SIGN);
-			}
+			GTerminal* term = new GTerminal(currentScannedToken);
 			
 			// if table entry is not an error code
 			int ruleNo = table->getRuleNo(nonterm, term);
 			if (ruleNo <= table->getNumRules()) {
 				parsingStack.pop();
-				derivationToBeParsed.pop_front();
-
 				inverseRHSMultiplePush(ruleNo);
 			}
-
+			/*
 			// check if it was just an empty file
 			else if (nonterm->getType() == GNonTerminal::prog && !currentScannedToken) {
 				parsingStack.pop();
+				delete_front(&derivationToBeParsed);
 				break;
 			}
-
+			*/
 			else {
 				std::cout << "\nParsing error encountered at token " << term->getValue()
 					<< " at line " << term->getPosition().first << ", column " << term->getPosition().second;
 				Logger::getLogger()->log(Logger::DERIVATION, "\nParsing error encountered at token " + term->getValue()
 					+ " at line " + std::to_string(term->getPosition().first) + ", column " + std::to_string(term->getPosition().second));
 				skipErrors(ruleNo);
+				if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
+					std::cout << "\nEof reached!";
+					break;
+				}
 			}
 			delete term;
 		}
@@ -116,7 +115,7 @@ bool Parser::parse() {
 
 	//printDerivation();
 
-	if (currentScannedToken || error || !(parsingStack.top()->isDollarSign())) {
+	if (currentScannedToken->getType() != Token::DOLLAR_SIGN || error || !(parsingStack.top()->isDollarSign())) {
 		return false;
 	} 
 	
@@ -152,7 +151,7 @@ void Parser::inverseRHSMultiplePush(int ruleNo) {
 	}
 
 	if (static_cast<GNonTerminal*>(rule.front())->getType() == static_cast<GNonTerminal*>(derivationToBeParsed.front())->getType()) {
-		derivationToBeParsed.pop_front();
+		delete_front(&derivationToBeParsed);
 	}
 	else {
 		std::cerr << "Rule's LHS does not correspond to beginning of derivation list!!Something is very wrong... ";
@@ -160,6 +159,12 @@ void Parser::inverseRHSMultiplePush(int ruleNo) {
 		exit(1);
 	}
 	rule.pop_front(); // discard first element, because it's LHS
+
+	// make a copy of rule to put in derivationToBeParsed
+	std::list<GSymbol*> derivationToBeParsedRule;
+	for (GSymbol* symbol : rule) {
+		derivationToBeParsedRule.push_back(symbol->clone());
+	}
 
 	while (!(rule.empty())) {
 		if (! (rule.back()->isEpsilon()) ) {
@@ -179,7 +184,7 @@ void Parser::skipErrors(int errorCode) {
 	// pop
 	if (errorCode == table->getNumRules() + 1) {
 		parsingStack.pop();
-		derivationToBeParsed.pop_front();
+		delete_front(&derivationToBeParsed);
 		std::cout << "\nPOP\n";
 	}
 	// scan

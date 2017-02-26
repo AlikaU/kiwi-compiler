@@ -17,4 +17,4 @@ std::string Token::toString() {
 }
 
 
-const std::string Token::TokenTypeStrings[12] = { "INT", "FLOAT", "OPERATOR", "PUNCTUATION", "IDENTIFIER", "RESERVED_WORD"};
+const std::string Token::TokenTypeStrings[12] = { "INT", "FLOAT", "OPERATOR", "PUNCTUATION", "IDENTIFIER", "RESERVED_WORD", "$"};

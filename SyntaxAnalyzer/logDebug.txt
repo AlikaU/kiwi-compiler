@@ -1,5 +1,158 @@
 
 ERROR: 
 Parsing begins!
+DEBUG: current state is: START and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a u (ascii 117) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: End of file reached. Attempting to create a token with last characters read
+TOKEN: RESERVED_WORD: "return", line 1, column 0
+DEBUG: Last token found.
+ERROR: 
+Parsing error encountered at token return at line 1, column 0
 DEBUG: End of file reached. Attempting to create a token with last characters read
 DEBUG: No new tokens found
+TOKEN: $: "$", line 1, column 5
+ERROR: 
+Parsing begins!
+DEBUG: current state is: START and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "class", line 1, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a U (ascii 85) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a y (ascii 121) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "Utility", line 1, column 7
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a { (ascii 123) 
+DEBUG: current state is: OPENCURLY and we just read a } (ascii 125) 
+TOKEN: PUNCTUATION: "{", line 1, column 15
+DEBUG: current state is: START and we just read a } (ascii 125) 
+DEBUG: current state is: CLOSECURLY and we just read a   (ascii 32) 
+TOKEN: PUNCTUATION: "}", line 1, column 16
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a ] (ascii 93) 
+DEBUG: End of file reached. Attempting to create a token with last characters read
+TOKEN: PUNCTUATION: "]", line 1, column 17
+DEBUG: Last token found.
+ERROR: 
+ error encountered at token ] at line 1, column 17
+DEBUG: End of file reached. Attempting to create a token with last characters read
+DEBUG: No new tokens found
+TOKEN: $: "$", line 1, column 17
+ERROR: 
+Parsing begins!
+DEBUG: current state is: START and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "class", line 1, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a U (ascii 85) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a y (ascii 121) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "Utility", line 1, column 7
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a { (ascii 123) 
+DEBUG: current state is: OPENCURLY and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: "{", line 1, column 15
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "int", line 2, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a ; (ascii 59) 
+TOKEN: IDENTIFIER: "x", line 2, column 5
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 2, column 6
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a - (ascii 45) 
+DEBUG: current state is: MINUS and we just read a 
+ (ascii 10) 
+TOKEN: OPERATOR: "-", line 3, column 1
+ERROR: 
+Parsing error encountered at token - at line 3, column 1
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a } (ascii 125) 
+DEBUG: current state is: CLOSECURLY and we just read a   (ascii 32) 
+TOKEN: PUNCTUATION: "}", line 4, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: End of file reached. Attempting to create a token with last characters read
+DEBUG: No new tokens found
+TOKEN: $: "$", line 4, column 1
+ERROR: 
+Parsing begins!
+DEBUG: current state is: START and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "class", line 1, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a U (ascii 85) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a y (ascii 121) 
+DEBUG: current state is: WORD and we just read a 
+ (ascii 10) 
+TOKEN: IDENTIFIER: "Utility", line 1, column 7
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a { (ascii 123) 
+DEBUG: current state is: OPENCURLY and we just read a   (ascii 32) 
+TOKEN: PUNCTUATION: "{", line 2, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ")", line 2, column 3
+ERROR: 
+Parsing error encountered at token ) at line 2, column 3
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a } (ascii 125) 
+DEBUG: current state is: CLOSECURLY and we just read a ; (ascii 59) 
+TOKEN: PUNCTUATION: "}", line 3, column 1
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: End of file reached. Attempting to create a token with last characters read
+TOKEN: PUNCTUATION: ";", line 3, column 1
+DEBUG: Last token found.
+DEBUG: End of file reached. Attempting to create a token with last characters read
+DEBUG: No new tokens found
+TOKEN: $: "$", line 3, column 1
+ERROR: 
+Parsing error encountered at token $ at line 3, column 1
+DEBUG: End of file reached. Attempting to create a token with last characters read
+DEBUG: No new tokens found
+TOKEN: $: "$", line 3, column 1
