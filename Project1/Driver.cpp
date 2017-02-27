@@ -1,6 +1,6 @@
 #include "StateTable.h"
 #include <iostream>
-#include "Logger.h"
+#include "..\Utils\Logger.h"
 #include "Scanner.h"
 
 int main(int argc, char** argv)

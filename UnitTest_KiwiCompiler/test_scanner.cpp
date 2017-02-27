@@ -7,8 +7,8 @@
 #include "..\Project1\Token.cpp"
 #include "..\Project1\StateTable.h"
 #include "..\Project1\StateTable.cpp"
-#include "..\Project1\Logger.h"
-#include "..\Project1\Logger.cpp"
+#include "..\Utils\Logger.h"
+#include "..\Utils\Logger.cpp"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

@@ -1,0 +1,19 @@
+
+ERROR: 
+Parsing begins!
+ERROR: 
+Parsing error encountered at token return at line 1, column 0
+ERROR: 
+Parsing begins!
+ERROR: 
+ error encountered at token ] at line 1, column 17
+ERROR: 
+Parsing begins!
+ERROR: 
+Parsing error encountered at token - at line 3, column 1
+ERROR: 
+Parsing begins!
+ERROR: 
+Parsing error encountered at token ) at line 2, column 3
+ERROR: 
+Parsing error encountered at token $ at line 3, column 1

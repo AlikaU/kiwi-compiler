@@ -1,0 +1,10 @@
+
+Parsing begins!
+Parsing error encountered at token return at line 1, column 0
+Parsing begins!
+ error encountered at token ] at line 1, column 17
+Parsing begins!
+Parsing error encountered at token - at line 3, column 1
+Parsing begins!
+Parsing error encountered at token ) at line 2, column 3
+Parsing error encountered at token $ at line 3, column 1

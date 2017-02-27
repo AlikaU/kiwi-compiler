@@ -1,6 +1,6 @@
 #include "Token.h"
 #include <string>
-#include "Logger.h"
+#include "..\Utils\Logger.h"
 
 
 Token::Token(TokenTypes t, std::string v, std::pair<int, int> p) {
