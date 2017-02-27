@@ -50,6 +50,7 @@ void Logger::log(LOG_TYPE t, std::string message) {
 			logDeriv << message;
 		}
 		else { std::cout << "Failed to print to logDerivation.txt because file is closed"; }
+		break;
 	case ERROR:
 		if (logError.is_open()) {
 			logError << "\nERROR: " << message;
@@ -61,14 +62,7 @@ void Logger::log(LOG_TYPE t, std::string message) {
 		else { std::cout << "Failed to print to logDebug.txt because file is closed"; }
 		break;
 	}	
-	logToken.flush();
-	logToken.close();
-	logDebug.flush();
-	logDebug.close();
-	logDeriv.flush();
-	logDeriv.close();
-	logError.flush();
-	logError.close();
+	
 }
 
 Logger* Logger::getLogger() {

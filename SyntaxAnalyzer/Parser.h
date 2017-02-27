@@ -28,9 +28,10 @@ class Parser {
 		derivation->pop_back();
 		delete toDelete;
 	}
+	bool printDeriv;
 
 public: 
-	Parser(Scanner* s, ParseTable* t);
+	Parser(Scanner* s, ParseTable* t, bool p);
 	~Parser();
 	bool parse();
 	void skipErrors(int errorCode);

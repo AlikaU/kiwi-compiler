@@ -43,19 +43,20 @@ void testWrongInput(char* path, ParseTable* pTable) {
 int main(int argc, char** argv)
 {
 
-	ParseTable pTable;	
+	ParseTable pTable;
+	/**/
+	testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
+	
+	testCorrectInput("../TestFiles/Syntax/good1.txt", &pTable);
+	testCorrectInput("../TestFiles/Syntax/good3.txt", &pTable);
+	testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
+	
 
 	testWrongInput("../TestFiles/Syntax/bad1.txt", &pTable);
 	testWrongInput("../TestFiles/Syntax/bad2.txt", &pTable);
 	testWrongInput("../TestFiles/Syntax/bad3.txt", &pTable);
 	testWrongInput("../TestFiles/Syntax/bad4.txt", &pTable);
 
-	testCorrectInput("../TestFiles/Syntax/good1.txt", &pTable);
-	testCorrectInput("../TestFiles/Syntax/good3.txt", &pTable);
-	testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
-
-	// This one runs last, becaues it will take a long time
-	testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
 	
 	std::cout << "\n\nDone parsing! Enjoy your parsed code.\nYou can find all log files in the Output folder.\nPress any key to exit.";
 	std::getchar();

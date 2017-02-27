@@ -1,10 +1,11 @@
 #include "Parser.h"
 #include "..\Utils\Logger.h"
 
-Parser::Parser(Scanner* s, ParseTable* t) {
+Parser::Parser(Scanner* s, ParseTable* t, bool p) {
 	scanner = s;
 	table = t;
 	error = false;
+	printDeriv = p;
 
 }
 
@@ -27,9 +28,6 @@ Parser::~Parser() {
 
 bool Parser::parse() {
 
-	std::cout << "\nParsing begins!";
-	Logger::getLogger()->log(Logger::DERIV, "\nParsing begins!");
-
 	GTerminal dollarsign(GTerminal::DOLLAR_SIGN);
 	parsingStack.push(&dollarsign);
 
@@ -41,7 +39,9 @@ bool Parser::parse() {
 
 	while ( !(parsingStack.top()->isDollarSign()) ) {
 
-		//printDerivation();
+		if (printDeriv) {
+			printDerivation();
+		}		
 
 		GSymbol* topSymbol = parsingStack.top();
 
@@ -61,10 +61,10 @@ bool Parser::parse() {
 				currentScannedToken = scanner->getNextToken();				
 			}
 			else {
-				std::cout << "\nParsing error encountered at token " << term.getValue()
-					<< " at line " << term.getPosition().first << ", column " << term.getPosition().second;
-				Logger::getLogger()->log(Logger::DERIV, "\n error encountered at token " + term.getValue()
-					+ " at line " + std::to_string(term.getPosition().first) + ", column " + std::to_string(term.getPosition().second));
+				//std::cout << "\nParsing error encountered at token '" << term.getValue()
+				//	<< "' at line " << term.getPosition().first << ", column " << term.getPosition().second;
+				Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: error encountered at token '" + term.getValue()
+					+ "' at line " + std::to_string(term.getPosition().first) + ", column " + std::to_string(term.getPosition().second));
 				
 				// if there's a terminal on top of stack and it can't be matched, pop it
 				// pop error code is numRules + 1
@@ -97,10 +97,10 @@ bool Parser::parse() {
 			}
 			*/
 			else {
-				std::cout << "\nParsing error encountered at token " << term->getValue()
-					<< " at line " << term->getPosition().first << ", column " << term->getPosition().second;
-				Logger::getLogger()->log(Logger::DERIV, "\nParsing error encountered at token " + term->getValue()
-					+ " at line " + std::to_string(term->getPosition().first) + ", column " + std::to_string(term->getPosition().second));
+				//std::cout << "\nParsing error encountered at token '" << term->getValue()
+				//	<< "' at line " << term->getPosition().first << ", column " << term->getPosition().second;
+				Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Parsing error encountered at token '" + term->getValue()
+					+ "' at line " + std::to_string(term->getPosition().first) + ", column " + std::to_string(term->getPosition().second));
 				skipErrors(ruleNo);
 				if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
 					std::cout << "\nEof reached!";
@@ -113,7 +113,9 @@ bool Parser::parse() {
 		
 	} // end while
 
-	//printDerivation();
+	if (printDeriv) {
+		printDerivation();
+	}
 
 	if (currentScannedToken->getType() != Token::DOLLAR_SIGN || error || !(parsingStack.top()->isDollarSign())) {
 		return false;
@@ -123,21 +125,21 @@ bool Parser::parse() {
 }
 
 void Parser::printDerivation() {
-	Logger::getLogger()->log(Logger::DERIV, "\n\n");
-	std::cout << "\n\nParsed derivation: ";
+	Logger::getLogger()->log(Logger::DERIV, "\n");
+	//std::cout << "\n\nParsed derivation: ";
 	for (GSymbol* symbol : derivationParsed) {
 		Logger::getLogger()->log(Logger::DERIV, static_cast<GTerminal*>(symbol)->getValue() + " ");
-		std::cout << static_cast<GTerminal*>(symbol)->getValue() << " ";
+		//std::cout << static_cast<GTerminal*>(symbol)->getValue() << " ";
 	}
-	std::cout << "\n\nTo be parsed derivation: ";
+	//std::cout << "\n\nTo be parsed derivation: ";
 	for (GSymbol* symbol : derivationToBeParsed) {
 		if (symbol->isTerminal()) {
 			Logger::getLogger()->log(Logger::DERIV, GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) + " ");
-			std::cout << GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) << " ";
+			//std::cout << GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) << " ";
 		}
 		else {
 			Logger::getLogger()->log(Logger::DERIV, GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) + " ");
-			std::cout << GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) << " ";
+			//std::cout << GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) << " ";
 		}		
 	}
 }
@@ -183,17 +185,32 @@ void Parser::skipErrors(int errorCode) {
 
 	// pop
 	if (errorCode == table->getNumRules() + 1) {
+
+		// error reporting
+		GSymbol* symbol = parsingStack.top();
+		std::string typeString;
+		if (symbol->isTerminal()) {
+			typeString = GTerminal::getTerminalTypeStringNoQuotes(static_cast<int>(static_cast<GTerminal*>(symbol)->getType()));
+		}
+		else {
+			typeString = GNonTerminal::getNonTerminalTypeString(static_cast<int>(static_cast<GNonTerminal*>(symbol)->getType()));
+		}
+		Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Handling error: POP (abandoned trying to parse " + typeString + ")");
+		//std::cout << "\nPOP\n";
+
+		// actual pop
 		parsingStack.pop();
-		delete_front(&derivationToBeParsed);
-		std::cout << "\nPOP\n";
+		delete_front(&derivationToBeParsed);		
 	}
 	// scan
 	else if (errorCode == table->getNumRules() + 2) {
 		currentScannedToken = scanner->getNextToken();
-		std::cout << "\nSCAN\n";
+
+		Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Handling error: SCAN (skipped input token that caused error)");
+		//std::cout << "\nSCAN\n";
 	}
 	else {
-		std::cerr << "Wrong error code " << errorCode << "! Exiting.";
+		std::cerr << "Wrong error code: " << errorCode << "! Something is very very wrong. Exiting.";
 		std::getchar();
 	}
 }
