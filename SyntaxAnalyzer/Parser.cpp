@@ -1,11 +1,12 @@
 #include "Parser.h"
 #include "..\Utils\Logger.h"
 
-Parser::Parser(Scanner* s, ParseTable* t, bool p) {
+Parser::Parser(Scanner* s, ParseTable* t, bool p, bool c) {
 	scanner = s;
 	table = t;
 	error = false;
 	printDeriv = p;
+	printDerivToConsole = c;
 
 }
 
@@ -42,6 +43,9 @@ bool Parser::parse() {
 		if (printDeriv) {
 			printDerivation();
 		}		
+		if (printDerivToConsole) {
+			printDerivationToConsole();
+		}
 
 		GSymbol* topSymbol = parsingStack.top();
 
@@ -116,6 +120,9 @@ bool Parser::parse() {
 	if (printDeriv) {
 		printDerivation();
 	}
+	if (printDerivToConsole) {
+		printDerivationToConsole();
+	}
 
 	if (currentScannedToken->getType() != Token::DOLLAR_SIGN || error || !(parsingStack.top()->isDollarSign())) {
 		return false;
@@ -126,21 +133,32 @@ bool Parser::parse() {
 
 void Parser::printDerivation() {
 	Logger::getLogger()->log(Logger::DERIV, "\n");
-	//std::cout << "\n\nParsed derivation: ";
 	for (GSymbol* symbol : derivationParsed) {
 		Logger::getLogger()->log(Logger::DERIV, static_cast<GTerminal*>(symbol)->getValue() + " ");
-		//std::cout << static_cast<GTerminal*>(symbol)->getValue() << " ";
-	}
-	//std::cout << "\n\nTo be parsed derivation: ";
+		}
 	for (GSymbol* symbol : derivationToBeParsed) {
 		if (symbol->isTerminal()) {
 			Logger::getLogger()->log(Logger::DERIV, GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) + " ");
-			//std::cout << GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) << " ";
-		}
+			}
 		else {
 			Logger::getLogger()->log(Logger::DERIV, GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) + " ");
-			//std::cout << GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) << " ";
-		}		
+			}		
+	}
+}
+
+void Parser::printDerivationToConsole() {
+	std::cout << "\n\nSymbols parsed: ";
+	for (GSymbol* symbol : derivationParsed) {
+		std::cout << static_cast<GTerminal*>(symbol)->getValue() << " ";
+	}
+	std::cout << "\nSymbols to be parsed: ";
+	for (GSymbol* symbol : derivationToBeParsed) {
+		if (symbol->isTerminal()) {
+			std::cout << GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) << " ";
+		}
+		else {
+			std::cout << GNonTerminal::getNonTerminalTypeString(static_cast<int>((static_cast<GNonTerminal*>(symbol)->getType()))) << " ";
+		}
 	}
 }
 

@@ -112,6 +112,12 @@ GTerminal::TerminalTypes GTerminal::ReservedWordToTerminalType(std::string tempV
 		return GTerminal::TerminalTypes::RETURN;
 	else if (tempValue == "program")
 		return GTerminal::TerminalTypes::PROGRAM;
+	else if (tempValue == "and")
+		return GTerminal::TerminalTypes::AND;
+	else if (tempValue == "not")
+		return GTerminal::TerminalTypes::NOT;
+	else if (tempValue == "or")
+		return GTerminal::TerminalTypes::OR;
 	else throw "Unknown reserved word value " + tempValue + "!";
 }
 

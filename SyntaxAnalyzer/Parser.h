@@ -17,6 +17,7 @@ class Parser {
 	std::list<GSymbol*> derivationParsed;
 	std::list<GSymbol*> derivationToBeParsed;
 	void printDerivation();
+	void printDerivationToConsole();
 	Token* currentScannedToken;
 	void delete_front(std::list<GSymbol*>* derivation) {
 		GSymbol* toDelete = derivation->front();
@@ -29,9 +30,10 @@ class Parser {
 		delete toDelete;
 	}
 	bool printDeriv;
+	bool printDerivToConsole;
 
 public: 
-	Parser(Scanner* s, ParseTable* t, bool p);
+	Parser(Scanner* s, ParseTable* t, bool p, bool c);
 	~Parser();
 	bool parse();
 	void skipErrors(int errorCode);

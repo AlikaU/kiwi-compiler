@@ -2,7 +2,6 @@
 Where to find input files: Project1/TestFiles/Syntax
 Where to find the grammar, FIRST and FOLLOW sets: Project1/Documentation
 Where to find rest of documentation: Project1/Documentation/Documentation.docx
-Where to find a copy of the derivation output file: 
 
 Compilation / execution instructions: 
 
@@ -15,8 +14,7 @@ and log files will be generated)
 3. To toggle derivation output on / off, change the printDerivation
 	boolean in the driver (Project1/SyntaxAnalyzer/Driver.cpp). 
 	Turning it on will make it run for a very long time;
-	I included a copy of the derivation output file, if you don't want to wait.
-
+	
 Notes:
  
 - The derivation document will be very long

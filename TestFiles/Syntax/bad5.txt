@@ -1,0 +1,15 @@
+class A
+{
+};
+program {
+
+// the comparison statement will give error
+// after recovering from error, the rest of the block 
+// is parsed correctly 
+
+if(1 < 2 > 1) then {
+} else {} ;
+
+
+
+};

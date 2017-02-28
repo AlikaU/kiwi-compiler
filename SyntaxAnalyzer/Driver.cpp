@@ -6,7 +6,9 @@
 
 
 // will significantly slow everything down
-bool printDerivation = true;
+bool printDerivation = false;
+bool printDerivationToConsole = false;
+bool success = true;
 
 void testCorrectInput(char* path, ParseTable* pTable) {
 	std::cout << "\n\nNow parsing valid file: " << path;
@@ -14,12 +16,13 @@ void testCorrectInput(char* path, ParseTable* pTable) {
 		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for valid file: " + std::string(path));
 	}
 	Scanner scanner(path);
-	Parser parser(&scanner, pTable, printDerivation);
+	Parser parser(&scanner, pTable, printDerivation, printDerivationToConsole);
 	if (parser.parse()) {
 		std::cout << "\nSUCCESS";
 	}
 	else {
 		std::cout << "\nFAILED";
+		success = false;
 	}
 }
 
@@ -31,32 +34,76 @@ void testWrongInput(char* path, ParseTable* pTable) {
 	}
 	Logger::getLogger()->log(Logger::ERROR, "Errors for file with errors: " + std::string(path));
 	Scanner scanner(path);
-	Parser parser(&scanner, pTable, printDerivation);
+	Parser parser(&scanner, pTable, printDerivation, printDerivationToConsole);
 	if (!parser.parse()) {
 		std::cout << "\nSUCCESS (parsing failed, as expected)";
 	}
 	else {
 		std::cout << "\nFAILED (pasing succeeded when it should've failed";
+		success = false;
 	}
 }
 
 int main(int argc, char** argv)
 {
+	ParseTable pTable;
 
-	ParseTable pTable;	
+	std::cout << "\n\nTEMPORARY: printing derivation to file works, but takes a very long time. You therefore have the option to print it to console instead.";
+	std::cout << "\nPrint derivation to file (1), to console (2) or neither (3)?";
+	int answer;
+	do {		
+		std::cin >> answer;
+		if (std::cin.fail() || ! (answer >= 1 && answer <= 3) ) {
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			std::cout << "Please enter a number between 1 and 3";
+			std::cout << "\nPrint derivation to file (1), to console (2) or neither (3)?";
+		}
+	} while (!(answer >= 1 && answer <= 3));
+	std::cin.clear();
 
+	switch (answer) {
+	case 1:
+		printDerivation = true;
+		printDerivationToConsole = false;
+		break;
+	case 2: 
+		printDerivation = false;
+		printDerivationToConsole = true;
+		break;
+	case 3:
+		printDerivation = false;
+		printDerivationToConsole = false;
+		break;
+	}	
+	
+	
+	
+	
 	testWrongInput("../TestFiles/Syntax/bad1.txt", &pTable);
 	testWrongInput("../TestFiles/Syntax/bad2.txt", &pTable);
 	testWrongInput("../TestFiles/Syntax/bad3.txt", &pTable);
 	testWrongInput("../TestFiles/Syntax/bad4.txt", &pTable);
+	testWrongInput("../TestFiles/Syntax/bad5.txt", &pTable);
 
 	testCorrectInput("../TestFiles/Syntax/good1.txt", &pTable);
 	testCorrectInput("../TestFiles/Syntax/good3.txt", &pTable);
 	testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
+	testCorrectInput("../TestFiles/Syntax/good5.txt", &pTable);
+	testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
+
+	
 
 	// This one runs last, becaues it will take a long time
 	testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
+
+	if (success) {
+		std::cout << "\n\nSUCCESS: All test cases passed succesfully!";
+	}
+	else {
+		std::cout << "\n\nFAILED: At least one test case has failed.";
+	}
+	std::cout << "\nYou can find all log files in the Output folder.";
 	
-	std::cout << "\n\nDone parsing! Enjoy your parsed code.\nYou can find all log files in the Output folder.\nPress any key to exit.";
-	std::getchar();
+	std::cin >> answer;
 }

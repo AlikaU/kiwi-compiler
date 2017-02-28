@@ -1,0 +1,37 @@
+class A
+{
+int B()
+{
+
+// I know this makes no sense, but this is still 
+// legal according to the syntax 
+
+for( int idx = 99; idx >= 0; idx = idx - 1 )
+{
+
+};
+for( int idx = 99; idx < 0; idx = idx + 1 )
+{
+
+};
+for( int idx = 99; idx <= 0; idx = idx * 1 )
+{
+
+};
+for( int idx = 99; idx == 0; idx = idx / 1 )
+{
+
+};
+for( int idx = 99; idx <> 0; idx = idx and 1 )
+{
+
+};
+for( int idx = 99; idx <> 0; idx = idx or 1 )
+{
+
+};
+return (C);
+};
+
+};
+program {};
