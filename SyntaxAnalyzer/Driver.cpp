@@ -8,6 +8,7 @@
 // will significantly slow everything down
 bool printDerivation = false;
 bool printDerivationToConsole = false;
+bool skipLongFiles = true;
 bool success = true;
 
 void testCorrectInput(char* path, ParseTable* pTable) {
@@ -56,7 +57,7 @@ int main(int argc, char** argv)
 		if (std::cin.fail() || ! (answer >= 1 && answer <= 3) ) {
 			std::cin.clear();
 			std::cin.ignore(256, '\n');
-			std::cout << "Please enter a number between 1 and 3";
+			std::cout << "\nPlease enter a number between 1 and 3";
 			std::cout << "\nPrint derivation to file (1), to console (2) or neither (3)?";
 		}
 	} while (!(answer >= 1 && answer <= 3));
@@ -77,7 +78,26 @@ int main(int argc, char** argv)
 		break;
 	}	
 	
-	
+	if (printDerivation || printDerivationToConsole) {
+		std::cout << "\n\nYou have chosen to print derivation. Would you like to skip long input files? ";
+		std::cout << "If you skip, it will take a couple minutes, if you don't, it can take over an hour. \nSkip (1), Don't skip (2)?";
+
+		int ans;
+		do {
+			std::cin >> ans;
+			if (std::cin.fail() || !(ans >= 1 && ans <= 2)) {
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cout << "\nPlease enter 1 or 2";
+				std::cout << "\nSkip (1) or Don't skip (2) long files?";
+			}
+		} while (!(ans >= 1 && ans <= 2));
+		std::cin.clear();
+
+		if (ans == 2) {
+			skipLongFiles = false;
+		}
+	}
 	
 	
 	testWrongInput("../TestFiles/Syntax/bad1.txt", &pTable);
@@ -90,12 +110,11 @@ int main(int argc, char** argv)
 	testCorrectInput("../TestFiles/Syntax/good3.txt", &pTable);
 	testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
 	testCorrectInput("../TestFiles/Syntax/good5.txt", &pTable);
-	testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
 
-	
-
-	// This one runs last, becaues it will take a long time
-	testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
+	if (!skipLongFiles) {
+		testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
+		testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
+	}	
 
 	if (success) {
 		std::cout << "\n\nSUCCESS: All test cases passed succesfully!";
