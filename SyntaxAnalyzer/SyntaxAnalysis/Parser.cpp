@@ -1,5 +1,5 @@
 #include "Parser.h"
-#include "..\Utils\Logger.h"
+#include "..\..\Utils\Logger.h"
 
 Parser::Parser(Scanner* s, ParseTable* t, bool p, bool c) {
 	scanner = s;

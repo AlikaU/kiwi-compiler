@@ -22,6 +22,7 @@
     <ProjectGuid>{FF9A4A02-0DEC-40F4-B62C-C47ED9AF8B99}</ProjectGuid>
     <RootNamespace>SyntaxAnalyzer</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>SyntaxAndSemanticAnalyzer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -114,19 +115,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GNonTerminal.h" />
-    <ClInclude Include="GSymbol.h" />
-    <ClInclude Include="GTerminal.h" />
-    <ClInclude Include="Parser.h" />
-    <ClInclude Include="ParseTable.h" />
+    <ClInclude Include="SemanticAnalysis\SemanticClass.h" />
+    <ClInclude Include="SemanticAnalysis\SemanticFunction.h" />
+    <ClInclude Include="SemanticAnalysis\SemanticRecord.h" />
+    <ClInclude Include="SemanticAnalysis\SemanticVariable.h" />
+    <ClInclude Include="SemanticAnalysis\SymbolTable.h" />
+    <ClInclude Include="SemanticAnalysis\SymbolTableManager.h" />
+    <ClInclude Include="SyntaxAnalysis\GNonTerminal.h" />
+    <ClInclude Include="SyntaxAnalysis\GSymbol.h" />
+    <ClInclude Include="SyntaxAnalysis\GTerminal.h" />
+    <ClInclude Include="SyntaxAnalysis\Parser.h" />
+    <ClInclude Include="SyntaxAnalysis\ParseTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="GNonTerminal.cpp" />
-    <ClCompile Include="GSymbol.cpp" />
-    <ClCompile Include="GTerminal.cpp" />
-    <ClCompile Include="Parser.cpp" />
-    <ClCompile Include="ParseTable.cpp" />
+    <ClCompile Include="SemanticAnalysis\SemanticClass.cpp" />
+    <ClCompile Include="SemanticAnalysis\SemanticFunction.cpp" />
+    <ClCompile Include="SemanticAnalysis\SemanticRecord.cpp" />
+    <ClCompile Include="SemanticAnalysis\SemanticVariable.cpp" />
+    <ClCompile Include="SemanticAnalysis\SymbolTable.cpp" />
+    <ClCompile Include="SemanticAnalysis\SymbolTableManager.cpp" />
+    <ClCompile Include="SyntaxAnalysis\GNonTerminal.cpp" />
+    <ClCompile Include="SyntaxAnalysis\GSymbol.cpp" />
+    <ClCompile Include="SyntaxAnalysis\GTerminal.cpp" />
+    <ClCompile Include="SyntaxAnalysis\Parser.cpp" />
+    <ClCompile Include="SyntaxAnalysis\ParseTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project1\Project1.vcxproj">

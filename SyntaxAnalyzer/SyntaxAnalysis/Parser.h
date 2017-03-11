@@ -1,9 +1,9 @@
 #pragma once
-#include "..\Project1\Scanner.h"
+#include "..\..\Project1\Scanner.h"
 #include "GSymbol.h"
 #include "GTerminal.h"
 #include "GNonTerminal.h"
-#include "..\Project1\Token.h"
+#include "..\..\Project1\Token.h"
 #include "ParseTable.h"
 #include <stack>
 

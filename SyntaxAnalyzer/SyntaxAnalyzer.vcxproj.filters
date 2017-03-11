@@ -15,39 +15,75 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ParseTable.h">
+    <ClInclude Include="SyntaxAnalysis\GNonTerminal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GTerminal.h">
+    <ClInclude Include="SyntaxAnalysis\GSymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GSymbol.h">
+    <ClInclude Include="SyntaxAnalysis\GTerminal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GNonTerminal.h">
+    <ClInclude Include="SyntaxAnalysis\Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Parser.h">
+    <ClInclude Include="SyntaxAnalysis\ParseTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticAnalysis\SymbolTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticAnalysis\SymbolTableManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticAnalysis\SemanticRecord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticAnalysis\SemanticVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticAnalysis\SemanticFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticAnalysis\SemanticClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ParseTable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GSymbol.cpp">
+    <ClCompile Include="SyntaxAnalysis\GNonTerminal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GNonTerminal.cpp">
+    <ClCompile Include="SyntaxAnalysis\GSymbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GTerminal.cpp">
+    <ClCompile Include="SyntaxAnalysis\GTerminal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Parser.cpp">
+    <ClCompile Include="SyntaxAnalysis\Parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxAnalysis\ParseTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SemanticAnalysis\SymbolTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SemanticAnalysis\SymbolTableManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SemanticAnalysis\SemanticRecord.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SemanticAnalysis\SemanticVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SemanticAnalysis\SemanticFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SemanticAnalysis\SemanticClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

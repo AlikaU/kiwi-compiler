@@ -1,6 +1,0 @@
-
-TOKEN: IDENTIFIER: "ValidToken", line 5, column 1
-TOKEN: IDENTIFIER: "ValidToken", line 17, column 4
-TOKEN: IDENTIFIER: "ValidToken", line 23, column 1
-TOKEN: IDENTIFIER: "ValidToken", line 30, column 1
-TOKEN: IDENTIFIER: "ValidToken", line 35, column 1

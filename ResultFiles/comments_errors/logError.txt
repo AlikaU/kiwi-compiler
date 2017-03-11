@@ -1,4 +1,0 @@
-
-ERROR: Attempted to close comment without having opened one at line 3, column 1
-ERROR: Attempted to close comment without having opened one at line 6, column 1
-ERROR: Comment unclosed at end of file.

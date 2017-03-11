@@ -1,7 +1,7 @@
 #include <iostream>
-#include "ParseTable.h"
+#include "SyntaxAnalysis\ParseTable.h"
 #include "..\Project1\Scanner.h"
-#include "Parser.h"
+#include "SyntaxAnalysis\Parser.h"
 #include "..\Utils\Logger.h"
 
 
@@ -111,7 +111,7 @@ int main(int argc, char** argv)
 	testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
 	testCorrectInput("../TestFiles/Syntax/good5.txt", &pTable);
 
-	if (!skipLongFiles) {
+	if (!skipLongFiles || (!printDerivation && !printDerivationToConsole)) {
 		testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
 		testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
 	}	

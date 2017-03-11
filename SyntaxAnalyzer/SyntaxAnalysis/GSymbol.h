@@ -1,5 +1,5 @@
 #pragma once
-#include "..\Project1\Token.h"
+#include "..\..\Project1\Token.h"
 
 class GSymbol {	
 
