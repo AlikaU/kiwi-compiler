@@ -11,9 +11,9 @@ void SemanticRecord::print() {
 		<< typeStrings[static_cast<int>(semanticType)]
 		<< ", " << structureStrings[static_cast<int>(semanticStructure)];
 
-	printDetail();
-
 	if (arrayDimension > 1) {
 		std::cout << ", array dimension: " << arrayDimension;
 	}
+
+	printDetail();	
 }

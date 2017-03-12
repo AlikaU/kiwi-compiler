@@ -11,4 +11,5 @@ class SemanticFunction : SemanticRecord {
 
 public: 
 	SemanticRecordType getType() { return SemanticRecordType::FUNCTION; }
+	void printDetail();
 };

@@ -6,6 +6,6 @@ class SemanticClass : SemanticRecord {
 	SymbolTable* localSymbols;
 
 public:
-	SemanticRecordType getType() {return SemanticRecordType::CLASS;}
-
+	SemanticRecordType getType() {return SemanticRecordType::CLASS_T;}
+	void printDetail();
 };
