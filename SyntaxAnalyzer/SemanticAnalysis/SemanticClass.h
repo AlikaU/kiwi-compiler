@@ -3,9 +3,12 @@
 #include "SymbolTable.h"
 
 class SemanticClass : SemanticRecord {
-	SymbolTable* localSymbols;
+	SymbolTable* localSymbolTable;
 
 public:
+	SemanticClass(std::string, SemanticRecordType, SemanticStructure, int, int, SymbolTable* lSymbols);
+	~SemanticClass();
+
 	SemanticRecordType getType() {return SemanticRecordType::CLASS_T;}
 	void printDetail();
 };

@@ -2,6 +2,16 @@
 #include <iostream>
 #include <string>
 
+SemanticRecord::SemanticRecord(std::string i, SemanticRecordType st, 
+	SemanticStructure ss, int arrD, int addr) {
+	identifier = i;
+	declared = false;
+	semanticType = st;
+	semanticStructure = ss;
+	arrayDimension = arrD;
+	address = addr;
+}
+
 void SemanticRecord::print() {
 	std::string declaredStr = "false";
 	if (declared) {

@@ -9,7 +9,7 @@ class SymbolTable {
 
 public: 
 
-	SymbolTable() {}
+	SymbolTable() { records = new std::list<SemanticRecord*>; }
 	SymbolTable(SymbolTable* p) { parent = p; records = new std::list<SemanticRecord*>; }
 
 	~SymbolTable() { clear(); }

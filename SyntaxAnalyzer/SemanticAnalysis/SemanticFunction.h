@@ -4,12 +4,16 @@
 
 class SemanticFunction : SemanticRecord {
 
+	
 	int numOfParams;
-	std::list<SemanticRecordType> params;
+	std::list<SemanticRecordType>* params;
 
-	SymbolTable* localSymbols;
+	SymbolTable* localSymbolTable;
 
 public: 
+	SemanticFunction(std::string, SemanticRecordType, SemanticStructure, int, int,
+		std::list<SemanticRecordType>* prms, SymbolTable* lSymbols);
+	~SemanticFunction();
 	SemanticRecordType getType() { return SemanticRecordType::FUNCTION; }
 	void printDetail();
 };
