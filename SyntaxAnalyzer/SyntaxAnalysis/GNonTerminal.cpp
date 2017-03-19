@@ -7,10 +7,8 @@ GNonTerminal::GNonTerminal(NonTerminalTypes t) { symbolType = t; }
 
 std::string GNonTerminal::NonTerminalTypeStrings[NUM_OF_NONTERMTYPES] = {
 	"prog",
-	"makeProgTable",
 	"classDeclList",
 	"classDecl",
-	"makeClassTable",
 	"typeId",
 	"varThenFuncList",
 	"varThenFuncList1",
@@ -19,7 +17,6 @@ std::string GNonTerminal::NonTerminalTypeStrings[NUM_OF_NONTERMTYPES] = {
 	"progBody",
 	"funcHead",
 	"funcDef",
-	"makeFuncDefEntry",
 	"funcBody",
 	"varThenStatList",
 	"varThenStatList1",
@@ -27,7 +24,6 @@ std::string GNonTerminal::NonTerminalTypeStrings[NUM_OF_NONTERMTYPES] = {
 	"assignStatTail1",
 	"statementList",
 	"varDecl",
-	"makeVarEntry",
 	"arraySizeList",
 	"statement",
 	"statementNotAssign",

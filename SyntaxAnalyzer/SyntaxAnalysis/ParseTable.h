@@ -8,9 +8,9 @@
 #include <fstream>
 #define BUFLEN 300
 #define SKIPLEN 3
-#define TABLEROWS 61
+#define TABLEROWS 57
 #define TABLECOLUMNS 39
-#define NUM_RULES 111
+#define NUM_RULES 107
 #define TABLE_PATH "../GrammarFiles/table.txt"
 #define RULES_PATH "../GrammarFiles/rules.txt"
 
