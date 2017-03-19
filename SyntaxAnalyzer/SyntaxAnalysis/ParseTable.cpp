@@ -1,6 +1,7 @@
 #include "ParseTable.h"
 
 #include <stdexcept> 
+#include "SemanticAction.h"
 
 void  ParseTable::skipXcharsAndClearBuffer(int toSkip) {
 	memset(buffer, 0, sizeof(buffer)); // clear buffer
@@ -111,9 +112,8 @@ void ParseTable::initRHSOfRule(int ruleNo) {
 		}
 		// if it starts with !, it is a semantic action
 		else if (RHSelement[0] == '!') {
-
+			rules[ruleNo].push_back(new SemanticAction(SemanticAction::stringExclMarkToType(RHSelement)));
 		}
-
 		// otherwise, it's a nonterminal
 		else {
 			rules[ruleNo].push_back(new GNonTerminal(GNonTerminal::stringToType(RHSelement)));

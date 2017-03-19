@@ -1,17 +1,22 @@
 #pragma once
 #include "GSymbol.h"
 
-#define NUM_OF_SEMTYPES 4
+#define NUM_OF_SEMTYPES 9
 
 class SemanticAction : public GSymbol {
 
 public:
 	~SemanticAction() {}
 	enum SemanticActionTypes {
-		makeProgTable = 0,
-		makeClassTable = 1,
-		makeFuncDefEntry = 2,
-		makeVarEntry = 3,
+		createProgTable = 0,
+		startCollecting = 1,
+		stopCollecting = 2,
+		createSemanticClassAndTable = 3,
+		calculateClassSize = 4,
+		scopeIn = 5,
+		scopeOut = 6,
+		createSemanticVariable = 7,
+		createSemanticFunctionAndTable = 8,
 		wrongType = -1
 	};
 
@@ -20,13 +25,28 @@ public:
 		position = p;
 	}
 
+	SemanticAction(SemanticActionTypes t) {
+		type = t;
+		position.first = 0;
+		position.second = 0;
+	}
+
+	SemanticAction(SemanticAction* action) {
+		type = action->getType();
+		position.first = action->getPosition().first;
+		position.second = action->getPosition().second;
+	}
+
 	bool isTerminal() const { return false; }
 	SemanticActionTypes getType() const { return type; }
 	static SemanticActionTypes stringToType(std::string s);
+	static SemanticActionTypes stringExclMarkToType(std::string s);
 	bool isDollarSign() const { return false; }
 	bool isEpsilon() const { return false; }
 	std::pair<int, int> getPosition() { return position; }
-	static std::string getSemanticTypeString(int idx) { return SemanticTypeStrings[idx]; }
+	std::string getSemanticTypeString() { return SemanticTypeStrings[static_cast<int>(type)]; }
+	GSymbol * clone() const;
+	GSymbolTypes getSymbolType();
 
 private: 
 	SemanticActionTypes type;

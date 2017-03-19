@@ -140,3 +140,6 @@ GSymbol * GTerminal::clone() const {
 	return new GTerminal(*this);
 }
 
+GSymbol::GSymbolTypes GTerminal::getSymbolType() {
+	return GSymbol::terminal;
+}

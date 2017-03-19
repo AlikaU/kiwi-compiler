@@ -73,14 +73,15 @@ public:
 	GSymbol * clone() const;
 	GNonTerminal(NonTerminalTypes t);
 	bool isTerminal() const;
-	NonTerminalTypes getType() const { return symbolType; }
+	NonTerminalTypes getType() const { return nonTerminalType; }
 	static NonTerminalTypes stringToType(std::string s);
 	bool isDollarSign() const { return false; }
 	bool isEpsilon() const { return false; }
 	static std::string getNonTerminalTypeString(int idx) { return NonTerminalTypeStrings[idx]; }
+	GSymbolTypes getSymbolType();
 
 private:
 
-	NonTerminalTypes symbolType;
+	NonTerminalTypes nonTerminalType;
 	static std::string NonTerminalTypeStrings[NUM_OF_NONTERMTYPES];
 };

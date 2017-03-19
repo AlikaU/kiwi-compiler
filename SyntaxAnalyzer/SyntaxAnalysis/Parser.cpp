@@ -46,11 +46,12 @@ bool Parser::parse() {
 		if (printDerivToConsole) {
 			printDerivationToConsole();
 		}
+		printSemanticStack();
 
 		GSymbol* topSymbol = parsingStack.top();
 
 		// Terminal on top of stack
-		if (topSymbol->isTerminal()) {
+		if (topSymbol->getSymbolType() == GSymbol::terminal) {
 			if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
 				error = true;
 				break;
@@ -81,7 +82,7 @@ bool Parser::parse() {
 		}
 
 		// NonTerminal on top of stack
-		else {
+		else if(topSymbol->getSymbolType() == GSymbol::nonTerminal){
 			GNonTerminal* nonterm = static_cast<GNonTerminal*>(topSymbol);
 			
 			GTerminal* term = new GTerminal(currentScannedToken);
@@ -92,14 +93,6 @@ bool Parser::parse() {
 				parsingStack.pop();
 				inverseRHSMultiplePush(ruleNo);
 			}
-			/*
-			// check if it was just an empty file
-			else if (nonterm->getType() == GNonTerminal::prog && !currentScannedToken) {
-				parsingStack.pop();
-				delete_front(&derivationToBeParsed);
-				break;
-			}
-			*/
 			else {
 				//std::cout << "\nParsing error encountered at token '" << term->getValue()
 				//	<< "' at line " << term->getPosition().first << ", column " << term->getPosition().second;
@@ -114,6 +107,12 @@ bool Parser::parse() {
 			delete term;
 		}
 
+		// SemanticAction on top of parsing stack
+		else {
+			SemanticAction* action = static_cast<SemanticAction*>(topSymbol);
+			semanticStack.push_back(action);
+			parsingStack.pop();
+		}
 		
 	} // end while
 
@@ -131,13 +130,20 @@ bool Parser::parse() {
 	return true;
 }
 
+void Parser::printSemanticStack() {
+	Logger::getLogger()->log(Logger::DERIV, "\nSemantic stack:");
+	for (SemanticAction* action : semanticStack) {
+		Logger::getLogger()->log(Logger::DERIV, action->getSemanticTypeString() + " ");
+	}
+}
+
 void Parser::printDerivation() {
 	Logger::getLogger()->log(Logger::DERIV, "\n");
 	for (GSymbol* symbol : derivationParsed) {
 		Logger::getLogger()->log(Logger::DERIV, static_cast<GTerminal*>(symbol)->getValue() + " ");
-		}
+	}
 	for (GSymbol* symbol : derivationToBeParsed) {
-		if (symbol->isTerminal()) {
+		if (symbol->getSymbolType() == GSymbol::terminal) {
 			Logger::getLogger()->log(Logger::DERIV, GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) + " ");
 			}
 		else {
@@ -153,7 +159,7 @@ void Parser::printDerivationToConsole() {
 	}
 	std::cout << "\nSymbols to be parsed: ";
 	for (GSymbol* symbol : derivationToBeParsed) {
-		if (symbol->isTerminal()) {
+		if (symbol->getSymbolType() == GSymbol::terminal) {
 			std::cout << GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) << " ";
 		}
 		else {
@@ -175,7 +181,8 @@ void Parser::inverseRHSMultiplePush(int ruleNo) {
 	}
 	else {
 		std::cerr << "Rule's LHS does not correspond to beginning of derivation list!!Something is very wrong... ";
-		std::getchar();
+		int answer;
+		std::cin >> answer;
 		exit(1);
 	}
 	rule.pop_front(); // discard first element, because it's LHS
@@ -187,9 +194,13 @@ void Parser::inverseRHSMultiplePush(int ruleNo) {
 	}
 
 	while (!(rule.empty())) {
-		if (! (rule.back()->isEpsilon()) ) {
+		if (! (rule.back()->isEpsilon())) {
+
 			parsingStack.push(rule.back());
-			derivationToBeParsed.push_front(rule.back());
+
+			if (!(rule.back()->getSymbolType() == GSymbol::semanticAction)) {
+				derivationToBeParsed.push_front(rule.back());
+			}			
 		}
 		rule.pop_back();
 	}	
@@ -207,7 +218,7 @@ void Parser::skipErrors(int errorCode) {
 		// error reporting
 		GSymbol* symbol = parsingStack.top();
 		std::string typeString;
-		if (symbol->isTerminal()) {
+		if (symbol->getSymbolType() == GSymbol::terminal) {
 			typeString = GTerminal::getTerminalTypeStringNoQuotes(static_cast<int>(static_cast<GTerminal*>(symbol)->getType()));
 		}
 		else {

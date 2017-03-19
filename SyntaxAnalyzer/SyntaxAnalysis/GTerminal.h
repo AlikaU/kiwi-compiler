@@ -77,6 +77,7 @@ public:
 		else return TerminalTypeStrings[idx];
 		
 	}
+	GSymbolTypes getSymbolType();
 
 private:
 	std::string value;

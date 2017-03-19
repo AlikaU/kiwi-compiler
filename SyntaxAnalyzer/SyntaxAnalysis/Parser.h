@@ -6,12 +6,15 @@
 #include "..\..\Project1\Token.h"
 #include "ParseTable.h"
 #include <stack>
+#include <deque>
+#include "SemanticAction.h"
 
 class Parser {
 
 	Scanner* scanner;
 	ParseTable* table;
 	std::stack<GSymbol*> parsingStack;
+	std::deque<SemanticAction*> semanticStack;
 	bool error;
 	void inverseRHSMultiplePush(int ruleNo);
 	std::list<GSymbol*> derivationParsed;
@@ -31,6 +34,7 @@ class Parser {
 	}
 	bool printDeriv;
 	bool printDerivToConsole;
+	void printSemanticStack();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

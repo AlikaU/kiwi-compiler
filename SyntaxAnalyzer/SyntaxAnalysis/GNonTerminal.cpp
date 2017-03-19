@@ -3,7 +3,7 @@
 GNonTerminal::GNonTerminal() {
 
 }
-GNonTerminal::GNonTerminal(NonTerminalTypes t) { symbolType = t; }
+GNonTerminal::GNonTerminal(NonTerminalTypes t) { nonTerminalType = t; }
 
 std::string GNonTerminal::NonTerminalTypeStrings[NUM_OF_NONTERMTYPES] = {
 	"prog",
@@ -80,3 +80,6 @@ GSymbol * GNonTerminal::clone() const {
 	return new GNonTerminal(*this);
 }
 
+GSymbol::GSymbolTypes GNonTerminal::getSymbolType() {
+	return GSymbol::nonTerminal;
+}

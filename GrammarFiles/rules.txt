@@ -27,7 +27,7 @@
 27	assignStatTail1 → '.' assignStatTail	'.'
 28	statementList → statement statementList	'id', 'if', 'for', 'get', 'put', 'return'
 29	statementList → ε	'}'
-30	varDecl → !startCollecting type 'id' arraySizeList !stopCollecting !makeVarEntry ';'	'int', 'float', 'id'
+30	varDecl → !startCollecting type 'id' arraySizeList !stopCollecting !createSemanticVariable ';'	'int', 'float', 'id'
 31	arraySizeList → arraySize arraySizeList	''
 32	arraySizeList → ε	',', ';', ')'
 33	statement → assignStat ';'	'id'
