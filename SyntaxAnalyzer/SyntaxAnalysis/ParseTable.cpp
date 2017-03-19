@@ -109,6 +109,11 @@ void ParseTable::initRHSOfRule(int ruleNo) {
 			rules[ruleNo].push_back(new GTerminal(GTerminal::stringToType(RHSelement)));
 			//std::cout << RHSelement << " ";
 		}
+		// if it starts with !, it is a semantic action
+		else if (RHSelement[0] == '!') {
+
+		}
+
 		// otherwise, it's a nonterminal
 		else {
 			rules[ruleNo].push_back(new GNonTerminal(GNonTerminal::stringToType(RHSelement)));
