@@ -100,19 +100,19 @@ int main(int argc, char** argv)
 	}
 	
 	
-	testWrongInput("../TestFiles/Syntax/bad1.txt", &pTable);
-	testWrongInput("../TestFiles/Syntax/bad2.txt", &pTable);
-	testWrongInput("../TestFiles/Syntax/bad3.txt", &pTable);
-	testWrongInput("../TestFiles/Syntax/bad4.txt", &pTable);
-	testWrongInput("../TestFiles/Syntax/bad5.txt", &pTable);
+	//testWrongInput("../TestFiles/Syntax/bad1.txt", &pTable);
+	//testWrongInput("../TestFiles/Syntax/bad2.txt", &pTable);
+	//testWrongInput("../TestFiles/Syntax/bad3.txt", &pTable);
+	//testWrongInput("../TestFiles/Syntax/bad4.txt", &pTable);
+	//testWrongInput("../TestFiles/Syntax/bad5.txt", &pTable);
 
-	testCorrectInput("../TestFiles/Syntax/good1.txt", &pTable);
-	testCorrectInput("../TestFiles/Syntax/good3.txt", &pTable);
-	testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
-	testCorrectInput("../TestFiles/Syntax/good5.txt", &pTable);
+	//testCorrectInput("../TestFiles/Syntax/good1.txt", &pTable);
+	//testCorrectInput("../TestFiles/Syntax/good3.txt", &pTable);
+	//testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
+	//testCorrectInput("../TestFiles/Syntax/good5.txt", &pTable);
 
 	if (!skipLongFiles || (!printDerivation && !printDerivationToConsole)) {
-		testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
+		//testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
 		testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
 	}	
 

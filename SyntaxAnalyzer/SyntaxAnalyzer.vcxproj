@@ -126,6 +126,7 @@
     <ClInclude Include="SyntaxAnalysis\GTerminal.h" />
     <ClInclude Include="SyntaxAnalysis\Parser.h" />
     <ClInclude Include="SyntaxAnalysis\ParseTable.h" />
+    <ClInclude Include="SyntaxAnalysis\SemanticAction.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="SyntaxAnalysis\GTerminal.cpp" />
     <ClCompile Include="SyntaxAnalysis\Parser.cpp" />
     <ClCompile Include="SyntaxAnalysis\ParseTable.cpp" />
+    <ClCompile Include="SyntaxAnalysis\SemanticAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project1\Project1.vcxproj">
