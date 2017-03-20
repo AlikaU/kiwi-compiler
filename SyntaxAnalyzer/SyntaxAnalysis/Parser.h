@@ -47,6 +47,10 @@ class Parser {
 	bool isCollecting;
 	SymbolTable* globalSymbolTable;
 	SymbolTable* currentScope;
+	void createSemanticVariable();
+	void createSemanticClassAndTable();
+	void logSymbolErrorAndSetFlag(std::string);
+	GTerminal* getNextTerminalFromSemanticStack();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

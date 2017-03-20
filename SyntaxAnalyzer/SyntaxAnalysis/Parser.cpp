@@ -147,23 +147,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		isCollecting = false;
 		break;
 	case (SemanticAction::createSemanticClassAndTable):	
-	{
-		GSymbol* symbol = semanticStack.back();
-		if (symbol->getSymbolType() == GSymbol::terminal) {
-			GTerminal* term = static_cast<GTerminal*>(symbol);
-			std::string className = term->getValue();
-			SymbolTable* classTable = new SymbolTable(currentScope, className);
-			SemanticClass* classRecord = new SemanticClass(className, 0, 0, classTable);
-			currentScope->insert(className, classRecord);
-			currentScope = classTable;
-			semanticStack.pop_back();
-		}
-		else {
-			Logger::getLogger()->log(Logger::ERROR, "Expected terminal on top of stack, but there is something else! Something went really wrong.");
-			std::cout << "Expected terminal on top of stack, but there is something else! Something went really wrong.";
-			error = true;
-		}
-	}
+		createSemanticClassAndTable();
 		break;	
 	case (SemanticAction::calculateClassSize):
 		break;
@@ -172,12 +156,98 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::scopeOut):
 		break;
 	case (SemanticAction::createSemanticVariable):
+		createSemanticVariable();
 		break;
 	case (SemanticAction::createSemanticFunctionAndTable):
 		break;
 	
 	}
 	//semanticStack.push_back(action);
+}
+
+void Parser::createSemanticClassAndTable() {
+	GSymbol* symbol = semanticStack.back();
+	if (symbol->getSymbolType() == GSymbol::terminal) {
+		GTerminal* term = static_cast<GTerminal*>(symbol);
+		std::string className = term->getValue();
+		SymbolTable* classTable = new SymbolTable(currentScope, className);
+		SemanticClass* classRecord = new SemanticClass(className, 0, 0, classTable);
+		currentScope->insert(className, classRecord);
+		currentScope = classTable;
+		semanticStack.pop_back();
+	}
+	else {
+		Logger::getLogger()->log(Logger::ERROR, "Expected terminal on top of stack, but there is something else! Something went really wrong.");
+		std::cout << "Expected terminal on top of stack, but there is something else! Something went really wrong.";
+		error = true;
+	}
+}
+
+void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
+	Logger::getLogger()->log(Logger::ERROR, "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
+	std::cout << "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.";
+	error = true;
+}
+
+void Parser::createSemanticVariable() {
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
+	std::list<GTerminal*> arraySizeList;
+
+	// we expect arraySize tokens in following order: "]", "INT", "[" 
+	GTerminal::TerminalTypes expectedTypes[3] = { GTerminal::CLOSESQUARE, GTerminal::INTNUM, GTerminal::OPENSQUARE };
+	int expectedType = 0;
+
+	// get arraySizeList tokens
+	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
+		if (term->getType() != expectedTypes[expectedType]) {
+			logSymbolErrorAndSetFlag(GTerminal::getTerminalTypeString(expectedTypes[expectedType]));
+			return;
+		}
+		arraySizeList.push_front(new GTerminal(term));
+		semanticStack.pop_back();
+		term = getNextTerminalFromSemanticStack();
+		expectedType = ++expectedType % 3;
+	}
+
+	// get ID token
+	if (term->getType() != GTerminal::ID) {
+		logSymbolErrorAndSetFlag("identifier");
+		return;
+	}
+	GTerminal* varIDToken = new GTerminal(term);
+	semanticStack.pop_back();
+	term = getNextTerminalFromSemanticStack();
+
+	// get type token
+	if (term->getType() != GTerminal::INTWORD || term->getType() != GTerminal::FLOATWORD || term->getType() != GTerminal::ID) {
+		logSymbolErrorAndSetFlag("type (int, float or id)");
+		return;
+	}
+	GTerminal* varTypeToken = new GTerminal(term);
+
+	SemanticRecord::SemanticRecordType recordType;
+	SemanticRecord::SemanticStructure recordStructure;
+	bool isInt = false;
+	int arrayDimension = 0;
+	if (varTypeToken->getType == GTerminal::INTWORD) { recordType = SemanticRecord::INT; recordStructure = SemanticRecord::SIMPLE; isInt = true; }
+	else if (varTypeToken->getType == GTerminal::FLOATWORD) { recordType = SemanticRecord::FLOAT; recordStructure = SemanticRecord::SIMPLE;}
+	else { recordType = SemanticRecord::CLASS_T; recordStructure = SemanticRecord::CLASS_S;	}
+	if (!(arraySizeList.empty())) {
+		recordStructure = SemanticRecord::ARRAY;
+		arrayDimension = arraySizeList.size() / 3;
+	}
+	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, SemanticVariable::NORMAL, isInt);
+	currentScope->insert(varIDToken->getValue(), varRecord);
+}
+
+GTerminal* Parser::getNextTerminalFromSemanticStack() {
+	GSymbol* symbol = semanticStack.back();
+	if (!(symbol->getSymbolType() == GSymbol::terminal)) {
+		logSymbolErrorAndSetFlag("terminal");
+		return NULL;
+	}
+	return static_cast<GTerminal*>(symbol);
 }
 
 void Parser::printSemanticStack() {
