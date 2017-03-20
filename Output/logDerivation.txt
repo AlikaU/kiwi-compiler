@@ -11,3 +11,67 @@ Semantic stack:Utility
 Semantic stack:
 Semantic stack:
 Semantic stack:
+Semantic stack:
+Semantic stack:
+Semantic stack:
+Semantic stack:int 
+Semantic stack:int var1 
+Semantic stack:int var1 
+Semantic stack:int var1 
+Semantic stack:int var1 
+Semantic stack:int var1 [ 
+Semantic stack:int var1 [ 4 
+Semantic stack:int var1 [ 4 ] 
+Semantic stack:int var1 [ 4 ] 
+Semantic stack:int var1 [ 4 ] 
+Semantic stack:int var1 [ 4 ] [ 
+Semantic stack:int var1 [ 4 ] [ 5 
+Semantic stack:int var1 [ 4 ] [ 5 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] [ 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] [ 0 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] [ 0 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] [ 0 ] 
+Semantic stack:int var1 [ 4 ] [ 5 ] [ 7 ] [ 8 ] [ 9 ] [ 1 ] [ 0 ] 
+Semantic stack:int 
+Semantic stack:int 
+Semantic stack:int 
+Semantic stack:int 
+Semantic stack:int 
+Semantic stack:int 
+Semantic stack:int float 
+Semantic stack:int float var2 
+Semantic stack:int float var2 
+Semantic stack:int float var2 
+Semantic stack:int float var2 
+Semantic stack:int float 
+Semantic stack:int float 
+Semantic stack:int float 
+Semantic stack:int float 
+Semantic stack:int float 
+Semantic stack:int float 
+Semantic stack:int float int 
+Semantic stack:int float int findMax 
+Semantic stack:int float int findMax 
+Semantic stack:int float int findMax 

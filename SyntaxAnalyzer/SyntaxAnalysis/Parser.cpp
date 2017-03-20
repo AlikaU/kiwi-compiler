@@ -220,7 +220,7 @@ void Parser::createSemanticVariable() {
 	term = getNextTerminalFromSemanticStack();
 
 	// get type token
-	if (term->getType() != GTerminal::INTWORD || term->getType() != GTerminal::FLOATWORD || term->getType() != GTerminal::ID) {
+	if (term->getType() != GTerminal::INTWORD && term->getType() != GTerminal::FLOATWORD && term->getType() != GTerminal::ID) {
 		logSymbolErrorAndSetFlag("type (int, float or id)");
 		return;
 	}
@@ -230,14 +230,15 @@ void Parser::createSemanticVariable() {
 	SemanticRecord::SemanticStructure recordStructure;
 	bool isInt = false;
 	int arrayDimension = 0;
-	if (varTypeToken->getType == GTerminal::INTWORD) { recordType = SemanticRecord::INT; recordStructure = SemanticRecord::SIMPLE; isInt = true; }
-	else if (varTypeToken->getType == GTerminal::FLOATWORD) { recordType = SemanticRecord::FLOAT; recordStructure = SemanticRecord::SIMPLE;}
+	if (varTypeToken->getType() == GTerminal::INTWORD) { recordType = SemanticRecord::INT; recordStructure = SemanticRecord::SIMPLE; isInt = true; }
+	else if (varTypeToken->getType() == GTerminal::FLOATWORD) { recordType = SemanticRecord::FLOAT; recordStructure = SemanticRecord::SIMPLE;}
 	else { recordType = SemanticRecord::CLASS_T; recordStructure = SemanticRecord::CLASS_S;	}
 	if (!(arraySizeList.empty())) {
 		recordStructure = SemanticRecord::ARRAY;
 		arrayDimension = arraySizeList.size() / 3;
 	}
 	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, SemanticVariable::NORMAL, isInt);
+	varRecord->setDeclared();
 	currentScope->insert(varIDToken->getValue(), varRecord);
 }
 
