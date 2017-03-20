@@ -209,7 +209,7 @@ void Parser::createSemanticFunctionAndTable() {
 		return;
 	}
 	semanticStack.pop_back();
-	std::list<SemanticVariable*> paramList;
+	std::list<SemanticVariable*>* paramList = new std::list<SemanticVariable*>();
 	GTerminal* term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return; }
 	while (term->getType() == GTerminal::INTWORD || term->getType() == GTerminal::FLOATWORD || term->getType() == GTerminal::ID ||
@@ -218,12 +218,16 @@ void Parser::createSemanticFunctionAndTable() {
 
 		SemanticVariable* varRecord = createSemanticVariable(true);
 		if (varRecord == NULL) { return; }
-		paramList.push_back(varRecord);
+		paramList->push_back(varRecord);
+
+		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return; }
 	}
 	if (term->getType() != GTerminal::OPENPAR) {
 		logSymbolErrorAndSetFlag("'('");
 		return;
 	}
+	semanticStack.pop_back();
 
 	// get ID token
 	GTerminal* term = getNextTerminalFromSemanticStack();
@@ -256,8 +260,8 @@ void Parser::createSemanticFunctionAndTable() {
 		recordStructure = SemanticRecord::ARRAY;
 		arrayDimension = currentArraySizeList.size() / 3;
 	}
-
-	SemanticFunction funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, );
+	SymbolTable* functionTable = new SymbolTable(currentScope, funcIDtoken->getValue());
+	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable);
 
 }
 
