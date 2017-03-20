@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "..\SyntaxAnalysis\GSymbol.h"
-class SemanticRecord : public GSymbol {
+class SemanticRecord {
 
 
 public:

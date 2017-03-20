@@ -51,6 +51,9 @@
     <ClInclude Include="SyntaxAnalysis\SemanticAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SyntaxAnalysis\SemanticRecordHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp">

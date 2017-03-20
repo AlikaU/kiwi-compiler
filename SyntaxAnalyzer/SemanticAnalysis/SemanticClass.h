@@ -10,8 +10,5 @@ public:
 	~SemanticClass();
 
 	void printDetail();
-	GSymbol * clone() { std::cout << "Clone method not implemented!"; }
-	GSymbolTypes getSymbolType() { return GSymbol::semanticRecord; }
-	bool isDollarSign() const { return false; }
-	bool isEpsilon() const { return false; }
+
 };

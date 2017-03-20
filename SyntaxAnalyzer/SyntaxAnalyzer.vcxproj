@@ -127,6 +127,7 @@
     <ClInclude Include="SyntaxAnalysis\Parser.h" />
     <ClInclude Include="SyntaxAnalysis\ParseTable.h" />
     <ClInclude Include="SyntaxAnalysis\SemanticAction.h" />
+    <ClInclude Include="SyntaxAnalysis\SemanticRecordHolder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />

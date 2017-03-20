@@ -263,7 +263,7 @@ void Parser::createSemanticFunctionAndTable() {
 	SymbolTable* functionTable = new SymbolTable(currentScope, funcIDtoken->getValue());
 	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable);
 	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
-	semanticStack.push_back(funcRecord);
+	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
 }
 
 void Parser::createSemanticClassAndTable() {
