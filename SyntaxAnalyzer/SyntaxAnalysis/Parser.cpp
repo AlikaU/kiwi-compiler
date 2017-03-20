@@ -156,7 +156,12 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::scopeOut):
 		break;
 	case (SemanticAction::createSemanticVariable):
-		createSemanticVariable();
+	{
+		SemanticVariable* varRecord = createSemanticVariable(false);
+		varRecord->setDeclared();
+		currentScope->insert(varRecord->getIdentifier(), varRecord);
+	}
+		
 		break;
 	case (SemanticAction::createSemanticFunctionAndTable):
 		createSemanticFunctionAndTable();
@@ -199,7 +204,26 @@ void Parser::createSemanticFunctionAndTable() {
 	// get fParams
 	GTerminal* term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return; }
+	if (term->getType() != GTerminal::CLOSEPAR) {
+		logSymbolErrorAndSetFlag("')'");
+		return;
+	}
+	semanticStack.pop_back();
+	std::list<SemanticVariable*> paramList;
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
+	while (term->getType() == GTerminal::INTWORD || term->getType() == GTerminal::FLOATWORD || term->getType() == GTerminal::ID ||
+		term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM ||
+		term->getType() == GTerminal::COMMA) {
 
+		SemanticVariable* varRecord = createSemanticVariable(true);
+		if (varRecord == NULL) { return; }
+		paramList.push_back(varRecord);
+	}
+	if (term->getType() != GTerminal::OPENPAR) {
+		logSymbolErrorAndSetFlag("'('");
+		return;
+	}
 
 	// get ID token
 	GTerminal* term = getNextTerminalFromSemanticStack();
@@ -261,7 +285,7 @@ void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
 	error = true;
 }
 
-void Parser::createSemanticVariable() {
+SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 	if (!processArraySizeList()) {
 		return;
 	}
@@ -296,9 +320,16 @@ void Parser::createSemanticVariable() {
 		recordStructure = SemanticRecord::ARRAY;
 		arrayDimension = currentArraySizeList.size() / 3;
 	}
-	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, SemanticVariable::NORMAL, isInt);
-	varRecord->setDeclared();
-	currentScope->insert(varIDToken->getValue(), varRecord);
+	SemanticVariable::VariableKind varKind;
+	if (fParam) {
+		varKind = SemanticVariable::PARAM;
+	}
+	else {
+		varKind = SemanticVariable::NORMAL;
+	}
+
+	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, varKind, isInt);
+	return varRecord;
 }
 
 

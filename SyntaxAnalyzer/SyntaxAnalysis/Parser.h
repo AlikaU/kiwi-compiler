@@ -48,7 +48,7 @@ class Parser {
 	SymbolTable* globalSymbolTable;
 	SymbolTable* currentScope;
 	std::list<GTerminal*> currentArraySizeList;
-	void createSemanticVariable();
+	SemanticVariable* createSemanticVariable(bool);
 	void createSemanticClassAndTable();
 	void createSemanticFunctionAndTable();
 	bool processArraySizeList();
