@@ -7,7 +7,8 @@ public:
 	enum GSymbolTypes {
 		terminal = 0,
 		nonTerminal = 1,
-		semanticAction = 2
+		semanticAction = 2,
+		semanticRecord = 3
 	};
 	virtual ~GSymbol() {}                 
 	virtual GSymbol * clone() const = 0;

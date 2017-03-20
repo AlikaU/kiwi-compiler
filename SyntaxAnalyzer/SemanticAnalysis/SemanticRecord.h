@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
-
-class SemanticRecord {
+#include "..\SyntaxAnalysis\GSymbol.h"
+class SemanticRecord : public GSymbol {
 
 
 public:
@@ -12,6 +12,7 @@ public:
 	std::string structureStrings[3] = { "SIMPLE", "ARRAY", "CLASS"};
 
 	SemanticRecord(std::string, SemanticRecordType, SemanticStructure, int, int);
+	~SemanticRecord() {}
 
 	std::string getIdentifier() const { return identifier; }
 	void print();
@@ -20,6 +21,7 @@ public:
 		declared = true;
 	}
 	SemanticRecordType getSemanticType() { return semanticType; }
+	
 
 protected:
 	SemanticRecordType semanticType;
