@@ -1,7 +1,7 @@
 #pragma once
 #include "SemanticRecord.h"
 
-class SemanticVariable : SemanticRecord {
+class SemanticVariable : public SemanticRecord {
 
 public:
 	enum VariableKind {NORMAL = 0, PARAM = 1};

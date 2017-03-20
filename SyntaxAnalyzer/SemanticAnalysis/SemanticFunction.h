@@ -2,7 +2,7 @@
 #include "SemanticRecord.h"
 #include "SymbolTable.h"
 
-class SemanticFunction : SemanticRecord {
+class SemanticFunction : public SemanticRecord {
 
 	
 	int numOfParams;
@@ -11,7 +11,7 @@ class SemanticFunction : SemanticRecord {
 	SymbolTable* localSymbolTable;
 
 public: 
-	SemanticFunction(std::string, SemanticRecordType, SemanticStructure, int, int,
+	SemanticFunction(std::string, SemanticStructure, int, int,
 		std::list<SemanticRecordType>* prms, SymbolTable* lSymbols);
 	~SemanticFunction();
 	SemanticRecordType getType() { return SemanticRecordType::FUNCTION; }

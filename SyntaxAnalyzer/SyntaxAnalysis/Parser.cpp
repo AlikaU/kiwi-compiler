@@ -63,6 +63,9 @@ bool Parser::parse() {
 				parsingStack.pop();
 				derivationParsed.push_back(new GTerminal(&term));
 				delete_front(&derivationToBeParsed);
+				if (isCollecting) {
+					semanticStack.push_back(new GTerminal(currentScannedToken));
+				}
 				currentScannedToken = scanner->getNextToken();				
 			}
 			else {
@@ -109,8 +112,8 @@ bool Parser::parse() {
 
 		// SemanticAction on top of parsing stack
 		else {
-			SemanticAction* action = static_cast<SemanticAction*>(topSymbol);
-			semanticStack.push_back(action);
+			processSemanticAction(static_cast<SemanticAction*>(topSymbol));
+			
 			parsingStack.pop();
 		}
 		
@@ -130,10 +133,62 @@ bool Parser::parse() {
 	return true;
 }
 
+void Parser::processSemanticAction(SemanticAction* action) {
+	
+	switch (action->getType()) {
+	case (SemanticAction::createProgTable):
+		globalSymbolTable = new SymbolTable(GLOBAL_TABLE_NAME);
+		currentScope = globalSymbolTable;
+		break;
+	case (SemanticAction::startCollecting):
+		isCollecting = true;
+		break;
+	case (SemanticAction::stopCollecting):
+		isCollecting = false;
+		break;
+	case (SemanticAction::createSemanticClassAndTable):	
+	{
+		GSymbol* symbol = semanticStack.back();
+		if (symbol->getSymbolType() == GSymbol::terminal) {
+			GTerminal* term = static_cast<GTerminal*>(symbol);
+			std::string className = term->getValue();
+			SymbolTable* classTable = new SymbolTable(currentScope, className);
+			SemanticClass* classRecord = new SemanticClass(className, 0, 0, classTable);
+			currentScope->insert(className, classRecord);
+			currentScope = classTable;
+			semanticStack.pop_back();
+		}
+		else {
+			Logger::getLogger()->log(Logger::ERROR, "Expected terminal on top of stack, but there is something else! Something went really wrong.");
+			std::cout << "Expected terminal on top of stack, but there is something else! Something went really wrong.";
+			error = true;
+		}
+	}
+		break;	
+	case (SemanticAction::calculateClassSize):
+		break;
+	case (SemanticAction::scopeIn):
+		break;
+	case (SemanticAction::scopeOut):
+		break;
+	case (SemanticAction::createSemanticVariable):
+		break;
+	case (SemanticAction::createSemanticFunctionAndTable):
+		break;
+	
+	}
+	//semanticStack.push_back(action);
+}
+
 void Parser::printSemanticStack() {
 	Logger::getLogger()->log(Logger::DERIV, "\nSemantic stack:");
-	for (SemanticAction* action : semanticStack) {
-		Logger::getLogger()->log(Logger::DERIV, action->getSemanticTypeString() + " ");
+	for (GSymbol* symbol : semanticStack) {
+		if (symbol->getSymbolType() == GSymbol::semanticAction) {
+			Logger::getLogger()->log(Logger::DERIV, static_cast<SemanticAction*>(symbol)->getSemanticTypeString() + " ");
+		}
+		else {
+			Logger::getLogger()->log(Logger::DERIV, static_cast<GTerminal*>(symbol)->getValue() + " ");
+		}
 	}
 }
 

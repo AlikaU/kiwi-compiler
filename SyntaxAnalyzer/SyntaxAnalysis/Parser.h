@@ -8,13 +8,21 @@
 #include <stack>
 #include <deque>
 #include "SemanticAction.h"
+#include "..\SemanticAnalysis\SemanticClass.h"
+#include "..\SemanticAnalysis\SemanticFunction.h"
+#include "..\SemanticAnalysis\SemanticRecord.h"
+#include "..\SemanticAnalysis\SemanticVariable.h"
+
+#include "..\SemanticAnalysis\SymbolTable.h"
+
+#define GLOBAL_TABLE_NAME "GlobalSymbolTable"
 
 class Parser {
 
 	Scanner* scanner;
 	ParseTable* table;
 	std::stack<GSymbol*> parsingStack;
-	std::deque<SemanticAction*> semanticStack;
+	std::deque<GSymbol*> semanticStack;
 	bool error;
 	void inverseRHSMultiplePush(int ruleNo);
 	std::list<GSymbol*> derivationParsed;
@@ -35,10 +43,15 @@ class Parser {
 	bool printDeriv;
 	bool printDerivToConsole;
 	void printSemanticStack();
+	void processSemanticAction(SemanticAction* action);
+	bool isCollecting;
+	SymbolTable* globalSymbolTable;
+	SymbolTable* currentScope;
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);
-	~Parser();
+	~Parser();	
+		
 	bool parse();
 	void skipErrors(int errorCode);
 };

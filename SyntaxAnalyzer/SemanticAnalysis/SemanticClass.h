@@ -2,11 +2,11 @@
 #include "SemanticRecord.h"
 #include "SymbolTable.h"
 
-class SemanticClass : SemanticRecord {
+class SemanticClass : public SemanticRecord {
 	SymbolTable* localSymbolTable;
 
 public:
-	SemanticClass(std::string, SemanticRecordType, SemanticStructure, int, int, SymbolTable* lSymbols);
+	SemanticClass(std::string, int, int, SymbolTable* lSymbols);
 	~SemanticClass();
 
 	SemanticRecordType getType() {return SemanticRecordType::CLASS_T;}

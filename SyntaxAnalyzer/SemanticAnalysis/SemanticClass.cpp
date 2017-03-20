@@ -2,9 +2,8 @@
 #include <iostream>
 #include <string>
 
-SemanticClass::SemanticClass(std::string identifier, SemanticRecordType sType,
-	SemanticStructure sStruct, int arrDimension, int addr, SymbolTable* lSymbols)
-	: SemanticRecord(identifier, sType, sStruct, arrDimension, addr) {
+SemanticClass::SemanticClass(std::string identifier, int arrDimension, int addr, SymbolTable* lSymbols)
+	: SemanticRecord(identifier, SemanticRecordType::CLASS_T, SemanticStructure::CLASS_S, arrDimension, addr) {
 
 	localSymbolTable = lSymbols;
 }

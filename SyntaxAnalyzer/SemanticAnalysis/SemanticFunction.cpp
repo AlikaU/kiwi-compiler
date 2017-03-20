@@ -2,10 +2,10 @@
 #include <iostream>
 #include <string>
 
-SemanticFunction::SemanticFunction(std::string identifier, SemanticRecordType sType,
+SemanticFunction::SemanticFunction(std::string identifier,
 	SemanticStructure sStruct, int arrDimension, int addr, 
 	std::list<SemanticRecordType>* prms, SymbolTable* lSymbols)
-	: SemanticRecord(identifier, sType, sStruct, arrDimension, addr) {
+	: SemanticRecord(identifier, SemanticRecord::FUNCTION, sStruct, arrDimension, addr) {
 	params = prms;
 	int count = 0;
 	for (SemanticRecordType t : *params) {

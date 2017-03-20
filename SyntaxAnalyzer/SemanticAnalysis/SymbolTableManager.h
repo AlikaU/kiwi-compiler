@@ -8,8 +8,8 @@ class SymbolTableManager {
 	
 
 public:
-	static SymbolTable* createTable();
-	static SymbolTable* createTable(SymbolTable*);
+	static SymbolTable* createTable(std::string);
+	static SymbolTable* createTable(SymbolTable*, std::string);
 	static void search(SymbolTable*, std::string identifier, SemanticRecord*, bool*);
 	static void insert(SymbolTable*, std::string identifier, SemanticRecord*);
 	static void deleteTable(SymbolTable*);

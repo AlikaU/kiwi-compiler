@@ -6,15 +6,16 @@ class SymbolTable {
 
 	SymbolTable* parent;
 	std::list<SemanticRecord*>* records;
+	std::string tableName;
 
 public: 
 
-	SymbolTable() { records = new std::list<SemanticRecord*>; }
-	SymbolTable(SymbolTable* p) { parent = p; records = new std::list<SemanticRecord*>; }
+	SymbolTable(std::string name) { tableName = name;  records = new std::list<SemanticRecord*>; }
+	SymbolTable(SymbolTable* p, std::string name) { parent = p; records = new std::list<SemanticRecord*>; tableName = name; }
 
-	~SymbolTable() { clear(); }
+	~SymbolTable() { clearTable(); }
 
-	void clear() { records->clear(); }
+	void clearTable() { records->clear(); }
 
 	void search(std::string identifier, SemanticRecord*, bool*);
 	void insert(std::string identifier, SemanticRecord*);
