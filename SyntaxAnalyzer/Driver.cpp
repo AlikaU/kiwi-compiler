@@ -112,7 +112,7 @@ int main(int argc, char** argv)
 
 	if (!skipLongFiles || (!printDerivation && !printDerivationToConsole)) {
 		//testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
-		testCorrectInput("../TestFiles/Syntax/full_valid_program.txt", &pTable);
+		testCorrectInput("../TestFiles/Syntax/full_valid_program2.txt", &pTable);
 	}	
 
 	if (success) {

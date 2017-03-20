@@ -47,8 +47,7 @@ bool Parser::parse() {
 			printDerivationToConsole();
 		}
 		//printSemanticStack();
-		globalSymbolTable->print();
-
+	
 		GSymbol* topSymbol = parsingStack.top();
 
 		// Terminal on top of stack
@@ -58,6 +57,9 @@ bool Parser::parse() {
 				break;
 			}
 			GTerminal term(currentScannedToken);
+			if (term.getPosition().first == 8 && term.getPosition().second == 1) {
+				//std::cout << "here";
+			}
 
 			// if the scanned token is the same as the one we have on the top of the stack
 			if (static_cast<GTerminal*>(topSymbol)->getType() == term.getType()) {
@@ -113,8 +115,7 @@ bool Parser::parse() {
 
 		// SemanticAction on top of parsing stack
 		else {
-			processSemanticAction(static_cast<SemanticAction*>(topSymbol));
-			
+			processSemanticAction(static_cast<SemanticAction*>(topSymbol));			
 			parsingStack.pop();
 		}
 		
@@ -130,7 +131,9 @@ bool Parser::parse() {
 	if (currentScannedToken->getType() != Token::DOLLAR_SIGN || error || !(parsingStack.top()->isDollarSign())) {
 		return false;
 	} 
-	
+	if (globalSymbolTable) {
+		globalSymbolTable->print();
+	}
 	return true;
 }
 
@@ -153,9 +156,10 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::calculateClassSize):
 		break;
 	case (SemanticAction::scopeIn):
-		
+		scopeIn();
 		break;
 	case (SemanticAction::scopeOut):
+		scopeOut();
 		break;
 	case (SemanticAction::createSemanticVariable):
 	{
@@ -250,9 +254,15 @@ void Parser::createSemanticFunctionAndTable() {
 	while (term->getType() == GTerminal::INTWORD || term->getType() == GTerminal::FLOATWORD || term->getType() == GTerminal::ID ||
 		term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM ||
 		term->getType() == GTerminal::COMMA) {
-
+		if (term->getType() == GTerminal::COMMA) {
+			semanticStack.pop_back();
+			term = getNextTerminalFromSemanticStack();
+			if (term == NULL) { return; }
+			continue;
+		}
 		SemanticVariable* varRecord = createSemanticVariable(true);
 		if (varRecord == NULL) { return; }
+		varRecord->setDeclared();
 		paramList->push_back(varRecord);
 
 		term = getNextTerminalFromSemanticStack();

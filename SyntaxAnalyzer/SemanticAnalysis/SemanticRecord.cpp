@@ -17,7 +17,7 @@ void SemanticRecord::print() {
 	if (declared) {
 		declaredStr = "true";
 	}
-	std::cout << "RECORD: " << identifier << ", " << declared  << ", " 
+	std::cout << "\nRECORD: " << identifier << ", " << declared  << ", " 
 		<< typeStrings[static_cast<int>(semanticType)]
 		<< ", " << structureStrings[static_cast<int>(semanticStructure)];
 
