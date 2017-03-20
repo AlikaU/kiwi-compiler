@@ -77,43 +77,10 @@ int main(int argc, char** argv)
 		printDerivationToConsole = false;
 		break;
 	}	
-	
-	if (printDerivation || printDerivationToConsole) {
-		std::cout << "\n\nYou have chosen to print derivation. Would you like to skip long input files? ";
-		std::cout << "If you skip, it will take a couple minutes, if you don't, it can take over an hour. \nSkip (1), Don't skip (2)?";
 
-		int ans;
-		do {
-			std::cin >> ans;
-			if (std::cin.fail() || !(ans >= 1 && ans <= 2)) {
-				std::cin.clear();
-				std::cin.ignore(256, '\n');
-				std::cout << "\nPlease enter 1 or 2";
-				std::cout << "\nSkip (1) or Don't skip (2) long files?";
-			}
-		} while (!(ans >= 1 && ans <= 2));
-		std::cin.clear();
-
-		if (ans == 2) {
-			skipLongFiles = false;
-		}
-	}
-	
-	
-	//testWrongInput("../TestFiles/Syntax/bad1.txt", &pTable);
-	//testWrongInput("../TestFiles/Syntax/bad3.txt", &pTable);
-	//testWrongInput("../TestFiles/Syntax/bad4.txt", &pTable);
-	//testWrongInput("../TestFiles/Syntax/bad5.txt", &pTable);
-
-	//testCorrectInput("../TestFiles/Syntax/good1.txt", &pTable);
-	//testCorrectInput("../TestFiles/Syntax/good3.txt", &pTable);
-	//testCorrectInput("../TestFiles/Syntax/good4.txt", &pTable);
-	//testCorrectInput("../TestFiles/Syntax/good5.txt", &pTable);
-
-	if (!skipLongFiles || (!printDerivation && !printDerivationToConsole)) {
-		//testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
-		testCorrectInput("../TestFiles/Syntax/full_valid_program2.txt", &pTable);
-	}	
+	//testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
+	testCorrectInput("../TestFiles/Semantic/full_valid_program2.txt", &pTable);
+		
 
 	if (success) {
 		std::cout << "\n\nSUCCESS: All test cases passed succesfully!";
