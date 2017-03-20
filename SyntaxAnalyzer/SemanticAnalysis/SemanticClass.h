@@ -9,6 +9,5 @@ public:
 	SemanticClass(std::string, int, int, SymbolTable* lSymbols);
 	~SemanticClass();
 
-	SemanticRecordType getType() {return SemanticRecordType::CLASS_T;}
 	void printDetail();
 };

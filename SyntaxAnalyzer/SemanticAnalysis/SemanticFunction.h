@@ -15,6 +15,5 @@ public:
 	SemanticFunction(std::string, SemanticStructure, int, int,
 		std::list<SemanticVariable*>* prms, SymbolTable* lSymbols);
 	~SemanticFunction();
-	SemanticRecordType getType() { return SemanticRecordType::FUNCTION; }
 	void printDetail();
 };

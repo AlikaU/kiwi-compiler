@@ -32,3 +32,10 @@ TOKEN: PUNCTUATION: ";", line 4, column 11
 TOKEN: RESERVED_WORD: "int", line 5, column 1
 TOKEN: IDENTIFIER: "findMax", line 5, column 5
 TOKEN: PUNCTUATION: "(", line 5, column 12
+TOKEN: RESERVED_WORD: "int", line 5, column 13
+TOKEN: IDENTIFIER: "array", line 5, column 17
+TOKEN: PUNCTUATION: "[", line 5, column 22
+TOKEN: INT: "100", line 5, column 23
+TOKEN: PUNCTUATION: "]", line 5, column 26
+TOKEN: PUNCTUATION: ")", line 5, column 27
+TOKEN: PUNCTUATION: "{", line 6, column 1

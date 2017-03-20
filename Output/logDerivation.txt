@@ -74,4 +74,17 @@ Semantic stack:
 Semantic stack:int 
 Semantic stack:int findMax 
 Semantic stack:int findMax 
-Semantic stack:int findMax 
+Semantic stack:int findMax ( 
+Semantic stack:int findMax ( 
+Semantic stack:int findMax ( 
+Semantic stack:int findMax ( int 
+Semantic stack:int findMax ( int array 
+Semantic stack:int findMax ( int array 
+Semantic stack:int findMax ( int array 
+Semantic stack:int findMax ( int array [ 
+Semantic stack:int findMax ( int array [ 100 
+Semantic stack:int findMax ( int array [ 100 ] 
+Semantic stack:int findMax ( int array [ 100 ] 
+Semantic stack:int findMax ( int array [ 100 ] 
+Semantic stack:int findMax ( int array [ 100 ] ) 
+Semantic stack:int findMax ( int array [ 100 ] ) 

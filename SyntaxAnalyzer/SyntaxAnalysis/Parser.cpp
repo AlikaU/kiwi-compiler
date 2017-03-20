@@ -210,7 +210,7 @@ void Parser::createSemanticFunctionAndTable() {
 	}
 	semanticStack.pop_back();
 	std::list<SemanticVariable*>* paramList = new std::list<SemanticVariable*>();
-	GTerminal* term = getNextTerminalFromSemanticStack();
+	term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return; }
 	while (term->getType() == GTerminal::INTWORD || term->getType() == GTerminal::FLOATWORD || term->getType() == GTerminal::ID ||
 		term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM ||
@@ -230,7 +230,7 @@ void Parser::createSemanticFunctionAndTable() {
 	semanticStack.pop_back();
 
 	// get ID token
-	GTerminal* term = getNextTerminalFromSemanticStack();
+	term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return; }
 	if (term->getType() != GTerminal::ID) {
 		logSymbolErrorAndSetFlag("identifier");
@@ -291,24 +291,24 @@ void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
 
 SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 	if (!processArraySizeList()) {
-		return;
+		return NULL;
 	}
 	GTerminal* term = getNextTerminalFromSemanticStack();
 
 	// get ID token
 	if (term->getType() != GTerminal::ID) {
 		logSymbolErrorAndSetFlag("identifier");
-		return;
+		return NULL;
 	}
 	GTerminal* varIDToken = new GTerminal(term);
 	semanticStack.pop_back();
 	term = getNextTerminalFromSemanticStack();
-	if (term == NULL) { return; }
+	if (term == NULL) { return NULL; }
 
 	// get type token
 	if (term->getType() != GTerminal::INTWORD && term->getType() != GTerminal::FLOATWORD && term->getType() != GTerminal::ID) {
 		logSymbolErrorAndSetFlag("type (int, float or id)");
-		return;
+		return NULL;
 	}
 	GTerminal* varTypeToken = new GTerminal(term);
 	semanticStack.pop_back();
@@ -332,7 +332,7 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 		varKind = SemanticVariable::NORMAL;
 	}
 
-	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, varKind, isInt);
+	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, varKind);
 	return varRecord;
 }
 

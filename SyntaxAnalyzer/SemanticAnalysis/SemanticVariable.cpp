@@ -3,17 +3,24 @@
 #include <string>
 
 SemanticVariable::SemanticVariable(std::string identifier, SemanticRecordType sType,
-	SemanticStructure sStruct, int arrDimension, int addr, VariableKind k, bool ii) 
+	SemanticStructure sStruct, int arrDimension, int addr, VariableKind k) 
 		: SemanticRecord (identifier, sType, sStruct, arrDimension, addr) {
 	kind = k;
-	isInt = ii;
 }
 
 void SemanticVariable::printDetail() {
 	std::string typeStr = "";
-	if (isInt) {
+	if (semanticType == SemanticRecordType::INT) {
 		typeStr = "int";
 	}
-	else typeStr = "float";
+	else if (semanticType == SemanticRecordType::FLOAT) {
+		typeStr = "float";
+	}
+	else if (semanticType == SemanticRecordType::CLASS_T) {
+		typeStr = "class";		
+	}
+	else {
+		typeStr = "wrongVariableType";
+	}
 	std::cout << ", " << typeStr << ", " << VariableKindString[static_cast<int>(kind)];
 }

@@ -14,17 +14,17 @@ public:
 	SemanticRecord(std::string, SemanticRecordType, SemanticStructure, int, int);
 
 	std::string getIdentifier() const { return identifier; }
-	virtual SemanticRecordType getType() = 0;
 	void print();
 	virtual void printDetail() = 0;
 	void setDeclared() {
 		declared = true;
 	}
+	SemanticRecordType getSemanticType() { return semanticType; }
 
-private:
-	std::string identifier;
-	bool declared;
+protected:
 	SemanticRecordType semanticType;
+	std::string identifier;
+	bool declared;	
 	SemanticStructure semanticStructure;
 	int arrayDimension;
 	int address;

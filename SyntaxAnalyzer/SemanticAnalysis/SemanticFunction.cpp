@@ -23,8 +23,8 @@ SemanticFunction::~SemanticFunction() {
 
 void SemanticFunction::printDetail() {
 	std::cout << ", " << numOfParams << " parameters: {";
-	for (SemanticRecordType t : *params) {
-		std::cout << typeStrings[static_cast<int>(t)] << ", ";
+	for (SemanticVariable* var : *params) {
+		std::cout << typeStrings[static_cast<int>(var->getSemanticType())] << ", ";
 	}
 	std::cout << "}";
 
