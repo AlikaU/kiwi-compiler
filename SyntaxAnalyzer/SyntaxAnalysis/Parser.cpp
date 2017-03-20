@@ -10,7 +10,6 @@ Parser::Parser(Scanner* s, ParseTable* t, bool p, bool c) {
 
 }
 
-
 Parser::~Parser() {
 	for (GSymbol* symbol : derivationParsed) {
 		if (symbol) {
