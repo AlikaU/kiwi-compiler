@@ -178,12 +178,28 @@ void Parser::scopeIn() {
 		if (symbol->getSymbolType() == GSymbol::semanticRecord) {
 			SemanticRecordHolder* hold = static_cast<SemanticRecordHolder*>(symbol);
 			if (hold->getRecord()->getSemanticType() == SemanticRecord::FUNCTION) {
-
+				currentScope = static_cast<SemanticFunction*>(hold->getRecord())->getLocalSymbolTable();
+			}
+			else if(hold->getRecord()->getSemanticType() == SemanticRecord::CLASS_T) {
+				currentScope = static_cast<SemanticClass*>(hold->getRecord())->getLocalSymbolTable();
+			}
+			else {
+				std::cout << "cannot scope in, top of semantic stack is not a function nor a class";
 			}
 		}
-		std::cout << "cannot scope in, top of semantic stack is not a record";
+		else {
+			std::cout << "cannot scope in, top of semantic stack is not a record";
+		}		
 	}
-	std::cout << "cannot scope in, semantic stack empty";
+	else {
+		std::cout << "cannot scope in, semantic stack empty";
+	}
+}
+
+void Parser::scopeOut() {
+	if (currentScope != globalSymbolTable) {
+		currentScope = currentScope->getParent();
+	}
 }
 
 bool Parser::processArraySizeList() {

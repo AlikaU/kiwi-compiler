@@ -8,7 +8,7 @@ class SemanticClass : public SemanticRecord {
 public:
 	SemanticClass(std::string, int, int, SymbolTable* lSymbols);
 	~SemanticClass();
-
+	SymbolTable* getLocalSymbolTable() { return localSymbolTable; }
 	void printDetail();
 
 };

@@ -15,6 +15,7 @@ public:
 	SemanticFunction(std::string, SemanticStructure, int, int,
 		std::list<SemanticVariable*>* prms, SymbolTable* lSymbols);
 	~SemanticFunction();
+	SymbolTable* getLocalSymbolTable() { return localSymbolTable; }
 	void printDetail();
 
 };
