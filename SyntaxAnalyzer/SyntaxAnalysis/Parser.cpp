@@ -46,7 +46,8 @@ bool Parser::parse() {
 		if (printDerivToConsole) {
 			printDerivationToConsole();
 		}
-		printSemanticStack();
+		//printSemanticStack();
+		globalSymbolTable->print();
 
 		GSymbol* topSymbol = parsingStack.top();
 
@@ -199,6 +200,9 @@ void Parser::scopeIn() {
 void Parser::scopeOut() {
 	if (currentScope != globalSymbolTable) {
 		currentScope = currentScope->getParent();
+	}
+	if (!(semanticStack.empty())) {
+		semanticStack.pop_back();
 	}
 }
 
