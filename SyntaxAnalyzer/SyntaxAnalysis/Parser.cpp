@@ -152,6 +152,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::calculateClassSize):
 		break;
 	case (SemanticAction::scopeIn):
+		
 		break;
 	case (SemanticAction::scopeOut):
 		break;
@@ -169,6 +170,20 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	
 	}
 	//semanticStack.push_back(action);
+}
+
+void Parser::scopeIn() {
+	if (!(semanticStack.empty())) {
+		GSymbol* symbol = semanticStack.back();
+		if (symbol->getSymbolType() == GSymbol::semanticRecord) {
+			SemanticRecordHolder* hold = static_cast<SemanticRecordHolder*>(symbol);
+			if (hold->getRecord()->getSemanticType() == SemanticRecord::FUNCTION) {
+
+			}
+		}
+		std::cout << "cannot scope in, top of semantic stack is not a record";
+	}
+	std::cout << "cannot scope in, semantic stack empty";
 }
 
 bool Parser::processArraySizeList() {
@@ -352,9 +367,16 @@ GTerminal* Parser::getNextTerminalFromSemanticStack() {
 
 void Parser::printSemanticStack() {
 	Logger::getLogger()->log(Logger::DERIV, "\nSemantic stack:");
+	if (semanticStack.empty()) {
+		return;
+	}
 	for (GSymbol* symbol : semanticStack) {
 		if (symbol->getSymbolType() == GSymbol::semanticAction) {
 			Logger::getLogger()->log(Logger::DERIV, static_cast<SemanticAction*>(symbol)->getSemanticTypeString() + " ");
+		}
+		else if (symbol->getSymbolType() == GSymbol::semanticRecord) {
+			std::string str = static_cast<SemanticRecordHolder*>(symbol)->getRecord()->getIdentifier();
+			Logger::getLogger()->log(Logger::DERIV, str + " ");
 		}
 		else {
 			Logger::getLogger()->log(Logger::DERIV, static_cast<GTerminal*>(symbol)->getValue() + " ");

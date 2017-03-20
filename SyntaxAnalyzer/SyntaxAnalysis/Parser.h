@@ -55,6 +55,7 @@ class Parser {
 	bool processArraySizeList();
 	void logSymbolErrorAndSetFlag(std::string);
 	GTerminal* getNextTerminalFromSemanticStack();
+	void scopeIn();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);
