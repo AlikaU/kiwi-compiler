@@ -49,6 +49,7 @@ class Parser {
 	SymbolTable* currentScope;
 	void createSemanticVariable();
 	void createSemanticClassAndTable();
+	void createSemanticFunctionAndTable();
 	void logSymbolErrorAndSetFlag(std::string);
 	GTerminal* getNextTerminalFromSemanticStack();
 

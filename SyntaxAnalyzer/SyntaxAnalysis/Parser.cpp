@@ -159,10 +159,40 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		createSemanticVariable();
 		break;
 	case (SemanticAction::createSemanticFunctionAndTable):
+		createSemanticFunctionAndTable();
 		break;
 	
 	}
 	//semanticStack.push_back(action);
+}
+
+void Parser::createSemanticFunctionAndTable() {
+
+	// get ID token
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) {
+		return;
+	}
+	if (term->getType() != GTerminal::ID) {
+		logSymbolErrorAndSetFlag("identifier");
+		return;
+	}
+	GTerminal* funcIDtoken = new GTerminal(term);
+	semanticStack.pop_back();
+
+	// get returnType token
+	term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
+
+	if (term->getType() != GTerminal::INTWORD && term->getType() != GTerminal::FLOATWORD && term->getType() != GTerminal::ID) {
+		logSymbolErrorAndSetFlag("type (int, float or id)");
+		return;
+	}
+	GTerminal* funcRetTypeToken = new GTerminal(term);
+	semanticStack.pop_back();
+
+	SemanticFunction funcRecord = new SemanticFunction();
+
 }
 
 void Parser::createSemanticClassAndTable() {
@@ -207,6 +237,7 @@ void Parser::createSemanticVariable() {
 		arraySizeList.push_front(new GTerminal(term));
 		semanticStack.pop_back();
 		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return; }
 		expectedType = ++expectedType % 3;
 	}
 
@@ -218,6 +249,7 @@ void Parser::createSemanticVariable() {
 	GTerminal* varIDToken = new GTerminal(term);
 	semanticStack.pop_back();
 	term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
 
 	// get type token
 	if (term->getType() != GTerminal::INTWORD && term->getType() != GTerminal::FLOATWORD && term->getType() != GTerminal::ID) {
@@ -225,6 +257,7 @@ void Parser::createSemanticVariable() {
 		return;
 	}
 	GTerminal* varTypeToken = new GTerminal(term);
+	semanticStack.pop_back();
 
 	SemanticRecord::SemanticRecordType recordType;
 	SemanticRecord::SemanticStructure recordStructure;
