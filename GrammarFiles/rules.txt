@@ -6,13 +6,13 @@
 6	varThenFuncList → !startCollecting typeId varThenFuncList1	'int', 'float', 'id'
 7	varThenFuncList → ε	'}'
 8	varThenFuncList1 → arraySizeList !stopCollecting !createSemanticVariable ';' varThenFuncList	'', ';'
-9	varThenFuncList1 → !stopCollecting !createSemanticFunctionAndTable '(' fParams ')' !scopeIn funcBody ';' !scopeOut funcDefList	'('
+9	varThenFuncList1 → '(' fParams ')' !stopCollecting !createSemanticFunctionAndTable !scopeIn funcBody ';' !scopeOut funcDefList	'('
 10	varDeclList → varDecl varDeclList	'int', 'float', 'id'
 11	varDeclList → ε	
 12	funcDefList → funcDef funcDefList	'int', 'float', 'id'
 13	funcDefList → ε	'}', $
 14	progBody → 'program' funcBody ';' funcDefList	'program'
-15	funcHead → !startCollecting type 'id' !stopCollecting !createSemanticFunctionAndTable '(' fParams ')'	'int', 'float', 'id'
+15	funcHead → !startCollecting type 'id' '(' fParams ')' !stopCollecting !createSemanticFunctionAndTable 	'int', 'float', 'id'
 16	funcDef → funcHead !scopeIn funcBody ';' !scopeOut	'int', 'float', 'id'
 17	funcBody → '{' varThenStatList '}'	'{'
 18	varThenStatList → 'int' 'id' arraySizeList ';' varThenStatList	'int'

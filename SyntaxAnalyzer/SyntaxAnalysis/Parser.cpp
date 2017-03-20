@@ -166,13 +166,44 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	//semanticStack.push_back(action);
 }
 
-void Parser::createSemanticFunctionAndTable() {
+bool Parser::processArraySizeList() {
+	currentArraySizeList.clear();
+	
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) {
+		return false;
+	}	
+
+	// we expect arraySize tokens in following order: "]", "INT", "[" 
+	GTerminal::TerminalTypes expectedTypes[3] = { GTerminal::CLOSESQUARE, GTerminal::INTNUM, GTerminal::OPENSQUARE };
+	int expectedType = 0;
+
+	// get arraySizeList tokens
+	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
+		if (term->getType() != expectedTypes[expectedType]) {
+			logSymbolErrorAndSetFlag(GTerminal::getTerminalTypeString(expectedTypes[expectedType]));
+			return false;
+		}
+		currentArraySizeList.push_front(new GTerminal(term));
+		semanticStack.pop_back();
+		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return false; }
+		expectedType = ++expectedType % 3;
+	}
+
+	return true;
+}
+
+void Parser::createSemanticFunctionAndTable() {	
+	
+	// get fParams
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
+
 
 	// get ID token
 	GTerminal* term = getNextTerminalFromSemanticStack();
-	if (term == NULL) {
-		return;
-	}
+	if (term == NULL) { return; }
 	if (term->getType() != GTerminal::ID) {
 		logSymbolErrorAndSetFlag("identifier");
 		return;
@@ -191,7 +222,18 @@ void Parser::createSemanticFunctionAndTable() {
 	GTerminal* funcRetTypeToken = new GTerminal(term);
 	semanticStack.pop_back();
 
-	SemanticFunction funcRecord = new SemanticFunction();
+	SemanticRecord::SemanticStructure recordStructure;
+	bool isInt = false;
+	int arrayDimension = 0;
+	if (funcRetTypeToken->getType() == GTerminal::INTWORD) { recordStructure = SemanticRecord::SIMPLE; isInt = true; }
+	else if (funcRetTypeToken->getType() == GTerminal::FLOATWORD) { recordStructure = SemanticRecord::SIMPLE; }
+	else { recordStructure = SemanticRecord::CLASS_S; }
+	if (!(currentArraySizeList.empty())) {
+		recordStructure = SemanticRecord::ARRAY;
+		arrayDimension = currentArraySizeList.size() / 3;
+	}
+
+	SemanticFunction funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, );
 
 }
 
@@ -220,26 +262,10 @@ void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
 }
 
 void Parser::createSemanticVariable() {
-	GTerminal* term = getNextTerminalFromSemanticStack();
-	if (term == NULL) { return; }
-	std::list<GTerminal*> arraySizeList;
-
-	// we expect arraySize tokens in following order: "]", "INT", "[" 
-	GTerminal::TerminalTypes expectedTypes[3] = { GTerminal::CLOSESQUARE, GTerminal::INTNUM, GTerminal::OPENSQUARE };
-	int expectedType = 0;
-
-	// get arraySizeList tokens
-	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
-		if (term->getType() != expectedTypes[expectedType]) {
-			logSymbolErrorAndSetFlag(GTerminal::getTerminalTypeString(expectedTypes[expectedType]));
-			return;
-		}
-		arraySizeList.push_front(new GTerminal(term));
-		semanticStack.pop_back();
-		term = getNextTerminalFromSemanticStack();
-		if (term == NULL) { return; }
-		expectedType = ++expectedType % 3;
+	if (!processArraySizeList()) {
+		return;
 	}
+	GTerminal* term = getNextTerminalFromSemanticStack();
 
 	// get ID token
 	if (term->getType() != GTerminal::ID) {
@@ -266,14 +292,16 @@ void Parser::createSemanticVariable() {
 	if (varTypeToken->getType() == GTerminal::INTWORD) { recordType = SemanticRecord::INT; recordStructure = SemanticRecord::SIMPLE; isInt = true; }
 	else if (varTypeToken->getType() == GTerminal::FLOATWORD) { recordType = SemanticRecord::FLOAT; recordStructure = SemanticRecord::SIMPLE;}
 	else { recordType = SemanticRecord::CLASS_T; recordStructure = SemanticRecord::CLASS_S;	}
-	if (!(arraySizeList.empty())) {
+	if (!(currentArraySizeList.empty())) {
 		recordStructure = SemanticRecord::ARRAY;
-		arrayDimension = arraySizeList.size() / 3;
+		arrayDimension = currentArraySizeList.size() / 3;
 	}
 	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, SemanticVariable::NORMAL, isInt);
 	varRecord->setDeclared();
 	currentScope->insert(varIDToken->getValue(), varRecord);
 }
+
+
 
 GTerminal* Parser::getNextTerminalFromSemanticStack() {
 	GSymbol* symbol = semanticStack.back();
