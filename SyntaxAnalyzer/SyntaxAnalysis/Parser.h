@@ -58,6 +58,8 @@ class Parser {
 	void scopeIn();
 	void scopeOut();
 	bool processAssignment();
+	SemanticRecord::SemanticRecordType currentType;
+	void processNum();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

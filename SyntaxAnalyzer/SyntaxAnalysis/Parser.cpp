@@ -189,6 +189,22 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	//semanticStack.push_back(action);
 }
 
+void Parser::processNum() {
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
+	if (term->getType() == GTerminal::INTNUM) {
+		currentType = SemanticRecord::INT;
+		semanticStack.pop_back();
+	}
+	else if (term->getType() == GTerminal::FLOATNUM) {
+		currentType = SemanticRecord::FLOAT;
+		semanticStack.pop_back();
+	}
+	else {
+		std::cout << "Could not process num, the symbol on top of stack is not int nor float";
+	}
+}
+
 void Parser::scopeIn() {
 	if (!(semanticStack.empty())) {
 		GSymbol* symbol = semanticStack.back();
