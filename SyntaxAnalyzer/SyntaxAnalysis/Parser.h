@@ -13,6 +13,7 @@
 #include "..\SemanticAnalysis\SemanticRecord.h"
 #include "..\SemanticAnalysis\SemanticVariable.h"
 #include "SemanticRecordHolder.h"
+#include "..\SemanticAnalysis\SemanticType.h"
 
 #include "..\SemanticAnalysis\SymbolTable.h"
 

@@ -4,7 +4,5 @@
 
 class SemanticType : public SemanticRecord {
 	
-	SemanticType(SemanticVariable* var) : SemanticRecord(var->getIdentifier(), var->getSemanticType(), var->getSemanticStructure(), var->getArrayDimension(), var->getAddress()) {
-
-	}
+	SemanticType(SemanticRecordType sType, SemanticStructure sStructure, int aDimension, int addr) : SemanticRecord("temp", sType, sStructure, aDimension, addr) {}
 };

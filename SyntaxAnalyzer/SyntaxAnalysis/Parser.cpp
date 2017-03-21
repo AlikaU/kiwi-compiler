@@ -194,6 +194,7 @@ void Parser::processNum() {
 	if (term == NULL) { return; }
 	if (term->getType() == GTerminal::INTNUM) {
 		currentType = SemanticRecord::INT;
+		SemanticType* typeRecord = new SemanticType (currentType, )
 		semanticStack.pop_back();
 	}
 	else if (term->getType() == GTerminal::FLOATNUM) {
