@@ -10,7 +10,12 @@ std::string SemanticAction::SemanticTypeStrings[NUM_OF_SEMTYPES] = {
 	"scopeOut",
 	"createSemanticVariable",
 	"createSemanticFunctionAndTable", 
-	"processAssignment"
+	"processAssignment", 
+	"processVariableUse",
+	"processTerm",
+	"processExpression", 
+	"processIdNestListIdThenIndiceListOrAParams",
+	"processNum"
 };
 
 SemanticAction::SemanticActionTypes SemanticAction::stringExclMarkToType(std::string s) {

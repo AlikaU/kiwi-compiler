@@ -174,6 +174,17 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::processAssignment):
 		processAssignment();
 		break;
+	
+	case (SemanticAction::processVariableUse):
+		break;
+	case (SemanticAction::processExpression): 
+		break;
+	case (SemanticAction::processTerm):
+		break;
+	case (SemanticAction::processIdNestListIdThenIndiceListOrAParams):
+		break;
+	case (SemanticAction::processNum):
+		break;
 	}
 	//semanticStack.push_back(action);
 }

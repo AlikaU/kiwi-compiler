@@ -1,7 +1,7 @@
 #pragma once
 #include "GSymbol.h"
 
-#define NUM_OF_SEMTYPES 10
+#define NUM_OF_SEMTYPES 15
 
 class SemanticAction : public GSymbol {
 
@@ -18,6 +18,11 @@ public:
 		createSemanticVariable = 7,
 		createSemanticFunctionAndTable = 8,
 		processAssignment = 9,
+		processVariableUse = 10,
+		processExpression = 11,
+		processTerm = 12,
+		processIdNestListIdThenIndiceListOrAParams = 13,
+		processNum = 14,
 		wrongType = -1
 	};
 
