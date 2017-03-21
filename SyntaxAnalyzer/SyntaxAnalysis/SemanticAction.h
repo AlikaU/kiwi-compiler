@@ -1,7 +1,7 @@
 #pragma once
 #include "GSymbol.h"
 
-#define NUM_OF_SEMTYPES 9
+#define NUM_OF_SEMTYPES 10
 
 class SemanticAction : public GSymbol {
 
@@ -17,6 +17,7 @@ public:
 		scopeOut = 6,
 		createSemanticVariable = 7,
 		createSemanticFunctionAndTable = 8,
+		processAssignment = 9,
 		wrongType = -1
 	};
 

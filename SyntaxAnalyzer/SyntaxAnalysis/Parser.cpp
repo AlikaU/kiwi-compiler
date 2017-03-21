@@ -166,13 +166,14 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		SemanticVariable* varRecord = createSemanticVariable(false);
 		varRecord->setDeclared();
 		currentScope->insert(varRecord->getIdentifier(), varRecord);
-	}
-		
+	}		
 		break;
 	case (SemanticAction::createSemanticFunctionAndTable):
 		createSemanticFunctionAndTable();
 		break;
-	
+	case (SemanticAction::processAssignment):
+		processAssignment();
+		break;
 	}
 	//semanticStack.push_back(action);
 }
@@ -236,6 +237,14 @@ bool Parser::processArraySizeList() {
 	}
 
 	return true;
+}
+
+bool Parser::processAssignment() {
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) {
+		return false;
+	}
+
 }
 
 void Parser::createSemanticFunctionAndTable() {	

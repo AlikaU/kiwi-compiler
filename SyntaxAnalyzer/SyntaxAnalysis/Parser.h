@@ -57,6 +57,7 @@ class Parser {
 	GTerminal* getNextTerminalFromSemanticStack();
 	void scopeIn();
 	void scopeOut();
+	bool processAssignment();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);
