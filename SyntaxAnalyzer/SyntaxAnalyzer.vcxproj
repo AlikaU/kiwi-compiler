@@ -118,6 +118,7 @@
     <ClInclude Include="SemanticAnalysis\SemanticClass.h" />
     <ClInclude Include="SemanticAnalysis\SemanticFunction.h" />
     <ClInclude Include="SemanticAnalysis\SemanticRecord.h" />
+    <ClInclude Include="SemanticAnalysis\SemanticType.h" />
     <ClInclude Include="SemanticAnalysis\SemanticVariable.h" />
     <ClInclude Include="SemanticAnalysis\SymbolTable.h" />
     <ClInclude Include="SemanticAnalysis\SymbolTableManager.h" />

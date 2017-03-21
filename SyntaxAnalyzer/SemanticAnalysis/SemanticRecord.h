@@ -20,7 +20,10 @@ public:
 	void setDeclared() {
 		declared = true;
 	}
-	SemanticRecordType getSemanticType() { return semanticType; }
+	SemanticRecordType getSemanticType() const { return semanticType; }
+	SemanticStructure getSemanticStructure() const { return semanticStructure; }
+	int getArrayDimension() const { return arrayDimension; }
+	int getAddress() const { return address; }
 	
 
 protected:
