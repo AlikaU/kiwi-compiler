@@ -184,6 +184,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::processIdNestListIdThenIndiceListOrAParams):
 		break;
 	case (SemanticAction::processNum):
+		processNum();
 		break;
 	}
 	//semanticStack.push_back(action);
@@ -193,17 +194,18 @@ void Parser::processNum() {
 	GTerminal* term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return; }
 	if (term->getType() == GTerminal::INTNUM) {
-		currentType = SemanticRecord::INT;
-		SemanticType* typeRecord = new SemanticType (currentType, )
-		semanticStack.pop_back();
+		currentType = SemanticRecord::INT;		
 	}
 	else if (term->getType() == GTerminal::FLOATNUM) {
 		currentType = SemanticRecord::FLOAT;
-		semanticStack.pop_back();
 	}
 	else {
 		std::cout << "Could not process num, the symbol on top of stack is not int nor float";
+		return;
 	}
+	SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);
+	semanticStack.pop_back();
+	semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 }
 
 void Parser::scopeIn() {
