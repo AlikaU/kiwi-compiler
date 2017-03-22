@@ -27,3 +27,7 @@ void SemanticRecord::print() {
 
 	printDetail();	
 }
+
+const std::string SemanticRecord::typeStrings[4] = { "INT", "FLOAT", "FUNCTION", "CLASS" };
+
+const std::string SemanticRecord::structureStrings[3] = { "SIMPLE", "ARRAY", "CLASS" };

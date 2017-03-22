@@ -45,7 +45,7 @@
 45	exprTail → addOp term exprTail	'+', '-', 'or'
 46	exprTail → relOp arithExpr	'==', '<>', '<', '>', '<=', '>='
 47	exprTail → ε	',', ')', ';'
-48	arithExpr → term arithExprTail	'numInt', 'numFloat', '(', 'not', 'id', '+', '-'
+48	arithExpr → term arithExprTail !processArithExpr	'numInt', 'numFloat', '(', 'not', 'id', '+', '-'
 49	relExpr → arithExpr relOp arithExpr	'numInt', 'numFloat', '(', 'not', 'id', '+', '-'
 50	arithExprTail → addOp term arithExprTail	'+', '-', 'or'
 51	arithExprTail → ε	'', ')', '==', '<>', '<', '>', '<=', '>=', ';', ','

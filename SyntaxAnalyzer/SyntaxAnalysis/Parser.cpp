@@ -180,6 +180,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::processExpression): 
 		break;
 	case (SemanticAction::processTerm):
+		processTerm();
 		break;
 	case (SemanticAction::processIdNestListIdThenIndiceListOrAParams):
 		processIdNestListIdThenIndiceListOrAParams();
@@ -190,8 +191,87 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case(SemanticAction::processIndiceList):
 		processIndiceList();
 		break;
+	case (SemanticAction::processArithExpr):
+		bool processArithExpr();
+		break;
 	}
 	//semanticStack.push_back(action);
+}
+
+// I assume that terms have already been processed
+// term is of form: term (addOp term)*
+bool Parser::processArithExpr() {
+
+}
+
+// I assume that factors have already been processed
+// term is of form: factor (multOp factor)*
+bool Parser::processTerm() {
+
+	GSymbol* symbol; 
+
+	// get first factor
+	if (!(semanticStack.empty())) {
+		symbol = semanticStack.back();
+	}
+	else return false;
+
+	SemanticRecord::SemanticRecordType termType;
+	if (symbol->getSymbolType != GSymbol::semanticRecord) {
+		std::cout << "\nExpected factor";
+		return false;
+	}
+	SemanticRecordHolder* typeHolder = static_cast<SemanticRecordHolder*>(symbol);
+	termType = typeHolder->getRecord()->getSemanticType();
+
+	semanticStack.pop_back();
+	if (!(semanticStack.empty())) {
+		symbol = semanticStack.back();
+	}
+	else return false;
+
+	while (symbol->getSymbolType() == GSymbol::semanticRecord || symbol->getSymbolType() == GSymbol::terminal) {
+
+		// get multOp
+		if (symbol->getSymbolType() != GSymbol::terminal) {
+			std::cout << "\nExpected terminal";
+			return false;
+		}
+		GTerminal* multOp = static_cast<GTerminal*>(symbol);
+		if (!(multOp->getType() == GTerminal::MULT || multOp->getType() == GTerminal::DIVIDE || multOp->getType() == GTerminal::AND)) {
+			std::cout << "\nExpected multOp";
+			return false;
+		}
+		semanticStack.pop_back();
+		if (!(semanticStack.empty())) {
+			symbol = semanticStack.back();
+		}
+		else return false;
+
+		// get next factor
+		if (symbol->getSymbolType() != GSymbol::semanticRecord) {
+			std::cout << "\nExpected semanticRecord";
+			return false;
+		}
+		SemanticRecordHolder* recHolder = static_cast<SemanticRecordHolder*>(symbol);
+		
+		// check type
+
+		SemanticRecord::SemanticRecordType t = recHolder->getRecord()->getSemanticType();
+		if (t != termType) {
+			std::cout << "Type mismatch: " << SemanticRecord::typeStrings[t] << " and " << SemanticRecord::typeStrings[termType] 
+				<< " at line " << multOp->getPosition().first << ", column " << multOp->getPosition().second;
+				return false;
+		}
+
+		semanticStack.pop_back();
+		if (!(semanticStack.empty())) {
+			symbol = semanticStack.back();
+		}
+		else break;
+	}
+
+	semanticStack.push_back(typeHolder);
 }
 
 void Parser::processIdNestListIdThenIndiceListOrAParams() {
@@ -280,8 +360,7 @@ void Parser::processIdNestListIdThenIndiceListOrAParams() {
 		else if (funcRecord != NULL) {
 			currentType = funcRecord->getReturnType()->getSemanticType();
 		}
-		SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);
-		semanticStack.pop_back();
+		SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);		
 		semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 	}
 

@@ -65,6 +65,8 @@ class Parser {
 	void processIndiceList();
 	void processIdNestListIdThenIndiceListOrAParams();
 	bool processIdNestList(SemanticRecord*, bool*);
+	bool processTerm();
+	bool processArithExpr();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);
