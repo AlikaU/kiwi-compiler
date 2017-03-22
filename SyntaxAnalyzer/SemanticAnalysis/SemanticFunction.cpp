@@ -4,9 +4,10 @@
 
 SemanticFunction::SemanticFunction(std::string identifier,
 	SemanticStructure sStruct, int arrDimension, int addr, 
-	std::list<SemanticVariable*>* prms, SymbolTable* lSymbols)
+	std::list<SemanticVariable*>* prms, SymbolTable* lSymbols, SemanticType* rType)
 	: SemanticRecord(identifier, SemanticRecord::FUNCTION, sStruct, arrDimension, addr) {
 	params = prms;
+	returnType = rType;
 	int count = 0;
 	for (SemanticVariable* var : *params) {
 		++count;

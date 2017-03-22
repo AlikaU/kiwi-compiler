@@ -196,9 +196,56 @@ void Parser::processSemanticAction(SemanticAction* action) {
 
 void Parser::processIdNestListIdThenIndiceListOrAParams() {
 	int threshold = 15; // max num of tokens as params
+	int count = 0;
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
+
+	// if there's a closepar, then we have an aParams list
+	if (term->getType() == GTerminal::CLOSEPAR) {
+		while (term->getType() != GTerminal::OPENPAR && ++count < threshold) {
+			semanticStack.pop_back();
+			term = getNextTerminalFromSemanticStack();
+			if (term == NULL) { return; }
+		}
+		if (count >= threshold) {
+			std::cout << "Something went wrong while doing semantic analysis of aParams! Everything else will probably break from now on.";
+		}
+		
+		// this will be the function name! keep it
+		GTerminal* term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return; }
+		GTerminal* functionIdToken = new GTerminal(term);
+		semanticStack.pop_back();
+
+		// if no more terminals, then we're in global scope
+		GTerminal* term = getNextTerminalFromSemanticStack();
+		if (term == NULL) {
+			SemanticRecord* record;
+			bool* found;
+			globalSymbolTable->search(functionIdToken->getValue(), record, found);
+			if (!found) {
+				std::cout << "\nA function with name '" << functionIdToken->getValue() << "' does not exist in current scope (global)";
+			}
+			semanticStack.pop_back();
+		}
+		// otherwise we need to figure out the scope
+		else {
+			while (term != NULL) {
+				processIndiceList();
+				GTerminal* term = getNextTerminalFromSemanticStack();
+				if (term == NULL) { return; }
+
+
+				semanticStack.pop_back();
+				GTerminal* term = getNextTerminalFromSemanticStack();
+			}
+		}
+	}
+
 }
 
 void Parser::processIndiceList() {
+	currentIndiceDimention = 0;
 	GTerminal* term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return; }
 	int count;
@@ -211,7 +258,7 @@ void Parser::processIndiceList() {
 		if (term == NULL) { return; }
 	}
 	if (lastTerm->getType() != GTerminal::OPENSQUARE) {
-		std::cout << "Something went wrong while parsing indiceList! Everything else will probably break from now on.";
+		std::cout << "Something went wrong while doing semantic analysis of indiceList! Everything else will probably break from now on.";
 	}
 	currentIndiceDimention = count / 3;
 }
@@ -371,7 +418,22 @@ void Parser::createSemanticFunctionAndTable() {
 		arrayDimension = currentArraySizeList.size() / 3;
 	}
 	SymbolTable* functionTable = new SymbolTable(currentScope, funcIDtoken->getValue());
-	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable);
+
+	SemanticRecord::SemanticRecordType returnType;
+	if (funcRetTypeToken->getType() == GTerminal::INTWORD) {
+		returnType = SemanticRecord::INT;
+	}
+	else if (funcRetTypeToken->getType() == GTerminal::FLOATWORD) {
+		returnType = SemanticRecord::FLOAT;
+	}
+	else if (funcRetTypeToken->getType() == GTerminal::ID) {
+		returnType = SemanticRecord::CLASS_T;
+	}
+	else {
+		std::cout << "\nCould not process function return type for function " << funcIDtoken->getValue()<< "! ";
+		return;
+	}
+	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, SemanticRecord::SIMPLE, 0, 0));
 	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
 	funcRecord->setDeclared();
 	semanticStack.push_back(new SemanticRecordHolder(funcRecord));

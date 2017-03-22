@@ -12,7 +12,7 @@ void SymbolTableManager::search(SymbolTable* table, std::string identifier, Sema
 	table->search(identifier, ptr, found);
 }
 
-void SymbolTableManagerinsert(SymbolTable* table, std::string identifier, SemanticRecord* ptr) {
+void SymbolTableManager::insert(SymbolTable* table, std::string identifier, SemanticRecord* ptr) {
 	table->insert(identifier, ptr);
 }
 
@@ -21,6 +21,6 @@ void SymbolTableManager::deleteTable(SymbolTable* table) {
 	delete table;
 }
 
-void printTable(SymbolTable* table) {
+void SymbolTableManager::printTable(SymbolTable* table) {
 	table->print();
 }
