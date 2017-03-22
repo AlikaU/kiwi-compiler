@@ -63,6 +63,7 @@ class Parser {
 	void processNum();
 	int currentIndiceDimention;
 	void processIndiceList();
+	void processIdNestListIdThenIndiceListOrAParams();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

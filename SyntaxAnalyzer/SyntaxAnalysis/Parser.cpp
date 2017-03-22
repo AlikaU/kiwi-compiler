@@ -182,6 +182,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::processTerm):
 		break;
 	case (SemanticAction::processIdNestListIdThenIndiceListOrAParams):
+		processIdNestListIdThenIndiceListOrAParams();
 		break;
 	case (SemanticAction::processNum):
 		processNum();
@@ -191,6 +192,10 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		break;
 	}
 	//semanticStack.push_back(action);
+}
+
+void Parser::processIdNestListIdThenIndiceListOrAParams() {
+	int threshold = 15; // max num of tokens as params
 }
 
 void Parser::processIndiceList() {
