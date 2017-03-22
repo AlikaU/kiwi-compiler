@@ -1,6 +1,7 @@
 #pragma once
 #include "SemanticRecord.h"
 #include "SemanticVariable.h"
+#include <iostream>
 
 class SemanticType : public SemanticRecord {
 public: 
