@@ -195,6 +195,12 @@ void Parser::processSemanticAction(SemanticAction* action) {
 }
 
 void Parser::processIdNestListIdThenIndiceListOrAParams() {
+	SemanticFunction* funcRecord = NULL;
+	SemanticVariable* idRecord = NULL;
+	SemanticRecord* record= NULL;
+	bool* found = false;
+	bool allGood = false;
+
 	int threshold = 15; // max num of tokens as params
 	int count = 0;
 	GTerminal* term = getNextTerminalFromSemanticStack();
@@ -212,43 +218,145 @@ void Parser::processIdNestListIdThenIndiceListOrAParams() {
 		}
 		
 		// this will be the function name! keep it
-		GTerminal* term = getNextTerminalFromSemanticStack();
+		term = getNextTerminalFromSemanticStack();
 		if (term == NULL) { return; }
 		GTerminal* functionIdToken = new GTerminal(term);
 		semanticStack.pop_back();
 
-		// if no more terminals, then we're in global scope
-		GTerminal* term = getNextTerminalFromSemanticStack();
-		if (term == NULL) {
-			SemanticRecord* record;
-			bool* found;
-			globalSymbolTable->search(functionIdToken->getValue(), record, found);
+		// if no more terminals, then we're in current scope
+		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) {	
+			currentScope->search(functionIdToken->getValue(), record, found);
 			if (!found) {
-				std::cout << "\nA function with name '" << functionIdToken->getValue() << "' does not exist in current scope (global)";
+				std::cout << "\nIdentifier '" << functionIdToken->getValue() << "' is not defined in current scope (" << currentScope->getTableName() << ")";
 			}
 			semanticStack.pop_back();
 		}
 		// otherwise we need to figure out the scope
 		else {
-			while (term != NULL) {
-				processIndiceList();
-				GTerminal* term = getNextTerminalFromSemanticStack();
-				if (term == NULL) { return; }
+			if (processIdNestList(record, found)) {
+				if (found) {
+					if (record->getSemanticStructure() == SemanticRecord::CLASS_S) {
+						SymbolTable* table = static_cast<SemanticClass*>(record)->getLocalSymbolTable();
+						table->search(functionIdToken->getValue(), record, found);
+						if (found) {							
+							if (record->getSemanticType() == SemanticRecord::FUNCTION) {
+								allGood = true;
+								funcRecord = static_cast<SemanticFunction*>(record);
+							}							
+						}
+					}
+				}
+			}			
+		}
+	}
 
+	// otherwise, we have an id, and then idNestList
+	else if (term->getType() == GTerminal::ID) {
+		GTerminal* IDToken = new GTerminal(term);
+		semanticStack.pop_back();
 
-				semanticStack.pop_back();
-				GTerminal* term = getNextTerminalFromSemanticStack();
+		if (processIdNestList(record, found)) {
+			if (found) {
+				if (record->getSemanticStructure() == SemanticRecord::CLASS_S) {
+					SymbolTable* table = static_cast<SemanticClass*>(record)->getLocalSymbolTable();
+					table->search(IDToken->getValue(), record, found);
+					if (found) {
+						allGood = true;
+					}
+				}
 			}
 		}
 	}
 
+	else {
+		std::cout << "Could not do semantic processing of IdestListIdThenIndiceListOrAParams";
+	}
+
+	if (allGood) {
+		if (idRecord != NULL) {
+			currentType = idRecord->getSemanticType();					
+		}
+		else if (funcRecord != NULL) {
+			currentType = funcRecord->getReturnType()->getSemanticType();
+		}
+		SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);
+		semanticStack.pop_back();
+		semanticStack.push_back(new SemanticRecordHolder(typeRecord));
+	}
+
+	
+}
+
+bool Parser::processIdNestList(SemanticRecord* record, bool* found) {
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return false; }
+
+	// pop dot operator 
+	if (term->getType() == GTerminal::DOT) {
+		semanticStack.pop_back();
+		GTerminal* term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return false; }
+	}
+	else {
+		std::cout << "Expected dot operator";
+	}
+
+	// collect scopes
+	std::stack<GTerminal*> scopeTokens;
+	while (term != NULL) {
+		processIndiceList();
+		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return false; }
+		if (term->getType() == GTerminal::ID) {
+			scopeTokens.push(new GTerminal(term));
+		}
+
+		semanticStack.pop_back();
+		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { continue; }
+
+		// pop dot operator 
+		if (term->getType() == GTerminal::DOT) {
+			semanticStack.pop_back();
+			GTerminal* term = getNextTerminalFromSemanticStack();
+			if (term == NULL) { return false; }
+		}
+		else {
+			std::cout << "Expected dot operator";
+			return false;
+		}
+		semanticStack.pop_back();
+		GTerminal* term = getNextTerminalFromSemanticStack();
+	}
+
+	int count = scopeTokens.size();
+	while (!scopeTokens.empty()) {
+		GTerminal* term = scopeTokens.top(); 
+		currentScope->search(term->getValue(), record, found);
+		if (found) {
+			semanticStack.pop_back();
+			semanticStack.push_back(new SemanticRecordHolder(record));
+			scopeIn();			
+		}
+		else {
+			std::cout << "\nIdentifier " << term->getValue() << " is not defined in the current scope(" << currentScope->getTableName() << ")";
+			return false;
+		}
+		scopeTokens.pop();
+	}
+
+	for (int i = 0; i < count; ++i) {
+		scopeOut();
+	}
+	return true;
 }
 
 void Parser::processIndiceList() {
 	currentIndiceDimention = 0;
 	GTerminal* term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return; }
-	int count;
+	int count = 0;
 	GTerminal* lastTerm = term;
 	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
 		++count;

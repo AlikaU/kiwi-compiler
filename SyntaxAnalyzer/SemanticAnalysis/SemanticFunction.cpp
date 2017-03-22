@@ -18,6 +18,7 @@ SemanticFunction::SemanticFunction(std::string identifier,
 
 SemanticFunction::~SemanticFunction() {
 	params->clear();
+	delete returnType;
 	delete params;
 	delete localSymbolTable;
 }

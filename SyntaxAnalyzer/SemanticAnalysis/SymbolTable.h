@@ -14,7 +14,7 @@ public:
 	SymbolTable(SymbolTable* p, std::string name) { parent = p; records = new std::list<SemanticRecord*>; tableName = name; }
 
 	~SymbolTable() { clearTable(); }
-
+	std::string getTableName() const { return tableName; }
 	void clearTable() { records->clear(); }
 	SymbolTable* getParent() { return parent; }
 	void search(std::string identifier, SemanticRecord*, bool*);
