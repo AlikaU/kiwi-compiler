@@ -61,6 +61,8 @@ class Parser {
 	bool processAssignment();
 	SemanticRecord::SemanticRecordType currentType;
 	void processNum();
+	int currentIndiceDimention;
+	void processIndiceList();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

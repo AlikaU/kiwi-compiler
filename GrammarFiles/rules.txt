@@ -77,7 +77,7 @@
 77	idNestList → ε	
 78	indice → '[' arithExpr ']'	''
 79	indiceList → indice indiceList	''
-80	indiceList → ε	'.', '=', '*', '/', 'and', '+', '-', 'or', '==', '<>', '<', '>', '<=', '>=', '', ')', ';', ','
+80	indiceList → ε !processIndiceList	'.', '=', '*', '/', 'and', '+', '-', 'or', '==', '<>', '<', '>', '<=', '>=', '', ')', ';', ','
 81	arraySize → '[' 'numInt' ']'	''
 82	type → 'int'	'int'
 83	type → 'float'	'float'

@@ -186,8 +186,29 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::processNum):
 		processNum();
 		break;
+	case(SemanticAction::processIndiceList):
+		processIndiceList();
+		break;
 	}
 	//semanticStack.push_back(action);
+}
+
+void Parser::processIndiceList() {
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term == NULL) { return; }
+	int count;
+	GTerminal* lastTerm = term;
+	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
+		++count;
+		parsingStack.pop();
+		lastTerm = term;
+		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return; }
+	}
+	if (lastTerm->getType() != GTerminal::OPENSQUARE) {
+		std::cout << "Something went wrong while parsing indiceList! Everything else will probably break from now on.";
+	}
+	currentIndiceDimention = count / 3;
 }
 
 void Parser::processNum() {
