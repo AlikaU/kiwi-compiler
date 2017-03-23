@@ -13,6 +13,9 @@ bool success = true;
 
 void testCorrectInput(char* path, ParseTable* pTable) {
 	std::cout << "\n\nNow parsing valid file: " << path;
+
+	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for valid file: " + std::string(path));
+
 	if (printDerivation) {
 		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for valid file: " + std::string(path));
 	}
@@ -30,6 +33,7 @@ void testCorrectInput(char* path, ParseTable* pTable) {
 
 void testWrongInput(char* path, ParseTable* pTable) {
 	std::cout << "\n\nNow parsing file with errors: " << path;
+	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for file with errors: " + std::string(path));
 	if (printDerivation) {
 		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for file with errors: " + std::string(path));
 	}
@@ -78,7 +82,7 @@ int main(int argc, char** argv)
 		break;
 	}	
 
-	//testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
+	testCorrectInput("../TestFiles/Semantic/full_valid_program2.txt", &pTable);
 	testCorrectInput("../TestFiles/Semantic/full_valid_program.txt", &pTable);
 		
 
@@ -88,7 +92,7 @@ int main(int argc, char** argv)
 	else {
 		std::cout << "\n\nFAILED: At least one test case has failed.";
 	}
-	std::cout << "\nYou can find all log files in the Output folder.";
+	std::cout << "\nYou can find all log files in the Output folder. Please see the symbol table in Output/logTable.txt";
 	
 	std::cin >> answer;
 }
