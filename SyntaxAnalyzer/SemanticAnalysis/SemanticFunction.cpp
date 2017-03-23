@@ -1,5 +1,4 @@
 #include "SemanticFunction.h"
-#include <iostream>
 #include <string>
 
 SemanticFunction::SemanticFunction(std::string identifier,
@@ -24,15 +23,16 @@ SemanticFunction::~SemanticFunction() {
 }
 
 void SemanticFunction::printDetail() {
-	std::cout << ", " << numOfParams << " parameters: {";
+	Logger::getLogger()->log(Logger::TABLE, ", " + std::to_string(numOfParams) + " parameters: {");
 	for (SemanticVariable* var : *params) {
-		std::cout << typeStrings[static_cast<int>(var->getSemanticType())] << ", ";
+		Logger::getLogger()->log(Logger::TABLE, typeStrings[static_cast<int>(var->getSemanticType())] + ", ");
 	}
-	std::cout << "}";
+	Logger::getLogger()->log(Logger::TABLE, "}");
 
 	if (localSymbolTable) {
-		std::cout << "local symbol table: \n\t";
+		Logger::getLogger()->log(Logger::TABLE, "local symbol table: \n{");
 		localSymbolTable->print();
+		Logger::getLogger()->log(Logger::TABLE, "\n}\n");
 	}
-	else std::cout << "no local symbol table.";
+	else Logger::getLogger()->log(Logger::TABLE, "no local symbol table.");
 }

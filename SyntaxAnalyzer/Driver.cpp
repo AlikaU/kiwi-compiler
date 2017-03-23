@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 {
 	ParseTable pTable;
 
-	std::cout << "\n\nTEMPORARY: printing derivation to file works, but takes a very long time. You therefore have the option to print it to console instead.";
+	std::cout << "\n\nIn case you need to see the derivation (from PREVIOUS ASSIGNMENT (2)), printing derivation to file works, but takes a very long time. You therefore have the option to print it to console instead.";
 	std::cout << "\nPrint derivation to file (1), to console (2) or neither (3)?";
 	int answer;
 	do {		

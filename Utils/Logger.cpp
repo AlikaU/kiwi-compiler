@@ -8,6 +8,7 @@ std::ofstream Logger::logTokens;
 std::ofstream Logger::logDebug;
 std::ofstream Logger::logDerivation;
 std::ofstream Logger::logError;
+std::ofstream Logger::logTable;
 
 Logger::Logger() {
 	// erase log files from previous run
@@ -15,6 +16,7 @@ Logger::Logger() {
 	remove(LOG_DERIV_PATH);
 	remove(LOG_DEBUG_PATH);
 	remove(LOG_ERROR_PATH);
+	remove(LOG_TABLE_PATH);
 }
 
 Logger::~Logger() {
@@ -26,6 +28,7 @@ void Logger::log(LOG_TYPE t, std::string message) {
 	std::ofstream logDebug(LOG_DEBUG_PATH, std::fstream::out | std::fstream::app);
 	std::ofstream logDeriv(LOG_DERIV_PATH, std::fstream::out | std::fstream::app);
 	std::ofstream logError(LOG_ERROR_PATH, std::fstream::out | std::fstream::app);
+	std::ofstream logTable(LOG_TABLE_PATH, std::fstream::out | std::fstream::app);
 	
 	switch (t) {
 	case TOKEN: 
@@ -61,7 +64,16 @@ void Logger::log(LOG_TYPE t, std::string message) {
 		}
 		else { std::cout << "Failed to print to logDebug.txt because file is closed"; }
 		break;
-	}	
+		
+	case TABLE:
+		if (logTable.is_open()) {
+			logTable << message;
+		}
+		else {
+			std::cout << "Failed to print to logTable.txt because file is closed";
+		}
+		break;
+	}
 	
 }
 

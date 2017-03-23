@@ -1,5 +1,4 @@
 #include "SemanticVariable.h"
-#include <iostream>
 #include <string>
 
 SemanticVariable::SemanticVariable(std::string identifier, SemanticRecordType sType,
@@ -22,5 +21,5 @@ void SemanticVariable::printDetail() {
 	else {
 		typeStr = "wrongVariableType";
 	}
-	std::cout << ", " << typeStr << ", " << VariableKindString[static_cast<int>(kind)];
+	Logger::getLogger()->log(Logger::TABLE, ", " + typeStr + ", " + VariableKindString[static_cast<int>(kind)]);
 }

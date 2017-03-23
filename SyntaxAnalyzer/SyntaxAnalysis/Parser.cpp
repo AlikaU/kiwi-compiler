@@ -131,12 +131,14 @@ bool Parser::parse() {
 		printDerivationToConsole();
 	}
 
-	if (currentScannedToken->getType() != Token::DOLLAR_SIGN || error || !(parsingStack.top()->isDollarSign())) {
-		return false;
-	} 
+	
 	if (globalSymbolTable) {
 		globalSymbolTable->print();
 	}
+	if (currentScannedToken->getType() != Token::DOLLAR_SIGN || error || !(parsingStack.top()->isDollarSign())) {
+		return false;
+	}
+
 	return true;
 }
 
@@ -590,7 +592,7 @@ void Parser::processNum() {
 		}
 	}
 	else {
-		std::cout << "Could not process num, the symbol on top of stack is not int nor float";
+		//std::cout << "Could not process num, the symbol on top of stack is not int nor float";
 		return;
 	}
 	SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);

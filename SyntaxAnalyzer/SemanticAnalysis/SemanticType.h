@@ -1,7 +1,6 @@
 #pragma once
 #include "SemanticRecord.h"
 #include "SemanticVariable.h"
-#include <iostream>
 
 class SemanticType : public SemanticRecord {
 public: 
@@ -21,6 +20,6 @@ public:
 		else {
 			typeStr = "wrongVariableType";
 		}
-		std::cout << "Type placeholder: " << typeStr;
+		Logger::getLogger()->log(Logger::TABLE, "Type placeholder: " + typeStr);
 	}
 };

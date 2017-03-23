@@ -1,6 +1,8 @@
 #pragma once
 #include <list>
 #include "..\SyntaxAnalysis\GSymbol.h"
+#include "..\..\Utils\Logger.h"
+
 class SemanticRecord {
 
 

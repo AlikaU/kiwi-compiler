@@ -1,5 +1,4 @@
 #include "SemanticClass.h"
-#include <iostream>
 #include <string>
 
 SemanticClass::SemanticClass(std::string identifier, int arrDimension, int addr, SymbolTable* lSymbols)
@@ -15,8 +14,9 @@ SemanticClass::~SemanticClass() {
 void SemanticClass::printDetail() {
 
 	if (localSymbolTable) {
-		std::cout << ", local symbol table: \n\t";
+		Logger::getLogger()->log(Logger::TABLE, ", local symbol table: \n{");
 		localSymbolTable->print();
+		Logger::getLogger()->log(Logger::TABLE, "\n}\n");
 	}
-	else std::cout << ", no local symbol table.";
+	else Logger::getLogger()->log(Logger::TABLE, ", no local symbol table.");
 }

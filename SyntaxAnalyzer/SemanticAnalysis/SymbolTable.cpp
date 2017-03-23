@@ -6,7 +6,9 @@ void SymbolTable::search(std::string identifier, SemanticRecord* ptr, bool* foun
 	for (SemanticRecord* record : *records) {
 		if (record->getIdentifier() == identifier) {
 			ptr = record;
-			*found = true;
+			bool* f = new bool;
+			*f = true;
+			found = f;
 		}
 	}
 	if (!found && parent) {

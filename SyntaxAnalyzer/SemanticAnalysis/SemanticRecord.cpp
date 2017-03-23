@@ -1,5 +1,4 @@
 #include "SemanticRecord.h"
-#include <iostream>
 #include <string>
 
 SemanticRecord::SemanticRecord(std::string i, SemanticRecordType st, 
@@ -17,12 +16,14 @@ void SemanticRecord::print() {
 	if (declared) {
 		declaredStr = "true";
 	}
-	std::cout << "\nRECORD: " << identifier << ", " << declared  << ", " 
-		<< typeStrings[static_cast<int>(semanticType)]
-		<< ", " << structureStrings[static_cast<int>(semanticStructure)];
+	Logger::getLogger()->log(Logger::TABLE, "\nRECORD: " + identifier + ", " + "declared: " + declaredStr + ", " + typeStrings[static_cast<int>(semanticType)] +
+		", " + structureStrings[static_cast<int>(semanticStructure)]);
+	//std::cout << "\nRECORD: " << identifier << ", " << declared  << ", " 
+		//<< typeStrings[static_cast<int>(semanticType)]
+		//<< ", " << structureStrings[static_cast<int>(semanticStructure)];
 
 	if (arrayDimension > 1) {
-		std::cout << ", array dimension: " << arrayDimension;
+		Logger::getLogger()->log(Logger::TABLE, ", array dimension: " + arrayDimension);
 	}
 
 	printDetail();	
