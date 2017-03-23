@@ -1,5 +1,7 @@
+
 #include "stdafx.h"
 #include "CppUnitTest.h"
+/*
 #include "..\SyntaxAndSemanticAnalyzer\SyntaxAnalysis\ParseTable.h"
 #include "..\SyntaxAndSemanticAnalyzer\SyntaxAnalysis\ParseTable.cpp"
 #include "..\SyntaxAndSemanticAnalyzer\SyntaxAnalysis\Parser.h"
@@ -11,14 +13,14 @@
 #include "..\SyntaxAndSemanticAnalyzer\SyntaxAnalysis\GSymbol.h"
 #include "..\SyntaxAndSemanticAnalyzer\SyntaxAnalysis\GSymbol.cpp"
 
-
-
+*/
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 
 namespace UnitTest_KiwiCompiler
 {
+	/*
 	TEST_CLASS(UnitTest1)
 	{
 
@@ -35,4 +37,5 @@ namespace UnitTest_KiwiCompiler
 	
 
 	};
+	*/
 }

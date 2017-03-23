@@ -87,6 +87,7 @@ void ParseTable::initLHSOfRule(int ruleNo) {
 
 void ParseTable::initRHSOfRule(int ruleNo) {
 	//std::cout << "\nRHS of rule: ";
+	
 
 	// read nonterminals until you see a tab character
 	char c = buffer[rulestringidx];
