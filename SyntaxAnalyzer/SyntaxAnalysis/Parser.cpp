@@ -585,9 +585,11 @@ void Parser::scopeIn() {
 		if (symbol->getSymbolType() == GSymbol::semanticRecord) {
 			SemanticRecordHolder* hold = static_cast<SemanticRecordHolder*>(symbol);
 			if (hold->getRecord()->getSemanticType() == SemanticRecord::FUNCTION) {
+				semanticStack.pop_back();
 				currentScope = static_cast<SemanticFunction*>(hold->getRecord())->getLocalSymbolTable();
 			}
 			else if(hold->getRecord()->getSemanticType() == SemanticRecord::CLASS_T) {
+				semanticStack.pop_back();
 				currentScope = static_cast<SemanticClass*>(hold->getRecord())->getLocalSymbolTable();
 			}
 			else {
