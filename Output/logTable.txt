@@ -59,3 +59,40 @@ RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table:
 RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
 
 Symbol Table for valid file: ../TestFiles/Semantic/full_valid_program2.txt
+
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+{
+RECORD: mc1v1, declared: true, INT, ARRAYarray dimension: , int, NORMAL
+RECORD: mc1v2, declared: true, FLOAT, SIMPLE, float, NORMAL
+RECORD: mc1v3, declared: true, CLASS, ARRAY, class, NORMAL
+RECORD: mc1f1, declared: true, FUNCTION, SIMPLE, 2 parameters: {CLASS, INT, }local symbol table: 
+{
+RECORD: fv1, declared: true, CLASS, ARRAY, class, NORMAL
+}
+
+RECORD: f2, declared: true, FUNCTION, ARRAY, 1 parameters: {CLASS, }local symbol table: 
+{
+RECORD: mc1v1, declared: true, INT, SIMPLE, int, NORMAL
+}
+
+}
+
+RECORD: MyClass2, declared: true, CLASS, CLASS, local symbol table: 
+{
+RECORD: mc1v1, declared: true, INT, ARRAYarray dimension: , int, NORMAL
+RECORD: fp1, declared: true, FLOAT, SIMPLE, float, NORMAL
+RECORD: m2, declared: true, CLASS, ARRAY, class, NORMAL
+}
+
+RECORD: m1, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: m2, declared: true, FLOAT, ARRAYarray dimension: , float, NORMAL
+RECORD: m3, declared: true, CLASS, ARRAY, class, NORMAL
+RECORD: f1, declared: true, FUNCTION, ARRAYarray dimension: , 2 parameters: {FLOAT, INT, }local symbol table: 
+{
+RECORD: fv1, declared: true, CLASS, ARRAY, class, NORMAL
+RECORD: fv2, declared: true, INT, SIMPLE, int, NORMAL
+}
+
+RECORD: f2, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
+{
+}

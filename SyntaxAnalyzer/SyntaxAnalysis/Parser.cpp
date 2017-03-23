@@ -264,12 +264,12 @@ bool Parser::processAssignment() {
 	bool* found = false;
 	currentScope->search(idTerm->getValue(), rec, found);
 	if (!found) {
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
 		error = true;
 		return false;
 	}
 	if (rec->getSemanticType() != termType) {
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Type mismatch: right side of assign statement does not match the type of left side, on line " + idTerm->getPosition().first);
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nType mismatch: right side of assign statement does not match the type of left side, on line " + idTerm->getPosition().first);
 		error = true;
 		return false;
 	}	
@@ -769,14 +769,14 @@ void Parser::createSemanticClassAndTable() {
 		semanticStack.pop_back();
 	}
 	else {
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected terminal on top of stack, but there is something else! Something went really wrong.");
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nExpected terminal on top of stack, but there is something else! Something went really wrong.");
 		std::cout << "Expected terminal on top of stack, but there is something else! Something went really wrong.";
 		error = true;
 	}
 }
 
 void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
-	Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
+	Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nExpected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
 	std::cout << "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.";
 	error = true;
 }

@@ -100,7 +100,7 @@ int main(int argc, char** argv)
 	else {
 		std::cout << "\n\nFAILED: At least one test case has failed.";
 	}
-	std::cout << "\nYou can find all log files in the Output folder. Please see the symbol table in Output/logTable.txt";
+	std::cout << "\nYou can find all log files in the Output folder. Please see the symbol table in Output/logTable.txt and the semantic error output in Output/logSemanticError.txt";
 	
 	std::cin >> answer;
 }
