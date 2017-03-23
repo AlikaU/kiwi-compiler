@@ -178,6 +178,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::processVariableUse):
 		break;
 	case (SemanticAction::processExpression): 
+		processExpression();
 		break;
 	case (SemanticAction::processTerm):
 		processTerm();
@@ -199,6 +200,11 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		break;
 	}
 	//semanticStack.push_back(action);
+}
+
+bool Parser::processExpression() {
+	GTerminal::TerminalTypes operations[] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE, GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
+	return processOperation(operations);
 }
 
 bool Parser::processRelExpr() {

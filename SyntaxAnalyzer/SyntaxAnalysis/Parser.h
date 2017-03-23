@@ -69,6 +69,7 @@ class Parser {
 	bool processTerm();
 	bool processArithExpr();
 	bool processRelExpr();
+	bool processExpression();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);
