@@ -50,4 +50,12 @@ RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
 }
 
 
+Symbol Table for file with errors: ../TestFiles/Semantic/bad_type_mismatch.txt
+
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+{
+}
+
+RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
+
 Symbol Table for valid file: ../TestFiles/Semantic/full_valid_program2.txt

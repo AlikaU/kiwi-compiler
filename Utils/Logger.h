@@ -9,6 +9,7 @@
 #define LOG_DEBUG_PATH "../Output/logDebug.txt"
 #define LOG_ERROR_PATH "../Output/logError.txt"
 #define LOG_TABLE_PATH "../Output/logTable.txt"
+#define LOG_SEMANTIC_ERROR_PATH "../Output/logSemanticError.txt"
 
 // very simple singleton class for logging
 
@@ -19,6 +20,7 @@ class Logger {
 	static std::ofstream logDerivation;
 	static std::ofstream logError;
 	static std::ofstream logTable;
+	static std::ofstream logSemanticError;
 	static Logger* instance;
 	Logger();
 	~Logger();
@@ -32,7 +34,8 @@ public:
 		DEBUG,
 		ERROR,
 		DERIV, 
-		TABLE
+		TABLE, 
+		SEMANTIC_ERROR
 	};
 
 	void log(LOG_TYPE t, std::string message);	

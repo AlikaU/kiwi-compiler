@@ -264,11 +264,13 @@ bool Parser::processAssignment() {
 	bool* found = false;
 	currentScope->search(idTerm->getValue(), rec, found);
 	if (!found) {
-		std::cout << "Identifier " << idTerm->getValue() << " is not defined in the current scope!";
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + idTerm->getValue() + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		error = true;
 		return false;
 	}
 	if (rec->getSemanticType() != termType) {
-		std::cout << "Type mismatch: right side of assign statement does not match the type of left side, on line " << idTerm->getPosition().first;
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Type mismatch: right side of assign statement does not match the type of left side, on line " + idTerm->getPosition().first);
+		error = true;
 		return false;
 	}	
 
@@ -422,7 +424,8 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		if (term == NULL) {	
 			currentScope->search(functionIdToken->getValue(), record, found);
 			if (!found) {
-				std::cout << "\nIdentifier '" << functionIdToken->getValue() << "' is not defined in current scope (" << currentScope->getTableName() << ")";
+				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '"+ functionIdToken->getValue() + "' is not defined in current scope (" + currentScope->getTableName() + ")");
+				error = true;
 			}
 			semanticStack.pop_back();
 		}
@@ -534,7 +537,8 @@ bool Parser::processIdNestList(SemanticRecord* record, bool* found) {
 			scopeIn();			
 		}
 		else {
-			std::cout << "\nIdentifier " << term->getValue() << " is not defined in the current scope(" << currentScope->getTableName() << ")";
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + term->getValue() + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+			error = true;
 			return false;
 		}
 		

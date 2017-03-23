@@ -9,6 +9,7 @@ std::ofstream Logger::logDebug;
 std::ofstream Logger::logDerivation;
 std::ofstream Logger::logError;
 std::ofstream Logger::logTable;
+std::ofstream Logger::logSemanticError;
 
 Logger::Logger() {
 	// erase log files from previous run
@@ -17,6 +18,7 @@ Logger::Logger() {
 	remove(LOG_DEBUG_PATH);
 	remove(LOG_ERROR_PATH);
 	remove(LOG_TABLE_PATH);
+	remove(LOG_SEMANTIC_ERROR_PATH);
 }
 
 Logger::~Logger() {
@@ -29,6 +31,7 @@ void Logger::log(LOG_TYPE t, std::string message) {
 	std::ofstream logDeriv(LOG_DERIV_PATH, std::fstream::out | std::fstream::app);
 	std::ofstream logError(LOG_ERROR_PATH, std::fstream::out | std::fstream::app);
 	std::ofstream logTable(LOG_TABLE_PATH, std::fstream::out | std::fstream::app);
+	std::ofstream logSemanticError(LOG_SEMANTIC_ERROR_PATH, std::fstream::out | std::fstream::app);
 	
 	switch (t) {
 	case TOKEN: 
@@ -71,6 +74,15 @@ void Logger::log(LOG_TYPE t, std::string message) {
 		}
 		else {
 			std::cout << "Failed to print to logTable.txt because file is closed";
+		}
+		break;
+
+	case SEMANTIC_ERROR:
+		if (logSemanticError.is_open()) {
+			logSemanticError << message;
+		}
+		else {
+			std::cout << "Failed to print to logSemanticError.txt because file is closed";
 		}
 		break;
 	}

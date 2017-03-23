@@ -12,3 +12,16 @@ ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
 ERROR: Parser.cpp: Parsing error encountered at token '}' at line 6, column 1
 ERROR: Parser.cpp: Handling error: POP (abandoned trying to parse varThenStatList1)
 ERROR: Errors for file with errors: ../TestFiles/Semantic/bad_twice_same_scope.txt
+ERROR: Errors for file with errors: ../TestFiles/Semantic/bad_type_mismatch.txt
+ERROR: Parser.cpp: Parsing error encountered at token 'int' at line 8, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Parsing error encountered at token ';' at line 8, column 6
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Parsing error encountered at token 'float' at line 9, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Parsing error encountered at token 'b' at line 9, column 7
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Parsing error encountered at token ';' at line 9, column 8
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Parsing error encountered at token 'a' at line 10, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
