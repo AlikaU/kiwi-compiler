@@ -1,0 +1,6 @@
+class MyClass1 {
+MyClass2 mc1v3;
+};
+program {
+func();
+};

@@ -81,9 +81,17 @@ int main(int argc, char** argv)
 		printDerivationToConsole = false;
 		break;
 	}	
+	testWrongInput("../TestFiles/Semantic/bad_circular_depend.txt", &pTable);
+	testWrongInput("../TestFiles/Semantic/bad_var_not_decl.txt", &pTable);
+	testWrongInput("../TestFiles/Semantic/bad_class_not_decl.txt", &pTable);
+	testWrongInput("../TestFiles/Semantic/bad_func_not_decl.txt", &pTable);
+	testWrongInput("../TestFiles/Semantic/bad_twice_same_scope.txt", &pTable);
+	testWrongInput("../TestFiles/Semantic/bad_type_mismatch.txt", &pTable);
 
 	testCorrectInput("../TestFiles/Semantic/full_valid_program2.txt", &pTable);
 	testCorrectInput("../TestFiles/Semantic/full_valid_program.txt", &pTable);
+
+
 		
 
 	if (success) {

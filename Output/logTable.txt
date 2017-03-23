@@ -1,70 +1,53 @@
 
 
-Symbol Table for valid file: ../TestFiles/Semantic/full_valid_program2.txt
+Symbol Table for file with errors: ../TestFiles/Semantic/bad_circular_depend.txt
+
 RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
-RECORD: mc1v1, declared: true, INT, ARRAYarray dimension: , int, NORMAL
-RECORD: mc1v2, declared: true, FLOAT, SIMPLE, float, NORMAL
-RECORD: mc1v3, declared: true, CLASS, ARRAY, class, NORMAL
-RECORD: mc1f1, declared: true, FUNCTION, SIMPLE, 2 parameters: {CLASS, INT, }local symbol table: 
-{
-RECORD: fv1, declared: true, CLASS, ARRAY, class, NORMAL
-}
-
-RECORD: f2, declared: true, FUNCTION, ARRAY, 1 parameters: {CLASS, }local symbol table: 
-{
-RECORD: mc1v1, declared: true, INT, SIMPLE, int, NORMAL
-}
-
+RECORD: mc1v3, declared: true, CLASS, CLASS, class, NORMAL
 }
 
 RECORD: MyClass2, declared: true, CLASS, CLASS, local symbol table: 
 {
-RECORD: mc1v1, declared: true, INT, ARRAYarray dimension: , int, NORMAL
-RECORD: fp1, declared: true, FLOAT, SIMPLE, float, NORMAL
-RECORD: m2, declared: true, CLASS, ARRAY, class, NORMAL
+RECORD: m2, declared: true, CLASS, CLASS, class, NORMAL
 }
 
-RECORD: m1, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: m2, declared: true, FLOAT, ARRAYarray dimension: , float, NORMAL
 RECORD: m3, declared: true, CLASS, ARRAY, class, NORMAL
 RECORD: f1, declared: true, FUNCTION, ARRAYarray dimension: , 2 parameters: {FLOAT, INT, }local symbol table: 
 {
-RECORD: fv1, declared: true, CLASS, ARRAY, class, NORMAL
-RECORD: fv2, declared: true, INT, SIMPLE, int, NORMAL
 }
 
-RECORD: f2, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
+
+Symbol Table for file with errors: ../TestFiles/Semantic/bad_var_not_decl.txt
+
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
 }
 
 
-Symbol Table for valid file: ../TestFiles/Semantic/full_valid_program.txt
-RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
+Symbol Table for file with errors: ../TestFiles/Semantic/bad_class_not_decl.txt
+
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
-RECORD: var1, declared: true, INT, ARRAY dimension: , int, NORMAL
-RECORD: var2, declared: true, FLOAT, SIMPLE, float, NORMAL
-RECORD: findMax, declared: true, FUNCTION, ARRAY, 1 parameters: {INT, }local symbol table: 
-{
-RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: mc1v3, declared: true, CLASS, CLASS, class, NORMAL
 }
 
-RECORD: findMin, declared: true, FUNCTION, ARRAY, 1 parameters: {INT, }local symbol table: 
+RECORD: m3, declared: true, CLASS, CLASS, class, NORMAL
+
+Symbol Table for file with errors: ../TestFiles/Semantic/bad_func_not_decl.txt
+
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
-RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: mc1v3, declared: true, CLASS, CLASS, class, NORMAL
 }
 
+
+Symbol Table for file with errors: ../TestFiles/Semantic/bad_twice_same_scope.txt
+
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+{
+RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
 }
 
-RECORD: sample, declared: true, INT, ARRAY, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: utility, declared: true, CLASS, CLASS, class, NORMAL
-RECORD: arrayUtility, declared: true, CLASS, ARRAYray dimension: , class, NORMAL
-RECORD: randomize, declared: true, FUNCTION, ARRAYray dimension: , 0 parameters: {}local symbol table: 
-{
-RECORD: value, declared: true, FLOAT, SIMPLE, float, NORMAL
-}
+
+Symbol Table for valid file: ../TestFiles/Semantic/full_valid_program2.txt

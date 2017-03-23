@@ -1,0 +1,11 @@
+class MyClass1 {
+
+};
+program {
+int x;
+x=2.5;
+
+int a;
+float b;
+a = b;
+};

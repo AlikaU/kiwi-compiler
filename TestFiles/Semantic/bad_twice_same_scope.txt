@@ -1,0 +1,6 @@
+class MyClass1 {
+int x;
+int x;
+};
+program {
+};
