@@ -264,7 +264,7 @@ bool Parser::processAssignment() {
 	bool* found = false;
 	currentScope->search(idTerm->getValue(), rec, found);
 	if (!found) {
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + idTerm->getValue() + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
 		error = true;
 		return false;
 	}
@@ -424,7 +424,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		if (term == NULL) {	
 			currentScope->search(functionIdToken->getValue(), record, found);
 			if (!found) {
-				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '"+ functionIdToken->getValue() + "' is not defined in current scope (" + currentScope->getTableName() + ")");
+				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '"+ functionIdToken->getValue() + " at line " + std::to_string(functionIdToken->getPosition().first) + "' is not defined in current scope (" + currentScope->getTableName() + ")");
 				error = true;
 			}
 			semanticStack.pop_back();
@@ -537,7 +537,7 @@ bool Parser::processIdNestList(SemanticRecord* record, bool* found) {
 			scopeIn();			
 		}
 		else {
-			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + term->getValue() + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + term->getValue() + " at line " + std::to_string(term->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
 			error = true;
 			return false;
 		}
@@ -769,14 +769,14 @@ void Parser::createSemanticClassAndTable() {
 		semanticStack.pop_back();
 	}
 	else {
-		Logger::getLogger()->log(Logger::ERROR, "Expected terminal on top of stack, but there is something else! Something went really wrong.");
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected terminal on top of stack, but there is something else! Something went really wrong.");
 		std::cout << "Expected terminal on top of stack, but there is something else! Something went really wrong.";
 		error = true;
 	}
 }
 
 void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
-	Logger::getLogger()->log(Logger::ERROR, "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
+	Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
 	std::cout << "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.";
 	error = true;
 }

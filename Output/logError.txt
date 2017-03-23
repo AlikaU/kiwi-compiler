@@ -2,6 +2,8 @@
 ERROR: Errors for file with errors: ../TestFiles/Semantic/bad_circular_depend.txt
 ERROR: Errors for file with errors: ../TestFiles/Semantic/bad_var_not_decl.txt
 ERROR: Errors for file with errors: ../TestFiles/Semantic/bad_class_not_decl.txt
+ERROR: Parser.cpp: error encountered at token '=' at line 4, column 2
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
 ERROR: Errors for file with errors: ../TestFiles/Semantic/bad_func_not_decl.txt
 ERROR: Parser.cpp: Parsing error encountered at token '(' at line 5, column 5
 ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)

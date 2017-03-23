@@ -1,5 +1,7 @@
 class MyClass1 {
+
 MyClass2 mc1v3;
+x=mc1v3;
 };
 program {
 MyClass1 m3;
