@@ -202,6 +202,71 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	//semanticStack.push_back(action);
 }
 
+bool Parser::processAssignment() {
+
+	GSymbol* symbol;
+
+	// get the term type to be assigned
+	if (!(semanticStack.empty())) {
+		symbol = semanticStack.back();
+	}
+	else return false;
+
+	SemanticRecord::SemanticRecordType termType;
+	if (symbol->getSymbolType() != GSymbol::semanticRecord) {
+		std::cout << "\nExpected expr";
+		return false;
+	}
+	SemanticRecordHolder* typeHolder = static_cast<SemanticRecordHolder*>(symbol);
+	termType = typeHolder->getRecord()->getSemanticType();
+
+	// get assignOp
+	semanticStack.pop_back();
+	if (!(semanticStack.empty())) {
+		symbol = semanticStack.back();
+	}
+	else return false;
+
+	if (symbol->getSymbolType() != GSymbol::terminal) {
+		std::cout << "\nExpected terminal";
+		return false;
+	}
+	GTerminal* assignOp = static_cast<GTerminal*>(symbol);
+
+	if (assignOp->getType() != GTerminal::ASSIGN) {
+		std::cout << "\nExpected assignOp";
+		return false;
+	}
+
+	// get id
+	semanticStack.pop_back();
+	if (!(semanticStack.empty())) {
+		symbol = semanticStack.back();
+	}
+	else return false;
+
+	if (symbol->getSymbolType() != GSymbol::terminal) {
+		std::cout << "\nExpected terminal";
+		return false;
+	}
+	GTerminal* idTerm = static_cast<GTerminal*>(symbol);
+
+	if (idTerm->getType() != GTerminal::ID) {
+		std::cout << "\nExpected ID";
+		return false;
+	}
+	SemanticRecord* rec = NULL;
+	bool* found = false;
+	currentScope->search(idTerm->getValue(), rec, found);
+	if (!found) {
+		std::cout << "Identifier " << idTerm->getValue() << " is not defined in the current scope!";
+		return false;
+	}
+
+
+
+}
+
 bool Parser::processExpression() {
 	GTerminal::TerminalTypes operations[] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE, GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
 	return processOperation(operations);
@@ -268,8 +333,15 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 			return false;
 		}
 		GTerminal* multOp = static_cast<GTerminal*>(symbol);
-		if (!(multOp->getType() == GTerminal::MULT || multOp->getType() == GTerminal::DIVIDE || multOp->getType() == GTerminal::AND)) {
-			std::cout << "\nExpected multOp";
+
+		bool foundOp = false;
+		for (int i = 0; i < sizeof(operations); ++i) {
+			if (multOp->getType() == operations[i]) {
+				foundOp = false;
+			}
+		}
+		if (!foundOp) {
+			std::cout << "\nExpected addOp or multOp or relOp";					
 			return false;
 		}
 		semanticStack.pop_back();
@@ -557,14 +629,6 @@ bool Parser::processArraySizeList() {
 	}
 
 	return true;
-}
-
-bool Parser::processAssignment() {
-	GTerminal* term = getNextTerminalFromSemanticStack();
-	if (term == NULL) {
-		return false;
-	}
-
 }
 
 void Parser::createSemanticFunctionAndTable() {	

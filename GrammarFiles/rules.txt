@@ -37,7 +37,7 @@
 37	statementNotAssign → 'get' '(' variable ')' ';'	'get'
 38	statementNotAssign → 'put' '(' expr ')' ';'	'put'
 39	statementNotAssign → 'return' '(' expr ')' ';'	'return'
-40	assignStat → variable assignOp expr	'id'
+40	assignStat → !startCollecting variable assignOp expr !stopCollecting !processAssignment	'id'
 41	statBlock → '{' statementList '}'	'{'
 42	statBlock → statement	'id', 'if', 'for', 'get', 'put', 'return'
 43	statBlock → ε	'else', ';'
