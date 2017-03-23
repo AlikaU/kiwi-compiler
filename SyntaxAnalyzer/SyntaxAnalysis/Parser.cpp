@@ -262,8 +262,13 @@ bool Parser::processAssignment() {
 		std::cout << "Identifier " << idTerm->getValue() << " is not defined in the current scope!";
 		return false;
 	}
+	if (rec->getSemanticType() != termType) {
+		std::cout << "Type mismatch: right side of assign statement does not match the type of left side, on line " << idTerm->getPosition().first;
+		return false;
+	}	
 
-
+	// clean up the id from the stack
+	semanticStack.pop_back();
 
 }
 
