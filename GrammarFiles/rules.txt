@@ -23,7 +23,7 @@
 23	varThenStatList1 → 'id' arraySizeList !stopCollecting !createSemanticVariable ';' varThenStatList	'id'
 24	varThenStatList1 → assignStatTail !stopCollecting !processAssignment	'', '.', '='
 25	assignStatTail → indiceList assignStatTail1	'', '.', '='
-26	assignStatTail1 → !processVariableUse assignOp expr ';' statementList	'='
+26	assignStatTail1 → assignOp expr ';' statementList	'='
 27	assignStatTail1 → '.' assignStatTail	'.'
 28	statementList → statement statementList	'id', 'if', 'for', 'get', 'put', 'return'
 29	statementList → ε	'}'

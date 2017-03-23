@@ -57,8 +57,8 @@ bool Parser::parse() {
 				break;
 			}
 			GTerminal term(currentScannedToken);
-			if (term.getPosition().first == 8 && term.getPosition().second == 1) {
-				//std::cout << "here";
+			if (term.getPosition().first == 9 && term.getPosition().second == 1) {
+				std::cout << "";
 			}
 
 			// if the scanned token is the same as the one we have on the top of the stack
@@ -115,7 +115,10 @@ bool Parser::parse() {
 
 		// SemanticAction on top of parsing stack
 		else {
-			processSemanticAction(static_cast<SemanticAction*>(topSymbol));			
+			processSemanticAction(static_cast<SemanticAction*>(topSymbol));
+			if (static_cast<SemanticAction*>(topSymbol)->getType() == SemanticAction::processIndiceList) {
+				std::cout << "";
+			}
 			parsingStack.pop();
 		}
 		
@@ -548,6 +551,12 @@ void Parser::processIndiceList() {
 	if (term == NULL) { return; }
 	int count = 0;
 	GTerminal* lastTerm = term;
+
+	// indiceList can be empty
+	if (term->getType() != GTerminal::OPENSQUARE) {
+		return;
+	}
+
 	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
 		++count;
 		semanticStack.pop_back();
@@ -569,6 +578,16 @@ void Parser::processNum() {
 	}
 	else if (term->getType() == GTerminal::FLOATNUM) {
 		currentType = SemanticRecord::FLOAT;
+	}
+	else if (term->getType() == GTerminal::CLOSESQUARE) {
+		processIndiceList();
+		term = getNextTerminalFromSemanticStack();
+		if (term->getType() == GTerminal::INTNUM) {
+			currentType = SemanticRecord::INT;
+		}
+		else if (term->getType() == GTerminal::FLOATNUM) {
+			currentType = SemanticRecord::FLOAT;
+		}
 	}
 	else {
 		std::cout << "Could not process num, the symbol on top of stack is not int nor float";
@@ -865,6 +884,9 @@ void Parser::printDerivationToConsole() {
 }
 
 void Parser::inverseRHSMultiplePush(int ruleNo) {
+	if (ruleNo == 79 || ruleNo == 80) {
+		std::cout << "";
+	}
 
 	// make a copy of rule
 	std::list<GSymbol*> rule;
