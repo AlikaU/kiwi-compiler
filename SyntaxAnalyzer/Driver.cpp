@@ -14,7 +14,7 @@ bool success = true;
 void testCorrectInput(char* path, ParseTable* pTable) {
 	std::cout << "\n\nNow parsing valid file: " << path;
 
-	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for valid file: " + std::string(path));
+	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for valid file: " + std::string(path) + "\n");
 
 	if (printDerivation) {
 		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for valid file: " + std::string(path));
@@ -33,7 +33,7 @@ void testCorrectInput(char* path, ParseTable* pTable) {
 
 void testWrongInput(char* path, ParseTable* pTable) {
 	std::cout << "\n\nNow parsing file with errors: " << path;
-	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for file with errors: " + std::string(path));
+	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for file with errors: " + std::string(path) + "\n");
 	if (printDerivation) {
 		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for file with errors: " + std::string(path));
 	}
