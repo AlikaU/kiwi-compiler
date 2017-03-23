@@ -79,7 +79,7 @@ int main(int argc, char** argv)
 	}	
 
 	//testCorrectInput("../TestFiles/Syntax/good6.txt", &pTable);
-	testCorrectInput("../TestFiles/Semantic/full_valid_program2.txt", &pTable);
+	testCorrectInput("../TestFiles/Semantic/full_valid_program.txt", &pTable);
 		
 
 	if (success) {

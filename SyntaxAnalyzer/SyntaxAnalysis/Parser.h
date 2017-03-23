@@ -63,7 +63,7 @@ class Parser {
 	void processNum();
 	int currentIndiceDimention;
 	void processIndiceList();
-	void processIdNestListIdThenIndiceListOrAParams();
+	bool processIdNestListIdThenIndiceListOrAParams();
 	bool processIdNestList(SemanticRecord*, bool*);
 	bool processOperation(GTerminal::TerminalTypes[]);
 	bool processTerm();

@@ -381,7 +381,7 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 	semanticStack.push_back(typeHolder);
 }
 
-void Parser::processIdNestListIdThenIndiceListOrAParams() {
+bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 	SemanticFunction* funcRecord = NULL;
 	SemanticVariable* idRecord = NULL;
 	SemanticRecord* record= NULL;
@@ -391,14 +391,16 @@ void Parser::processIdNestListIdThenIndiceListOrAParams() {
 	int threshold = 15; // max num of tokens as params
 	int count = 0;
 	GTerminal* term = getNextTerminalFromSemanticStack();
-	if (term == NULL) { return; }
+	if (term == NULL) { return false; }
 
 	// if there's a closepar, then we have an aParams list
 	if (term->getType() == GTerminal::CLOSEPAR) {
 		while (term->getType() != GTerminal::OPENPAR && ++count < threshold) {
+			
 			semanticStack.pop_back();
+			
 			term = getNextTerminalFromSemanticStack();
-			if (term == NULL) { return; }
+			if (term == NULL) { return false; }
 		}
 		if (count >= threshold) {
 			std::cout << "Something went wrong while doing semantic analysis of aParams! Everything else will probably break from now on.";
@@ -406,7 +408,7 @@ void Parser::processIdNestListIdThenIndiceListOrAParams() {
 		
 		// this will be the function name! keep it
 		term = getNextTerminalFromSemanticStack();
-		if (term == NULL) { return; }
+		if (term == NULL) { return false; }
 		GTerminal* functionIdToken = new GTerminal(term);
 		semanticStack.pop_back();
 
@@ -469,8 +471,9 @@ void Parser::processIdNestListIdThenIndiceListOrAParams() {
 		}
 		SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);		
 		semanticStack.push_back(new SemanticRecordHolder(typeRecord));
+		return true;
 	}
-
+	return false;
 	
 }
 
@@ -529,6 +532,7 @@ bool Parser::processIdNestList(SemanticRecord* record, bool* found) {
 			std::cout << "\nIdentifier " << term->getValue() << " is not defined in the current scope(" << currentScope->getTableName() << ")";
 			return false;
 		}
+		
 		scopeTokens.pop();
 	}
 
@@ -546,7 +550,7 @@ void Parser::processIndiceList() {
 	GTerminal* lastTerm = term;
 	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
 		++count;
-		parsingStack.pop();
+		semanticStack.pop_back();
 		lastTerm = term;
 		term = getNextTerminalFromSemanticStack();
 		if (term == NULL) { return; }
