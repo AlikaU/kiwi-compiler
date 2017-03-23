@@ -201,12 +201,20 @@ void Parser::processSemanticAction(SemanticAction* action) {
 // I assume that terms have already been processed
 // term is of form: term (addOp term)*
 bool Parser::processArithExpr() {
-
+	GTerminal::TerminalTypes operations[] = { GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
+	return processOperation(operations);
 }
 
 // I assume that factors have already been processed
 // term is of form: factor (multOp factor)*
 bool Parser::processTerm() {
+	GTerminal::TerminalTypes operations[] = { GTerminal::MULT, GTerminal::DIVIDE, GTerminal::AND };
+	return processOperation(operations);
+}
+
+// I assume that types have already been processed
+// term is of form: type (op type)*
+bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 
 	GSymbol* symbol; 
 
@@ -217,7 +225,7 @@ bool Parser::processTerm() {
 	else return false;
 
 	SemanticRecord::SemanticRecordType termType;
-	if (symbol->getSymbolType != GSymbol::semanticRecord) {
+	if (symbol->getSymbolType() != GSymbol::semanticRecord) {
 		std::cout << "\nExpected factor";
 		return false;
 	}
@@ -230,7 +238,15 @@ bool Parser::processTerm() {
 	}
 	else return false;
 
-	while (symbol->getSymbolType() == GSymbol::semanticRecord || symbol->getSymbolType() == GSymbol::terminal) {
+	
+	while (true) {
+		bool shouldBreak = true;
+		for (int i = 0; i < sizeof(operations); ++i) {
+			if (symbol->getSymbolType() == operations[i]) {
+				shouldBreak = false;
+			}
+		}
+		if (shouldBreak) break;
 
 		// get multOp
 		if (symbol->getSymbolType() != GSymbol::terminal) {

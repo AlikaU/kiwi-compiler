@@ -65,6 +65,7 @@ class Parser {
 	void processIndiceList();
 	void processIdNestListIdThenIndiceListOrAParams();
 	bool processIdNestList(SemanticRecord*, bool*);
+	bool processOperation(GTerminal::TerminalTypes[]);
 	bool processTerm();
 	bool processArithExpr();
 
