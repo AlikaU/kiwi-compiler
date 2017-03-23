@@ -68,6 +68,7 @@ class Parser {
 	bool processOperation(GTerminal::TerminalTypes[]);
 	bool processTerm();
 	bool processArithExpr();
+	bool processRelExpr();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

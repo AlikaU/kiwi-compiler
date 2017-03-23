@@ -192,10 +192,18 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		processIndiceList();
 		break;
 	case (SemanticAction::processArithExpr):
-		bool processArithExpr();
+		processArithExpr();
+		break;
+	case (SemanticAction::processRelExpr):
+		processRelExpr();
 		break;
 	}
 	//semanticStack.push_back(action);
+}
+
+bool Parser::processRelExpr() {
+	GTerminal::TerminalTypes operations[] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE };
+	return processOperation(operations);
 }
 
 // I assume that terms have already been processed

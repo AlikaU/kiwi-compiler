@@ -17,6 +17,7 @@ std::string SemanticAction::SemanticTypeStrings[NUM_OF_SEMTYPES] = {
 	"processIdNestListIdThenIndiceListOrAParams",
 	"processIndiceList",
 	"processArithExpr",
+	"processRelExpr",
 	"processNum"
 };
 
