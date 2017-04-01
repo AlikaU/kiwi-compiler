@@ -19,13 +19,13 @@ public:
 		createSemanticFunctionAndTable = 8,
 		processAssignment = 9,
 		processVariableUse = 10,
-		processExpression = 11,
-		processTerm = 12,
+		processTerm = 11,
+		processExpression = 12,		
 		processIdNestListIdThenIndiceListOrAParams = 13,
-		processNum = 14,
-		processIndiceList = 15,
-		processArithExpr = 16,
-		processRelExpr = 17,
+		processIndiceList = 14,
+		processArithExpr = 15,
+		processRelExpr = 16,
+		processNum = 17,		
 		wrongType = -1
 	};
 

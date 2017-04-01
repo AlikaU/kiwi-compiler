@@ -6,10 +6,11 @@
 
 
 // will significantly slow everything down
-bool printDerivation = false;
+bool printDerivation = true;
 bool printDerivationToConsole = false;
-bool skipLongFiles = true;
+//bool skipLongFiles = true;
 bool success = true;
+int answer;
 
 void testCorrectInput(char* path, ParseTable* pTable) {
 	std::cout << "\n\nNow parsing valid file: " << path;
@@ -49,16 +50,13 @@ void testWrongInput(char* path, ParseTable* pTable) {
 	}
 }
 
-int main(int argc, char** argv)
-{
-	ParseTable pTable;
-
+void askQuestions() {
 	std::cout << "\n\nIn case you need to see the derivation (from PREVIOUS ASSIGNMENT (2)), printing derivation to file works, but takes a very long time. You therefore have the option to print it to console instead.";
 	std::cout << "\nPrint derivation to file (1), to console (2) or neither (3)?";
-	int answer;
-	do {		
+
+	do {
 		std::cin >> answer;
-		if (std::cin.fail() || ! (answer >= 1 && answer <= 3) ) {
+		if (std::cin.fail() || !(answer >= 1 && answer <= 3)) {
 			std::cin.clear();
 			std::cin.ignore(256, '\n');
 			std::cout << "\nPlease enter a number between 1 and 3";
@@ -72,7 +70,7 @@ int main(int argc, char** argv)
 		printDerivation = true;
 		printDerivationToConsole = false;
 		break;
-	case 2: 
+	case 2:
 		printDerivation = false;
 		printDerivationToConsole = true;
 		break;
@@ -80,18 +78,30 @@ int main(int argc, char** argv)
 		printDerivation = false;
 		printDerivationToConsole = false;
 		break;
-	}	
+	}
+}
+
+int main(int argc, char** argv)
+{
+	bool askQs = false;
+	if (askQs) {
+		askQuestions();
+	}
+	ParseTable pTable;
+
+	
+	/*
 	testWrongInput("../TestFiles/Semantic/bad_circular_depend.txt", &pTable);
 	testWrongInput("../TestFiles/Semantic/bad_var_not_decl.txt", &pTable);
 	testWrongInput("../TestFiles/Semantic/bad_class_not_decl.txt", &pTable);
 	testWrongInput("../TestFiles/Semantic/bad_func_not_decl.txt", &pTable);
 	testWrongInput("../TestFiles/Semantic/bad_twice_same_scope.txt", &pTable);
 	testWrongInput("../TestFiles/Semantic/bad_type_mismatch.txt", &pTable);
-
-	testCorrectInput("../TestFiles/Semantic/full_valid_program2.txt", &pTable);
+	*/
+	//testCorrectInput("../TestFiles/Semantic/full_valid_program2.txt", &pTable);
 	testCorrectInput("../TestFiles/Semantic/full_valid_program.txt", &pTable);
 
-
+	
 		
 
 	if (success) {
