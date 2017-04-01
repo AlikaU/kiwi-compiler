@@ -280,6 +280,22 @@ bool Parser::processAssignment() {
 
 }
 
+void Parser::searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord* record, bool* found) {
+	scope->search(identifier, record, found);
+	if (!found) {
+		SemanticFunction* func;
+		bool* foundFunc;
+		scope->getParent()->search(scope->getTableName(), func, foundFunc);
+		if (!found) {
+			std::cout << "something really wrong happened here";
+		}
+		if (func->getSemanticType() == SemanticRecord::FUNCTION) {
+			func = static_cast<SemanticFunction*>(func);
+			 
+		}
+	}
+}
+
 bool Parser::processExpression() {
 	GTerminal::TerminalTypes operations[] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE, GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
 	return processOperation(operations);

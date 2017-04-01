@@ -19,5 +19,6 @@ public:
 	SymbolTable* getLocalSymbolTable() { return localSymbolTable; }
 	void printDetail();
 	SemanticType* getReturnType() const { return returnType; }
+	bool hasParam(std::string identifier);
 
 };

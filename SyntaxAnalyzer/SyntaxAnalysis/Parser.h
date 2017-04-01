@@ -71,6 +71,7 @@ class Parser {
 	bool processArithExpr();
 	bool processRelExpr();
 	bool processExpression();
+	void searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord* record, bool* found);
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);
