@@ -51,3 +51,4 @@ TOKEN: IDENTIFIER: "array", line 9, column 12
 TOKEN: PUNCTUATION: "[", line 9, column 17
 TOKEN: INT: "100", line 9, column 18
 TOKEN: PUNCTUATION: "]", line 9, column 21
+TOKEN: PUNCTUATION: ";", line 9, column 22

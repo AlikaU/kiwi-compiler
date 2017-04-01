@@ -252,3 +252,7 @@ TOKEN: INT: "100", line 9, column 18
 DEBUG: current state is: START and we just read a ] (ascii 93) 
 DEBUG: current state is: CLOSESQUARE and we just read a ; (ascii 59) 
 TOKEN: PUNCTUATION: "]", line 9, column 21
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 9, column 22

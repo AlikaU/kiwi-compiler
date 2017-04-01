@@ -6,7 +6,7 @@
 
 
 // will significantly slow everything down
-bool printDerivation = true;
+bool printDerivation = false;
 bool printDerivationToConsole = false;
 //bool skipLongFiles = true;
 bool success = true;

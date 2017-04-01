@@ -5,6 +5,7 @@ Parser::Parser(Scanner* s, ParseTable* t, bool p, bool c) {
 	scanner = s;
 	table = t;
 	error = false;
+	semanticError = false;
 	printDeriv = p;
 	printDerivToConsole = c;
 
@@ -57,7 +58,7 @@ bool Parser::parse() {
 				break;
 			}
 			GTerminal term(currentScannedToken);
-			if (term.getPosition().first == 9 && term.getPosition().second == 18) {
+			if (term.getPosition().first == 9 && term.getPosition().second == 12) {
 				std::cout << "";
 			}
 
@@ -559,17 +560,50 @@ void Parser::processIndiceList() {
 	GTerminal* lastTerm = term;
 
 	// indiceList can be empty
-	if (term->getType() != GTerminal::OPENSQUARE) {
+	if (term->getType() != GTerminal::CLOSESQUARE) {
 		return;
 	}
-
-	while (term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM) {
+	bool intError = false;
+	while (term->getType() == GTerminal::CLOSESQUARE) {
 		++count;
 		semanticStack.pop_back();
 		lastTerm = term;
+		
+
+		// we got ]
+		// we now need a number
+		// it can be either an INTNUM, or a SemanticRecordHolder of type INT
+
+		GSymbol* symbol = semanticStack.back();
+		if (symbol->getSymbolType() == GSymbol::terminal) {
+			if (static_cast<GTerminal*>(symbol)->getType() != GTerminal::INTNUM) {
+				intError = true;
+				break;
+			}
+			
+		}
+		else if (symbol->getSymbolType() == GSymbol::semanticRecord) {
+
+		}
+		else {
+			intError = true;
+			break;
+		}
+
+		// cleanup semantic stack
+		// get [
+		// get the next ] and set it as term
+
 		term = getNextTerminalFromSemanticStack();
 		if (term == NULL) { return; }
+	} // end while 
+
+	if (intError) {
+		semanticError = true;
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected integer as indice, found something else at line " + term->getPosition().first);
+		std::cout << "Expected integer as indice, found something else" << term->getPosition().first;
 	}
+
 	if (lastTerm->getType() != GTerminal::OPENSQUARE) {
 		std::cout << "Something went wrong while doing semantic analysis of indiceList! Everything else will probably break from now on.";
 	}

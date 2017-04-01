@@ -26,6 +26,7 @@ class Parser {
 	std::stack<GSymbol*> parsingStack;
 	std::deque<GSymbol*> semanticStack;
 	bool error;
+	bool semanticError;
 	void inverseRHSMultiplePush(int ruleNo);
 	std::list<GSymbol*> derivationParsed;
 	std::list<GSymbol*> derivationToBeParsed;
