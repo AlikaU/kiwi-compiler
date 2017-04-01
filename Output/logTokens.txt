@@ -52,3 +52,10 @@ TOKEN: PUNCTUATION: "[", line 9, column 17
 TOKEN: INT: "100", line 9, column 18
 TOKEN: PUNCTUATION: "]", line 9, column 21
 TOKEN: PUNCTUATION: ";", line 9, column 22
+TOKEN: RESERVED_WORD: "for", line 11, column 1
+TOKEN: PUNCTUATION: "(", line 11, column 4
+TOKEN: RESERVED_WORD: "int", line 11, column 6
+TOKEN: IDENTIFIER: "idx", line 11, column 10
+TOKEN: OPERATOR: "=", line 11, column 14
+TOKEN: INT: "99", line 11, column 16
+TOKEN: PUNCTUATION: ";", line 11, column 18

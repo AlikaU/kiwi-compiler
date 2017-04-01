@@ -454,13 +454,31 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		GTerminal* IDToken = new GTerminal(term);
 		semanticStack.pop_back();
 
-		if (processIdNestList(record, found)) {
+		// idNestList might be epsilon, so check:
+		GTerminal* term = getNextTerminalFromSemanticStack();
+		if (term == NULL || term->getType() != GTerminal::DOT) {
+			currentScope->search(IDToken->getValue(), record, found);
+			if (found) {
+				allGood = true;
+			}
+			else {
+				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+				semanticStack.pop_back();
+				return false;
+			}
+		}
+		else if (processIdNestList(record, found)) {
 			if (found) {
 				if (record->getSemanticStructure() == SemanticRecord::CLASS_S) {
 					SymbolTable* table = static_cast<SemanticClass*>(record)->getLocalSymbolTable();
 					table->search(IDToken->getValue(), record, found);
 					if (found) {
 						allGood = true;
+					}
+					else {
+						Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+						semanticStack.pop_back();
+						return false;
 					}
 				}
 			}
@@ -495,9 +513,6 @@ bool Parser::processIdNestList(SemanticRecord* record, bool* found) {
 		semanticStack.pop_back();
 		GTerminal* term = getNextTerminalFromSemanticStack();
 		if (term == NULL) { return false; }
-	}
-	else {
-		std::cout << "Expected dot operator";
 	}
 
 	// collect scopes
@@ -567,40 +582,50 @@ void Parser::processIndiceList() {
 	while (term->getType() == GTerminal::CLOSESQUARE) {
 		++count;
 		semanticStack.pop_back();
-		lastTerm = term;
-		
+		lastTerm = term;		
 
 		// we got ]
 		// we now need a number
 		// it can be either an INTNUM, or a SemanticRecordHolder of type INT
 
 		GSymbol* symbol = semanticStack.back();
-		if (symbol->getSymbolType() == GSymbol::terminal) {
-			if (static_cast<GTerminal*>(symbol)->getType() != GTerminal::INTNUM) {
-				intError = true;
-				break;
-			}
-			
+		if (symbol->getSymbolType() != GSymbol::terminal && symbol->getSymbolType() != GSymbol::semanticRecord) {
+			intError = true;
+			break;
 		}
-		else if (symbol->getSymbolType() == GSymbol::semanticRecord) {
-
+		if (symbol->getSymbolType() == GSymbol::terminal && static_cast<GTerminal*>(symbol)->getType() != GTerminal::INTNUM) {
+			intError = true;
+			break;			
 		}
-		else {
+		else if (symbol->getSymbolType() == GSymbol::semanticRecord && 
+			static_cast<SemanticRecordHolder*>(symbol)->getRecord()->getSemanticType() != SemanticRecord::INT) {
 			intError = true;
 			break;
 		}
 
-		// cleanup semantic stack
+		// ok, we verified we have an int. now pop it from semantic stack
+		semanticStack.pop_back();
+		
 		// get [
-		// get the next ] and set it as term
+		term = getNextTerminalFromSemanticStack();
+		if (term == NULL) { return; }
+		if (term->getType() != GTerminal::OPENSQUARE) {
+			std::cout << "Expected ], found something else" << term->getPosition().first << ", " << term->getPosition().second;
+			return;
+		}
+		lastTerm = term;
 
+		// ok, we verified it's a [, now pop it from semantic stack
+		semanticStack.pop_back();
+
+		// get the next ] and set it as term
 		term = getNextTerminalFromSemanticStack();
 		if (term == NULL) { return; }
 	} // end while 
 
 	if (intError) {
 		semanticError = true;
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected integer as indice, found something else at line " + term->getPosition().first);
+		//Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected integer as indice, found something else at line " + term->getPosition().first);
 		std::cout << "Expected integer as indice, found something else" << term->getPosition().first;
 	}
 
