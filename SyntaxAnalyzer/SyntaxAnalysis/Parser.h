@@ -65,13 +65,13 @@ class Parser {
 	int currentIndiceDimention;
 	void processIndiceList();
 	bool processIdNestListIdThenIndiceListOrAParams();
-	bool processIdNestList(SemanticRecord*, bool*);
+	bool processIdNestList(SemanticRecord**, bool&);
 	bool processOperation(GTerminal::TerminalTypes[]);
 	bool processTerm();
 	bool processArithExpr();
 	bool processRelExpr();
 	bool processExpression();
-	void searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord* record, bool* found);
+	void searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord** record, bool &found);
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

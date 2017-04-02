@@ -17,7 +17,7 @@ public:
 	std::string getTableName() const { return tableName; }
 	void clearTable() { records->clear(); }
 	SymbolTable* getParent() { return parent; }
-	void search(std::string identifier, SemanticRecord*, bool*);
+	void search(std::string identifier, SemanticRecord**, bool&);
 	void insert(std::string identifier, SemanticRecord*);
 	void print();
 

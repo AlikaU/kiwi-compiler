@@ -36,3 +36,23 @@ void SemanticFunction::printDetail() {
 	}
 	else Logger::getLogger()->log(Logger::TABLE, "no local symbol table.");
 }
+
+bool SemanticFunction::hasParam(std::string identifier) {
+	bool found = false;;
+	for (SemanticVariable* var : *params) {
+		if (var->getIdentifier() == identifier) {
+			found = true;
+			break;
+		}
+	}
+	return found;
+}
+
+SemanticVariable* SemanticFunction::getParam(std::string identifier) {
+	for (SemanticVariable* var : *params) {
+		if (var->getIdentifier() == identifier) {
+			return var;
+		}
+	}
+	return NULL;
+}

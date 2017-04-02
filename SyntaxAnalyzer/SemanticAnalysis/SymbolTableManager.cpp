@@ -8,7 +8,7 @@ SymbolTable* SymbolTableManager::createTable(SymbolTable* ptr, std::string name)
 	return new SymbolTable(ptr, name);
 }
 
-void SymbolTableManager::search(SymbolTable* table, std::string identifier, SemanticRecord* ptr, bool* found) {
+void SymbolTableManager::search(SymbolTable* table, std::string identifier, SemanticRecord** ptr, bool &found) {
 	table->search(identifier, ptr, found);
 }
 

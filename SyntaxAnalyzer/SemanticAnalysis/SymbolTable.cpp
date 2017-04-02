@@ -2,16 +2,15 @@
 #include <iostream>
 #include <string>
 
-void SymbolTable::search(std::string identifier, SemanticRecord* ptr, bool* found) {
+void SymbolTable::search(std::string identifier, SemanticRecord** ptr, bool &found) {
 	for (SemanticRecord* record : *records) {
 		if (record->getIdentifier() == identifier) {
-			ptr = record;
-			bool* f = new bool;
-			*f = true;
-			found = f;
+			*ptr = record;
+			found = true;
+			break;
 		}
 	}
-	if (!found && parent) {
+	if (!found && parent != NULL) {
 		parent->search(identifier, ptr, found);
 	}
 }

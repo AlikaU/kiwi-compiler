@@ -261,15 +261,17 @@ bool Parser::processAssignment() {
 		std::cout << "\nExpected ID";
 		return false;
 	}
-	SemanticRecord* rec = NULL;
-	bool* found = false;
+	SemanticRecord* ptr = NULL;
+	SemanticRecord** rec = &ptr;
+	bool b = false;
+	bool& found = b;
 	currentScope->search(idTerm->getValue(), rec, found);
 	if (!found) {
 		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
 		error = true;
 		return false;
 	}
-	if (rec->getSemanticType() != termType) {
+	if ((*rec)->getSemanticType() != termType) {
 		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nType mismatch: right side of assign statement does not match the type of left side, on line " + idTerm->getPosition().first);
 		error = true;
 		return false;
@@ -280,19 +282,25 @@ bool Parser::processAssignment() {
 
 }
 
-void Parser::searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord* record, bool* found) {
+void Parser::searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord** record, bool &found) {
 	scope->search(identifier, record, found);
 	if (!found) {
-		SemanticFunction* func;
-		bool* foundFunc;
+		SemanticRecord* ptr = NULL;
+		SemanticRecord** func = &ptr;
+		bool b = false;
+		bool& foundFunc = b;
 		scope->getParent()->search(scope->getTableName(), func, foundFunc);
-		if (!found) {
-			std::cout << "something really wrong happened here";
+		if (!foundFunc || !func || (*func)->getSemanticType() != SemanticRecord::FUNCTION) {
+			std::cout << "\nsomething really wrong happened here";
+			return;
+		}		
+		
+		SemanticFunction* myFunc = static_cast<SemanticFunction*>(*func);			
+		if (myFunc->hasParam(identifier)) {
+			found = true;
+			*record = myFunc->getParam(identifier);
 		}
-		if (func->getSemanticType() == SemanticRecord::FUNCTION) {
-			func = static_cast<SemanticFunction*>(func);
-			 
-		}
+		
 	}
 }
 
@@ -408,8 +416,10 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 	SemanticFunction* funcRecord = NULL;
 	SemanticVariable* idRecord = NULL;
-	SemanticRecord* record= NULL;
-	bool* found = false;
+	SemanticRecord* pt= NULL;
+	SemanticRecord** record = &pt;
+	bool b = false;
+	bool &found = b;
 	bool allGood = false;
 
 	int threshold = 15; // max num of tokens as params
@@ -450,13 +460,13 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		else {
 			if (processIdNestList(record, found)) {
 				if (found) {
-					if (record->getSemanticStructure() == SemanticRecord::CLASS_S) {
-						SymbolTable* table = static_cast<SemanticClass*>(record)->getLocalSymbolTable();
+					if ((*record)->getSemanticStructure() == SemanticRecord::CLASS_S) {
+						SymbolTable* table = static_cast<SemanticClass*>(*record)->getLocalSymbolTable();
 						table->search(functionIdToken->getValue(), record, found);
 						if (found) {							
-							if (record->getSemanticType() == SemanticRecord::FUNCTION) {
+							if ((*record)->getSemanticType() == SemanticRecord::FUNCTION) {
 								allGood = true;
-								funcRecord = static_cast<SemanticFunction*>(record);
+								funcRecord = static_cast<SemanticFunction*>(*record);
 							}							
 						}
 					}
@@ -473,7 +483,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		// idNestList might be epsilon, so check:
 		GTerminal* term = getNextTerminalFromSemanticStack();
 		if (term == NULL || term->getType() != GTerminal::DOT) {
-			currentScope->search(IDToken->getValue(), record, found);
+			searchInScope(currentScope, IDToken->getValue(), record, found);
 			if (found) {
 				allGood = true;
 			}
@@ -485,8 +495,8 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		}
 		else if (processIdNestList(record, found)) {
 			if (found) {
-				if (record->getSemanticStructure() == SemanticRecord::CLASS_S) {
-					SymbolTable* table = static_cast<SemanticClass*>(record)->getLocalSymbolTable();
+				if ((*record)->getSemanticStructure() == SemanticRecord::CLASS_S) {
+					SymbolTable* table = static_cast<SemanticClass*>(*record)->getLocalSymbolTable();
 					table->search(IDToken->getValue(), record, found);
 					if (found) {
 						allGood = true;
@@ -520,7 +530,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 	
 }
 
-bool Parser::processIdNestList(SemanticRecord* record, bool* found) {
+bool Parser::processIdNestList(SemanticRecord** record, bool &found) {
 	GTerminal* term = getNextTerminalFromSemanticStack();
 	if (term == NULL) { return false; }
 
@@ -565,7 +575,7 @@ bool Parser::processIdNestList(SemanticRecord* record, bool* found) {
 		currentScope->search(term->getValue(), record, found);
 		if (found) {
 			semanticStack.pop_back();
-			semanticStack.push_back(new SemanticRecordHolder(record));
+			semanticStack.push_back(new SemanticRecordHolder(*record));
 			scopeIn();			
 		}
 		else {

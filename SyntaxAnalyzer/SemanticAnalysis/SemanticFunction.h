@@ -20,5 +20,6 @@ public:
 	void printDetail();
 	SemanticType* getReturnType() const { return returnType; }
 	bool hasParam(std::string identifier);
+	SemanticVariable* getParam(std::string identifier) ;
 
 };
