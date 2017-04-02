@@ -289,6 +289,3 @@ DEBUG: current state is: START and we just read a 9 (ascii 57)
 DEBUG: current state is: INT and we just read a 9 (ascii 57) 
 DEBUG: current state is: INT and we just read a ; (ascii 59) 
 TOKEN: INT: "99", line 11, column 16
-DEBUG: current state is: START and we just read a ; (ascii 59) 
-DEBUG: current state is: SEMICOLON and we just read a   (ascii 32) 
-TOKEN: PUNCTUATION: ";", line 11, column 18

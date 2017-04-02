@@ -72,6 +72,7 @@ class Parser {
 	bool processRelExpr();
 	bool processExpression();
 	void searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord** record, bool &found);
+	void createSemanticVariableAndLeaveOnStack();
 
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);

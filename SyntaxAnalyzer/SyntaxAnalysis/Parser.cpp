@@ -204,6 +204,9 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::processRelExpr):
 		processRelExpr();
 		break;
+	case (SemanticAction::createSemanticVariableAndLeaveOnStack):
+		createSemanticVariableAndLeaveOnStack();
+		break;
 	}
 	//semanticStack.push_back(action);
 }
@@ -864,6 +867,24 @@ void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
 	Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nExpected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
 	std::cout << "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.";
 	error = true;
+}
+
+// used in the for statement, where we declare and initialize a variable in one statement
+void Parser::createSemanticVariableAndLeaveOnStack() {
+
+	// get copy of ID token
+	GTerminal* term = getNextTerminalFromSemanticStack();
+	if (term->getType() != GTerminal::ID) {
+		logSymbolErrorAndSetFlag("identifier");
+		return;
+	}
+	GTerminal* varIDToken = new GTerminal(term);
+
+	// create variable
+	SemanticVariable* var = createSemanticVariable(false);
+
+	// push back the id token, for the assignment statement to run correctly
+	semanticStack.push_back(varIDToken);
 }
 
 SemanticVariable* Parser::createSemanticVariable(bool fParam) {
