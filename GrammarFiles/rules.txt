@@ -33,7 +33,7 @@
 33	statement → assignStat ';'	'id'
 34	statement → statementNotAssign	'if', 'for', 'get', 'put', 'return'
 35	statementNotAssign → 'if' '(' expr ')' 'then' statBlock 'else' statBlock ';'	'if'
-36	statementNotAssign → 'for' '(' !startCollecting type 'id' !createSemanticVariableAndLeaveOnStack assignOp expr ';' relExpr ';' assignStat ')' statBlock ';'	'for'
+36	statementNotAssign → 'for' '(' !startCollecting type 'id' !createSemanticVariableAndLeaveOnStack assignOp expr !stopCollecting !processAssignment ';' !startCollecting relExpr !stopCollecting ';' assignStat ')' statBlock ';'	'for'
 37	statementNotAssign → 'get' '(' variable ')' ';'	'get'
 38	statementNotAssign → 'put' '(' expr ')' ';'	'put'
 39	statementNotAssign → 'return' '(' expr ')' ';'	'return'

@@ -58,7 +58,7 @@ bool Parser::parse() {
 				break;
 			}
 			GTerminal term(currentScannedToken);
-			if (term.getPosition().first == 11 && term.getPosition().second == 16) {
+			if (term.getPosition().first == 11 && term.getPosition().second == 20) {
 				std::cout << "";
 			}
 
@@ -116,10 +116,11 @@ bool Parser::parse() {
 
 		// SemanticAction on top of parsing stack
 		else {
-			processSemanticAction(static_cast<SemanticAction*>(topSymbol));
-			if (static_cast<SemanticAction*>(topSymbol)->getType() == SemanticAction::processIndiceList) {
+			if (static_cast<SemanticAction*>(topSymbol)->getType() == SemanticAction::processIdNestListIdThenIndiceListOrAParams) {
 				std::cout << "";
 			}
+			processSemanticAction(static_cast<SemanticAction*>(topSymbol));
+			
 			parsingStack.pop();
 		}
 		
@@ -355,13 +356,18 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 	if (!(semanticStack.empty())) {
 		symbol = semanticStack.back();
 	}
-	else return false;
-
+	// maybe there was just 1 factor or term and nothing else, in that case
+	// push it back on the semantic stack, because we just deleted it, and leave it there
+	else {
+		semanticStack.push_back(typeHolder);
+		return true;
+	}
 	
 	while (true) {
 		bool shouldBreak = true;
 		for (int i = 0; i < sizeof(operations); ++i) {
-			if (symbol->getSymbolType() == operations[i]) {
+			GTerminal::TerminalTypes operation = operations[i];
+			if(symbol->getSymbolType() == GSymbol::terminal && static_cast<GTerminal*>(symbol)->getType() == operation){
 				shouldBreak = false;
 			}
 		}
@@ -377,7 +383,7 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 		bool foundOp = false;
 		for (int i = 0; i < sizeof(operations); ++i) {
 			if (multOp->getType() == operations[i]) {
-				foundOp = false;
+				foundOp = true;
 			}
 		}
 		if (!foundOp) {
@@ -489,6 +495,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 			searchInScope(currentScope, IDToken->getValue(), record, found);
 			if (found) {
 				allGood = true;
+				idRecord = static_cast<SemanticVariable*>(*record);
 			}
 			else {
 				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
@@ -937,6 +944,9 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 
 
 GTerminal* Parser::getNextTerminalFromSemanticStack() {
+	if (semanticStack.empty() == true) {
+		return NULL;
+	}
 	GSymbol* symbol = semanticStack.back();
 	if (!(symbol->getSymbolType() == GSymbol::terminal)) {
 		logSymbolErrorAndSetFlag("terminal");
