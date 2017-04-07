@@ -3,11 +3,18 @@
 #include "SemanticVariable.h"
 
 class SemanticType : public SemanticRecord {
+
+	std::string value;
+
 public: 
-	SemanticType(SemanticRecordType sType, SemanticStructure sStructure, int aDimension, int addr) : SemanticRecord("Type placeholder ", sType, sStructure, aDimension, addr) {}
-	
+	SemanticType(SemanticRecordType sType, std::string v, SemanticStructure sStructure, int aDimension, int addr) 
+		: SemanticRecord("Type placeholder ", sType, sStructure, aDimension, addr) {
+		value = v;
+	}
+
 	void printDetail() {
 		std::string typeStr = "";
+		std::string valStr = "";
 		if (semanticType == SemanticRecordType::INT) {
 			typeStr = "int";
 		}
@@ -20,6 +27,6 @@ public:
 		else {
 			typeStr = "wrongVariableType";
 		}
-		Logger::getLogger()->log(Logger::TABLE, "Type placeholder: " + typeStr);
+		Logger::getLogger()->log(Logger::TABLE, "Type placeholder: " + typeStr + ", value: " + value);
 	}
 };

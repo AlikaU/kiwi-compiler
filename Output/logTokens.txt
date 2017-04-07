@@ -61,3 +61,5 @@ TOKEN: INT: "99", line 11, column 16
 TOKEN: PUNCTUATION: ";", line 11, column 18
 TOKEN: IDENTIFIER: "idx", line 11, column 20
 TOKEN: OPERATOR: ">", line 11, column 24
+TOKEN: INT: "0", line 11, column 26
+TOKEN: PUNCTUATION: ";", line 11, column 27

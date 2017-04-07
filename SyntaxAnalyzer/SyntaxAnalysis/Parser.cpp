@@ -1,6 +1,8 @@
 #include "Parser.h"
 #include "..\..\Utils\Logger.h"
 
+#define UNKNOWN_VALUE "Some unknown value"
+
 Parser::Parser(Scanner* s, ParseTable* t, bool p, bool c) {
 	scanner = s;
 	table = t;
@@ -58,7 +60,7 @@ bool Parser::parse() {
 				break;
 			}
 			GTerminal term(currentScannedToken);
-			if (term.getPosition().first == 11 && term.getPosition().second == 20) {
+			if (term.getPosition().first == 11 && term.getPosition().second == 43) {
 				std::cout << "";
 			}
 
@@ -315,7 +317,15 @@ bool Parser::processExpression() {
 
 bool Parser::processRelExpr() {
 	GTerminal::TerminalTypes operations[] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE };
-	return processOperation(operations);
+	bool success = processOperation(operations);
+
+	// upon successful parsing of operation, it will push the type holder back on semantic stack
+	// in the case of a relation expression, we no longer need it, so remove it
+	if (success) {
+		semanticStack.pop_back();
+	}
+
+	return success;
 }
 
 // I assume that terms have already been processed
@@ -532,7 +542,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		else if (funcRecord != NULL) {
 			currentType = funcRecord->getReturnType()->getSemanticType();
 		}
-		SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);		
+		SemanticType* typeRecord = new SemanticType(currentType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, 0, 0);
 		semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 		return true;
 	}
@@ -694,7 +704,7 @@ void Parser::processNum() {
 		//std::cout << "Could not process num, the symbol on top of stack is not int nor float";
 		return;
 	}
-	SemanticType* typeRecord = new SemanticType(currentType, SemanticRecord::SIMPLE, 0, 0);
+	SemanticType* typeRecord = new SemanticType(currentType, term->getValue(), SemanticRecord::SIMPLE, 0, 0);
 	semanticStack.pop_back();
 	semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 }
@@ -845,7 +855,7 @@ void Parser::createSemanticFunctionAndTable() {
 		std::cout << "\nCould not process function return type for function " << funcIDtoken->getValue()<< "! ";
 		return;
 	}
-	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, SemanticRecord::SIMPLE, 0, 0));
+	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, 0, 0));
 	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
 	funcRecord->setDeclared();
 	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
