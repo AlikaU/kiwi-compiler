@@ -60,7 +60,7 @@ bool Parser::parse() {
 				break;
 			}
 			GTerminal term(currentScannedToken);
-			if (term.getPosition().first == 11 && term.getPosition().second == 43) {
+			if (term.getPosition().first == 11 && term.getPosition().second == 41) {
 				std::cout << "";
 			}
 

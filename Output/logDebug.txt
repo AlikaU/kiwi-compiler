@@ -309,3 +309,32 @@ TOKEN: INT: "0", line 11, column 26
 DEBUG: current state is: START and we just read a ; (ascii 59) 
 DEBUG: current state is: SEMICOLON and we just read a   (ascii 32) 
 TOKEN: PUNCTUATION: ";", line 11, column 27
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "idx", line 11, column 29
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a = (ascii 61) 
+DEBUG: current state is: ASSIGNMENT and we just read a   (ascii 32) 
+TOKEN: OPERATOR: "=", line 11, column 33
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a d (ascii 100) 
+DEBUG: current state is: WORD and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "idx", line 11, column 35
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a - (ascii 45) 
+DEBUG: current state is: MINUS and we just read a   (ascii 32) 
+TOKEN: OPERATOR: "-", line 11, column 39
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a   (ascii 32) 
+TOKEN: INT: "1", line 11, column 41
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ")", line 11, column 43
