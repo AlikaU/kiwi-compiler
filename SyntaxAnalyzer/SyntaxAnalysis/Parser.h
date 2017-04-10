@@ -14,7 +14,7 @@
 #include "..\SemanticAnalysis\SemanticVariable.h"
 #include "SemanticRecordHolder.h"
 #include "..\SemanticAnalysis\SemanticType.h"
-#include "..\CodeGeneration\CodeGenerator.h"
+#include "..\SemanticAnalysis\CodeGenerator.h"
 
 #include "..\SemanticAnalysis\SymbolTable.h"
 
@@ -22,7 +22,7 @@
 
 class Parser {
 
-	CodeGenerator codeGen;
+	CodeGenerator* codeGen;
 	Scanner* scanner;
 	ParseTable* table;
 	std::stack<GSymbol*> parsingStack;

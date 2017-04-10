@@ -57,7 +57,7 @@
     <ClInclude Include="SemanticAnalysis\SemanticType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CodeGeneration\CodeGenerator.h">
+    <ClInclude Include="SemanticAnalysis\CodeGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,7 +101,7 @@
     <ClCompile Include="SyntaxAnalysis\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CodeGeneration\CodeGenerator.cpp">
+    <ClCompile Include="SemanticAnalysis\CodeGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

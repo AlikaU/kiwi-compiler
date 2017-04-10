@@ -1,33 +1,3 @@
 
 
 Symbol Table for valid file: ../TestFiles/Semantic/full_valid_program.txt
-
-RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
-{
-RECORD: var1, declared: true, INT, ARRAY dimension: , int, NORMAL
-RECORD: var2, declared: true, FLOAT, SIMPLE, float, NORMAL
-RECORD: findMax, declared: true, FUNCTION, ARRAY, 1 parameters: {INT, }local symbol table: 
-{
-RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
-}
-
-RECORD: findMin, declared: true, FUNCTION, ARRAY, 1 parameters: {INT, }local symbol table: 
-{
-RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
-}
-
-}
-
-RECORD: sample, declared: true, INT, ARRAY, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: utility, declared: true, CLASS, CLASS, class, NORMAL
-RECORD: arrayUtility, declared: true, CLASS, ARRAYray dimension: , class, NORMAL
-RECORD: t, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: randomize, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
-{
-RECORD: value, declared: true, FLOAT, SIMPLE, float, NORMAL
-}

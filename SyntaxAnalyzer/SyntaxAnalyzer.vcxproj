@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CodeGeneration\CodeGenerator.h" />
+    <ClInclude Include="SemanticAnalysis\CodeGenerator.h" />
     <ClInclude Include="SemanticAnalysis\SemanticClass.h" />
     <ClInclude Include="SemanticAnalysis\SemanticFunction.h" />
     <ClInclude Include="SemanticAnalysis\SemanticRecord.h" />
@@ -132,7 +132,7 @@
     <ClInclude Include="SyntaxAnalysis\SemanticRecordHolder.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CodeGeneration\CodeGenerator.cpp" />
+    <ClCompile Include="SemanticAnalysis\CodeGenerator.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="SemanticAnalysis\SemanticClass.cpp" />
     <ClCompile Include="SemanticAnalysis\SemanticFunction.cpp" />

@@ -1,2 +1,0 @@
-
-Identifier 'randomize at line 41' is not defined in current scope (GlobalSymbolTable)

@@ -12,6 +12,7 @@ Parser::Parser(ParseTable* t, bool p, bool c, char* path) {
 	printDeriv = p;
 	printDerivToConsole = c;
 	insideFinalPass = false;
+	codeGen = new CodeGenerator("kiwitest");
 }
 
 Parser::~Parser() {
