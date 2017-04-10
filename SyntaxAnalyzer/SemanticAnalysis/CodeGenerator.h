@@ -18,7 +18,7 @@ public:
 		std::cout << "inside codegen constructor";
 
 		// erase log files from previous run
-		std::string str = EXECUTABLE_FOLDER + filename + ".txt";
+		std::string str = EXECUTABLE_FOLDER + filename + ".m";
 		executable_filepath = str.c_str();
 		remove(executable_filepath);
 		std::ofstream exeFileStream(executable_filepath, std::fstream::out | std::fstream::app);

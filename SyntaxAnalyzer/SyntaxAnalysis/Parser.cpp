@@ -4,7 +4,7 @@
 #define UNKNOWN_VALUE "Some unknown value"
 
 Parser::Parser(ParseTable* t, bool p, bool c, std::string folder, std::string filename) {
-	std::string str = folder + filename;
+	std::string str = folder + filename + "txt";
 	filepath = str.c_str();
 	scanner = new Scanner(filepath);;
 	table = t;
