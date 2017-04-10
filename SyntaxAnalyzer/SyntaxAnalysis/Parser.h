@@ -22,6 +22,7 @@
 
 class Parser {
 
+	CodeGenerator codeGen;
 	Scanner* scanner;
 	ParseTable* table;
 	std::stack<GSymbol*> parsingStack;
