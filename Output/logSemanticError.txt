@@ -1,2 +1,2 @@
 
-Identifier '( at line 54' is not defined in current scope (findMax)
+Identifier 'randomize at line 41' is not defined in current scope (GlobalSymbolTable)

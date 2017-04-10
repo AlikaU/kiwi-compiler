@@ -45,6 +45,8 @@ bool Parser::parse() {
 	insideFinalPass = true;
 	delete scanner;
 	scanner = new Scanner(filepath);
+	semanticStack.clear();
+	parsingStack = std::stack<GSymbol*>();
 	return passCode();
 	
 }
