@@ -12,16 +12,16 @@ bool printDerivationToConsole = false;
 bool success = true;
 int answer;
 
-void testCorrectInput(char* path, ParseTable* pTable) {
-	std::cout << "\n\nNow parsing valid file: " << path;
+void testCorrectInput(std::string folder, std::string filename, ParseTable* pTable) {
+	std::cout << "\n\nNow parsing valid file: " << folder << filename;
 
-	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for valid file: " + std::string(path) + "\n");
+	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for valid file: " + folder + filename + "\n");
 
 	if (printDerivation) {
-		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for valid file: " + std::string(path));
+		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for valid file: " + folder + filename);
 	}
 	
-	Parser parser(pTable, printDerivation, printDerivationToConsole, path);
+	Parser parser(pTable, printDerivation, printDerivationToConsole, folder, filename);
 	if (parser.parse()) {
 		std::cout << "\nSUCCESS";
 	}
@@ -32,14 +32,14 @@ void testCorrectInput(char* path, ParseTable* pTable) {
 }
 
 
-void testWrongInput(char* path, ParseTable* pTable) {
-	std::cout << "\n\nNow parsing file with errors: " << path;
-	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for file with errors: " + std::string(path) + "\n");
+void testWrongInput(std::string folder, std::string filename, ParseTable* pTable) {
+	std::cout << "\n\nNow parsing file with errors: " << folder << filename;
+	Logger::getLogger()->log(Logger::TABLE, "\n\nSymbol Table for file with errors: " + folder + filename + "\n");
 	if (printDerivation) {
-		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for file with errors: " + std::string(path));
+		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for file with errors: " + folder + filename);
 	}
-	Logger::getLogger()->log(Logger::ERROR, "Errors for file with errors: " + std::string(path));	
-	Parser parser(pTable, printDerivation, printDerivationToConsole, path);
+	Logger::getLogger()->log(Logger::ERROR, "Errors for file with errors: " + folder + filename);	
+	Parser parser(pTable, printDerivation, printDerivationToConsole, folder, filename);
 	if (!parser.parse()) {
 		std::cout << "\nSUCCESS (parsing failed, as expected)";
 	}
@@ -88,17 +88,18 @@ int main(int argc, char** argv)
 	}
 	ParseTable pTable;
 
+	std::string inputFolder = "../TestFiles/Semantic/";
 	
 	/*
-	testWrongInput("../TestFiles/Semantic/bad_circular_depend.txt", &pTable);
-	testWrongInput("../TestFiles/Semantic/bad_var_not_decl.txt", &pTable);
-	testWrongInput("../TestFiles/Semantic/bad_class_not_decl.txt", &pTable);
-	testWrongInput("../TestFiles/Semantic/bad_func_not_decl.txt", &pTable);
-	testWrongInput("../TestFiles/Semantic/bad_twice_same_scope.txt", &pTable);
-	testWrongInput("../TestFiles/Semantic/bad_type_mismatch.txt", &pTable);
+	testWrongInput("bad_circular_depend.txt", &pTable);
+	testWrongInput("bad_var_not_decl.txt", &pTable);
+	testWrongInput("bad_class_not_decl.txt", &pTable);
+	testWrongInput("bad_func_not_decl.txt", &pTable);
+	testWrongInput("bad_twice_same_scope.txt", &pTable);
+	testWrongInput("bad_type_mismatch.txt", &pTable);
 	*/
-	//testCorrectInput("../TestFiles/Semantic/full_valid_program2.txt", &pTable);
-	testCorrectInput("../TestFiles/Semantic/full_valid_program.txt", &pTable);
+	//testCorrectInput("full_valid_program2.txt", &pTable);
+	testCorrectInput(inputFolder, "full_valid_program.txt", &pTable);
 
 	
 		

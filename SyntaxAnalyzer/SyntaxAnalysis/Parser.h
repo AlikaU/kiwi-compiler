@@ -77,10 +77,10 @@ class Parser {
 	void createSemanticVariableAndLeaveOnStack();
 	bool insideFinalPass;
 	bool passCode();
-	char* filepath;
+	const char* filepath;
 	
 public: 
-	Parser(ParseTable* t, bool p, bool c, char*);
+	Parser(ParseTable* t, bool p, bool c, std::string, std::string);
 	~Parser();	
 		
 	bool parse();

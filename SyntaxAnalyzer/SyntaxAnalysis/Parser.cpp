@@ -3,8 +3,9 @@
 
 #define UNKNOWN_VALUE "Some unknown value"
 
-Parser::Parser(ParseTable* t, bool p, bool c, char* path) {
-	filepath = path;
+Parser::Parser(ParseTable* t, bool p, bool c, std::string folder, std::string filename) {
+	std::string str = folder + filename;
+	filepath = str.c_str();
 	scanner = new Scanner(filepath);;
 	table = t;
 	error = false;
@@ -12,7 +13,7 @@ Parser::Parser(ParseTable* t, bool p, bool c, char* path) {
 	printDeriv = p;
 	printDerivToConsole = c;
 	insideFinalPass = false;
-	codeGen = new CodeGenerator("kiwitest");
+	codeGen = new CodeGenerator(filename);
 }
 
 Parser::~Parser() {
