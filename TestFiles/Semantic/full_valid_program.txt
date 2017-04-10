@@ -42,15 +42,15 @@ sample[t] = (sample[t] * randomize());
 };
 maxValue = utility.findMax(sample);
 minValue = utility.findMin(sample);
-utility. var1[4][1][0][0][0][0][0] = 10;
-arrayUtility[1][1][1][1].var1[4][1][0][0][0][0][0] = 2;
-put(maxValue);
-put(minValue);
+//utility. var1[4][1][0][0][0][0][0] = 10;
+//arrayUtility[1][1][1][1].var1[4][1][0][0][0][0][0] = 2;
+//put(maxValue);
+//put(minValue);
 };
 float randomize()
 {
 float value;
 value = 100 * (2 + 3.0 / 7.0006);
 value = 1.05 + ((2.04 * 2.47) - 3.0) + 7.0006 ;
-return (value);
+//return (value);
 };

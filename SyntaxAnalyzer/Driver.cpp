@@ -20,8 +20,8 @@ void testCorrectInput(char* path, ParseTable* pTable) {
 	if (printDerivation) {
 		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for valid file: " + std::string(path));
 	}
-	Scanner scanner(path);
-	Parser parser(&scanner, pTable, printDerivation, printDerivationToConsole);
+	
+	Parser parser(pTable, printDerivation, printDerivationToConsole, path);
 	if (parser.parse()) {
 		std::cout << "\nSUCCESS";
 	}
@@ -38,9 +38,8 @@ void testWrongInput(char* path, ParseTable* pTable) {
 	if (printDerivation) {
 		Logger::getLogger()->log(Logger::DERIV, "\n\nDerivation for file with errors: " + std::string(path));
 	}
-	Logger::getLogger()->log(Logger::ERROR, "Errors for file with errors: " + std::string(path));
-	Scanner scanner(path);
-	Parser parser(&scanner, pTable, printDerivation, printDerivationToConsole);
+	Logger::getLogger()->log(Logger::ERROR, "Errors for file with errors: " + std::string(path));	
+	Parser parser(pTable, printDerivation, printDerivationToConsole, path);
 	if (!parser.parse()) {
 		std::cout << "\nSUCCESS (parsing failed, as expected)";
 	}

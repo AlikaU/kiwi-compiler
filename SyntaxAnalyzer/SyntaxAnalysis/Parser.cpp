@@ -3,14 +3,15 @@
 
 #define UNKNOWN_VALUE "Some unknown value"
 
-Parser::Parser(Scanner* s, ParseTable* t, bool p, bool c) {
-	scanner = s;
+Parser::Parser(ParseTable* t, bool p, bool c, char* path) {
+	filepath = path;
+	scanner = new Scanner(filepath);;
 	table = t;
 	error = false;
 	semanticError = false;
 	printDeriv = p;
 	printDerivToConsole = c;
-
+	insideFinalPass = false;
 }
 
 Parser::~Parser() {
@@ -31,6 +32,24 @@ Parser::~Parser() {
 }
 
 bool Parser::parse() {
+
+	// 1st pass
+	std::cout << "\nDoing first pass";
+	insideFinalPass = false;
+	bool success = passCode();
+
+	if (!success) return false;
+	
+	// 2nd pass
+	std::cout << "\nDoing second pass";
+	insideFinalPass = true;
+	delete scanner;
+	scanner = new Scanner(filepath);
+	return passCode();
+	
+}
+
+bool Parser::passCode() {
 
 	GTerminal dollarsign(GTerminal::DOLLAR_SIGN);
 	parsingStack.push(&dollarsign);
@@ -74,11 +93,11 @@ bool Parser::parse() {
 				}
 				currentScannedToken = scanner->getNextToken();				
 			}
-			else {
-				//std::cout << "\nParsing error encountered at token '" << term.getValue()
-				//	<< "' at line " << term.getPosition().first << ", column " << term.getPosition().second;
-				Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: error encountered at token '" + term.getValue()
-					+ "' at line " + std::to_string(term.getPosition().first) + ", column " + std::to_string(term.getPosition().second));
+			else {		
+				if (insideFinalPass) {
+					Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Syntax error encountered at token '" + term.getValue()
+						+ "' at line " + std::to_string(term.getPosition().first) + ", column " + std::to_string(term.getPosition().second));
+				}			
 				
 				// if there's a terminal on top of stack and it can't be matched, pop it
 				// pop error code is numRules + 1
@@ -102,11 +121,12 @@ bool Parser::parse() {
 				parsingStack.pop();
 				inverseRHSMultiplePush(ruleNo);
 			}
-			else {
-				//std::cout << "\nParsing error encountered at token '" << term->getValue()
-				//	<< "' at line " << term->getPosition().first << ", column " << term->getPosition().second;
-				Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Parsing error encountered at token '" + term->getValue()
-					+ "' at line " + std::to_string(term->getPosition().first) + ", column " + std::to_string(term->getPosition().second));
+			else {		
+				if (insideFinalPass) {
+					Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Syntax error encountered at token '" + term->getValue()
+						+ "' at line " + std::to_string(term->getPosition().first) + ", column " + std::to_string(term->getPosition().second));
+				}
+				
 				skipErrors(ruleNo);
 				if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
 					std::cout << "\nEof reached!";
@@ -226,7 +246,9 @@ bool Parser::processAssignment() {
 
 	SemanticRecord::SemanticRecordType termType;
 	if (symbol->getSymbolType() != GSymbol::semanticRecord) {
-		std::cout << "\nExpected expr";
+		if (insideFinalPass) {
+			std::cout << "\nExpected expr";
+		}		
 		return false;
 	}
 	SemanticRecordHolder* typeHolder = static_cast<SemanticRecordHolder*>(symbol);
@@ -240,13 +262,17 @@ bool Parser::processAssignment() {
 	else return false;
 
 	if (symbol->getSymbolType() != GSymbol::terminal) {
-		std::cout << "\nExpected terminal";
+		if (insideFinalPass) {
+			std::cout << "\nExpected terminal";
+		}
 		return false;
 	}
 	GTerminal* assignOp = static_cast<GTerminal*>(symbol);
 
 	if (assignOp->getType() != GTerminal::ASSIGN) {
-		std::cout << "\nExpected assignOp";
+		if (insideFinalPass) {
+			std::cout << "\nExpected assignOp";
+		}
 		return false;
 	}
 
@@ -258,13 +284,17 @@ bool Parser::processAssignment() {
 	else return false;
 
 	if (symbol->getSymbolType() != GSymbol::terminal) {
-		std::cout << "\nExpected terminal";
+		if (insideFinalPass) {
+			std::cout << "\nExpected terminal";
+		}
 		return false;
 	}
 	GTerminal* idTerm = static_cast<GTerminal*>(symbol);
 
 	if (idTerm->getType() != GTerminal::ID) {
-		std::cout << "\nExpected ID";
+		if (insideFinalPass) {
+			std::cout << "\nExpected ID";
+		}
 		return false;
 	}
 	SemanticRecord* ptr = NULL;
@@ -273,12 +303,18 @@ bool Parser::processAssignment() {
 	bool& found = b;
 	currentScope->search(idTerm->getValue(), rec, found);
 	if (!found) {
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		// at this point, the variable might not have been defined, but maybe it's defined later
+		if (insideFinalPass) {
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		}
 		error = true;
 		return false;
+		
 	}
 	if ((*rec)->getSemanticType() != termType) {
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nType mismatch: right side of assign statement does not match the type of left side, on line " + idTerm->getPosition().first);
+		if (insideFinalPass) {
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nType mismatch: right side of assign statement does not match the type of left side, on line " + idTerm->getPosition().first);
+		}
 		error = true;
 		return false;
 	}	
@@ -380,7 +416,9 @@ bool Parser::processOperation( const std::list<GTerminal::TerminalTypes> operati
 
 	SemanticRecord::SemanticRecordType termType;
 	if (symbol->getSymbolType() != GSymbol::semanticRecord) {
-		std::cout << "\nExpected factor";
+		if (insideFinalPass) {
+			std::cout << "\nExpected factor";
+		}
 		return false;
 	}
 	SemanticRecordHolder* typeHolder = static_cast<SemanticRecordHolder*>(symbol);
@@ -412,7 +450,9 @@ bool Parser::processOperation( const std::list<GTerminal::TerminalTypes> operati
 
 		// get multOp
 		if (symbol->getSymbolType() != GSymbol::terminal) {
-			std::cout << "\nExpected terminal";
+			if (insideFinalPass) {
+				std::cout << "\nExpected terminal";
+			}
 			return false;
 		}
 		GTerminal* multOp = static_cast<GTerminal*>(symbol);
@@ -424,7 +464,9 @@ bool Parser::processOperation( const std::list<GTerminal::TerminalTypes> operati
 			}
 		}
 		if (!foundOp) {
-			std::cout << "\nExpected addOp or multOp or relOp";					
+			if (insideFinalPass) {
+				std::cout << "\nExpected an operation";
+			}
 			return false;
 		}
 		semanticStack.pop_back();
@@ -435,7 +477,9 @@ bool Parser::processOperation( const std::list<GTerminal::TerminalTypes> operati
 
 		// get next factor
 		if (symbol->getSymbolType() != GSymbol::semanticRecord) {
-			std::cout << "\nExpected semanticRecord";
+			if (insideFinalPass) {
+				std::cout << "\nExpected semanticRecord";
+			}
 			return false;
 		}
 		SemanticRecordHolder* recHolder = static_cast<SemanticRecordHolder*>(symbol);
@@ -444,9 +488,11 @@ bool Parser::processOperation( const std::list<GTerminal::TerminalTypes> operati
 
 		SemanticRecord::SemanticRecordType t = recHolder->getRecord()->getSemanticType();
 		if (t != termType) {
-			std::cout << "Type mismatch: " << SemanticRecord::typeStrings[t] << " and " << SemanticRecord::typeStrings[termType] 
-				<< " at line " << multOp->getPosition().first << ", column " << multOp->getPosition().second;
-				return false;
+			if (insideFinalPass) {
+				std::cout << "Type mismatch: " << SemanticRecord::typeStrings[t] << " and " << SemanticRecord::typeStrings[termType]
+					<< " at line " << multOp->getPosition().first << ", column " << multOp->getPosition().second;
+			}
+			return false;
 		}
 
 		semanticStack.pop_back();
@@ -465,6 +511,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 	SemanticVariable* idRecord = NULL;
 	SemanticRecord* pt= NULL;
 	SemanticRecord** record = &pt;
+	GSymbol* symbol;
 	bool b = false;
 	bool &found = b;
 	bool allGood = false;
@@ -478,8 +525,25 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 	if (term->getType() == GTerminal::CLOSEPAR) {
 		while (term->getType() != GTerminal::OPENPAR && ++count < threshold) {
 			
+			// pop closepar
 			semanticStack.pop_back();
 			
+			// here we can have either a terminal or a type holder
+			symbol = semanticStack.back();
+			if (symbol == NULL) { return false; }			
+			if (symbol->getSymbolType() == GSymbol::terminal && static_cast<GTerminal*>(symbol)->getType() == GTerminal::OPENPAR) { 
+				term = static_cast<GTerminal*>(symbol);
+				continue; 
+			}
+			if (symbol->getSymbolType() != GSymbol::semanticRecord && symbol->getSymbolType() != GSymbol::terminal) {
+				return false;
+			}
+
+			// pop the terminal or type holder
+			// TODO verify params
+			semanticStack.pop_back();
+
+			// now we are supposed to have a comma
 			term = getNextTerminalFromSemanticStack();
 			if (term == NULL) { return false; }
 		}
@@ -502,8 +566,11 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		if (term == NULL || term->getType() != GTerminal::DOT) {	
 			currentScope->search(functionIdToken->getValue(), record, found);
 			if (!found) {
-				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '"+ functionIdToken->getValue() + " at line " + std::to_string(functionIdToken->getPosition().first) + "' is not defined in current scope (" + currentScope->getTableName() + ")");
-				error = true;
+				// at this point, function might not have been defined, but later it's maybe defined, so wait till second pass
+				if (insideFinalPass) {
+					Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '" + functionIdToken->getValue() + " at line " + std::to_string(functionIdToken->getPosition().first) + "' is not defined in current scope (" + currentScope->getTableName() + ")");
+					error = true;
+				}
 			}
 			semanticStack.pop_back();
 		}
@@ -540,7 +607,9 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 				idRecord = static_cast<SemanticVariable*>(*record);
 			}
 			else {
-				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+				if (insideFinalPass) {
+					Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+				}
 				semanticStack.pop_back();
 				return false;
 			}
@@ -554,7 +623,9 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 						allGood = true;
 					}
 					else {
-						Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+						if (insideFinalPass) {
+							Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+						}
 						semanticStack.pop_back();
 						return false;
 					}
@@ -614,7 +685,9 @@ bool Parser::processIdNestList(SemanticRecord** record, bool &found) {
 			if (term == NULL) { return false; }
 		}
 		else {
-			std::cout << "Expected dot operator";
+			if (insideFinalPass) {
+				std::cout << "Expected dot operator";
+			}
 			return false;
 		}
 		semanticStack.pop_back();
@@ -631,7 +704,9 @@ bool Parser::processIdNestList(SemanticRecord** record, bool &found) {
 			scopeIn();			
 		}
 		else {
-			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + term->getValue() + " at line " + std::to_string(term->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+			if (insideFinalPass) {
+				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + term->getValue() + " at line " + std::to_string(term->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+			}
 			error = true;
 			return false;
 		}
@@ -688,7 +763,9 @@ void Parser::processIndiceList() {
 		term = getNextTerminalFromSemanticStack();
 		if (term == NULL) { return; }
 		if (term->getType() != GTerminal::OPENSQUARE) {
-			std::cout << "Expected ], found something else" << term->getPosition().first << ", " << term->getPosition().second;
+			if (insideFinalPass) {
+				std::cout << "Expected ], found something else" << term->getPosition().first << ", " << term->getPosition().second;
+			}
 			return;
 		}
 		lastTerm = term;
@@ -704,11 +781,15 @@ void Parser::processIndiceList() {
 	if (intError) {
 		semanticError = true;
 		//Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Expected integer as indice, found something else at line " + term->getPosition().first);
-		std::cout << "Expected integer as indice, found something else" << term->getPosition().first;
+		if (insideFinalPass) {
+			std::cout << "Expected integer as indice, found something else" << term->getPosition().first;
+		}
 	}
 
 	if (lastTerm->getType() != GTerminal::OPENSQUARE) {
-		std::cout << "Something went wrong while doing semantic analysis of indiceList! Everything else will probably break from now on.";
+		if (insideFinalPass) {
+			std::cout << "Something went wrong while doing semantic analysis of indiceList! Everything else will probably break from now on.";
+		}
 	}
 	currentIndiceDimention = count / 3;
 }
@@ -755,15 +836,21 @@ void Parser::scopeIn() {
 				currentScope = static_cast<SemanticClass*>(hold->getRecord())->getLocalSymbolTable();
 			}
 			else {
-				std::cout << "cannot scope in, top of semantic stack is not a function nor a class";
+				if (insideFinalPass) {
+					std::cout << "cannot scope in, top of semantic stack is not a function nor a class";
+				}
 			}
 		}
 		else {
-			std::cout << "cannot scope in, top of semantic stack is not a record";
+			if (insideFinalPass) {
+				std::cout << "cannot scope in, top of semantic stack is not a record";
+			}
 		}		
 	}
 	else {
-		std::cout << "cannot scope in, semantic stack empty";
+		if (insideFinalPass) {
+			std::cout << "cannot scope in, semantic stack empty";
+		}
 	}
 }
 
@@ -884,7 +971,9 @@ void Parser::createSemanticFunctionAndTable() {
 		returnType = SemanticRecord::CLASS_T;
 	}
 	else {
-		std::cout << "\nCould not process function return type for function " << funcIDtoken->getValue()<< "! ";
+		if (insideFinalPass) {
+			std::cout << "\nCould not process function return type for function " << funcIDtoken->getValue() << "! ";
+		}
 		return;
 	}
 	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, 0, 0));
@@ -913,8 +1002,10 @@ void Parser::createSemanticClassAndTable() {
 }
 
 void Parser::logSymbolErrorAndSetFlag(std::string symbol) {
-	Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nExpected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
-	std::cout << "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.";
+	if (insideFinalPass) {
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nExpected " + symbol + " on top of stack, but there is something else! Something went really wrong.");
+		std::cout << "Expected " + symbol + " on top of stack, but there is something else! Something went really wrong.";
+	}
 	error = true;
 }
 

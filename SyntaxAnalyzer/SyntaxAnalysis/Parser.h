@@ -75,12 +75,15 @@ class Parser {
 	bool processExpression();
 	void searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord** record, bool &found);
 	void createSemanticVariableAndLeaveOnStack();
-
+	bool insideFinalPass;
+	bool passCode();
+	char* filepath;
 	
 public: 
-	Parser(Scanner* s, ParseTable* t, bool p, bool c);
+	Parser(ParseTable* t, bool p, bool c, char*);
 	~Parser();	
 		
 	bool parse();
+	
 	void skipErrors(int errorCode);
 };

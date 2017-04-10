@@ -6,7 +6,6 @@
 #include "Token.h"
 
 
-
 Token* Scanner::getNextToken() {
 	state = StateTable::States::START;
 	Token* token = NULL;
