@@ -14,6 +14,7 @@
 #include "..\SemanticAnalysis\SemanticVariable.h"
 #include "SemanticRecordHolder.h"
 #include "..\SemanticAnalysis\SemanticType.h"
+#include "..\CodeGeneration\CodeGenerator.h"
 
 #include "..\SemanticAnalysis\SymbolTable.h"
 
@@ -66,7 +67,7 @@ class Parser {
 	void processIndiceList();
 	bool processIdNestListIdThenIndiceListOrAParams();
 	bool processIdNestList(SemanticRecord**, bool&);
-	bool processOperation(GTerminal::TerminalTypes[]);
+	bool processOperation(const std::list<GTerminal::TerminalTypes>);
 	bool processTerm();
 	bool processArithExpr();
 	bool processRelExpr();
@@ -74,6 +75,7 @@ class Parser {
 	void searchInScope(SymbolTable* scope, std::string identifier, SemanticRecord** record, bool &found);
 	void createSemanticVariableAndLeaveOnStack();
 
+	
 public: 
 	Parser(Scanner* s, ParseTable* t, bool p, bool c);
 	~Parser();	

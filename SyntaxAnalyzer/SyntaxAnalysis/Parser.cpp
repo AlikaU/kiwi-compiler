@@ -60,7 +60,7 @@ bool Parser::parse() {
 				break;
 			}
 			GTerminal term(currentScannedToken);
-			if (term.getPosition().first == 11 && term.getPosition().second == 41) {
+			if (term.getPosition().first == 41 && term.getPosition().second == 26) {
 				std::cout << "";
 			}
 
@@ -311,13 +311,31 @@ void Parser::searchInScope(SymbolTable* scope, std::string identifier, SemanticR
 }
 
 bool Parser::processExpression() {
-	GTerminal::TerminalTypes operations[] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE, GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
-	return processOperation(operations);
+	//GTerminal::TerminalTypes operations[9] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE, GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
+	std::list<GTerminal::TerminalTypes> operationsForProcessExpr;
+	operationsForProcessExpr.emplace_back(GTerminal::GT);
+	operationsForProcessExpr.emplace_back(GTerminal::GE);
+	operationsForProcessExpr.emplace_back(GTerminal::LE);
+	operationsForProcessExpr.emplace_back(GTerminal::LT);
+	operationsForProcessExpr.emplace_back(GTerminal::EQ);
+	operationsForProcessExpr.emplace_back(GTerminal::NE);
+	operationsForProcessExpr.emplace_back(GTerminal::PLUS);
+	operationsForProcessExpr.emplace_back(GTerminal::MINUS);
+	operationsForProcessExpr.emplace_back(GTerminal::OR);
+
+	return processOperation(operationsForProcessExpr);
 }
 
 bool Parser::processRelExpr() {
-	GTerminal::TerminalTypes operations[] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE };
-	bool success = processOperation(operations);
+	std::list<GTerminal::TerminalTypes> operationsForRelExpr;
+	operationsForRelExpr.emplace_back(GTerminal::GT);
+	operationsForRelExpr.emplace_back(GTerminal::GE);
+	operationsForRelExpr.emplace_back(GTerminal::LE);
+	operationsForRelExpr.emplace_back(GTerminal::LT);
+	operationsForRelExpr.emplace_back(GTerminal::EQ);
+	operationsForRelExpr.emplace_back(GTerminal::NE);
+
+	bool success = processOperation(operationsForRelExpr);
 
 	// upon successful parsing of operation, it will push the type holder back on semantic stack
 	// in the case of a relation expression, we no longer need it, so remove it
@@ -331,20 +349,26 @@ bool Parser::processRelExpr() {
 // I assume that terms have already been processed
 // term is of form: term (addOp term)*
 bool Parser::processArithExpr() {
-	GTerminal::TerminalTypes operations[] = { GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
+	std::list<GTerminal::TerminalTypes> operations;
+	operations.emplace_back(GTerminal::PLUS);
+	operations.emplace_back(GTerminal::MINUS);
+	operations.emplace_back(GTerminal::OR);
 	return processOperation(operations);
 }
 
 // I assume that factors have already been processed
 // term is of form: factor (multOp factor)*
 bool Parser::processTerm() {
-	GTerminal::TerminalTypes operations[] = { GTerminal::MULT, GTerminal::DIVIDE, GTerminal::AND };
+	std::list<GTerminal::TerminalTypes> operations;
+	operations.emplace_back(GTerminal::MULT);
+	operations.emplace_back(GTerminal::DIVIDE);
+	operations.emplace_back(GTerminal::AND);
 	return processOperation(operations);
 }
 
 // I assume that types have already been processed
 // term is of form: type (op type)*
-bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
+bool Parser::processOperation( const std::list<GTerminal::TerminalTypes> operations) {
 
 	GSymbol* symbol; 
 
@@ -375,8 +399,11 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 	
 	while (true) {
 		bool shouldBreak = true;
-		for (int i = 0; i < sizeof(operations); ++i) {
-			GTerminal::TerminalTypes operation = operations[i];
+		//for (int i = 0; i < sizeof(operations); ++i) {
+			//GTerminal::TerminalTypes operation = operations[i];
+			//std::cout << "\n" << GTerminal::getTerminalTypeStringNoQuotes(static_cast<int>(operation));
+		//}
+		for (GTerminal::TerminalTypes operation : operations) {
 			if(symbol->getSymbolType() == GSymbol::terminal && static_cast<GTerminal*>(symbol)->getType() == operation){
 				shouldBreak = false;
 			}
@@ -391,8 +418,8 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 		GTerminal* multOp = static_cast<GTerminal*>(symbol);
 
 		bool foundOp = false;
-		for (int i = 0; i < sizeof(operations); ++i) {
-			if (multOp->getType() == operations[i]) {
+		for (GTerminal::TerminalTypes operation : operations) {
+			if (multOp->getType() == operation) {
 				foundOp = true;
 			}
 		}
@@ -432,6 +459,7 @@ bool Parser::processOperation(GTerminal::TerminalTypes operations[]) {
 	semanticStack.push_back(typeHolder);
 }
 
+
 bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 	SemanticFunction* funcRecord = NULL;
 	SemanticVariable* idRecord = NULL;
@@ -458,6 +486,10 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		if (count >= threshold) {
 			std::cout << "Something went wrong while doing semantic analysis of aParams! Everything else will probably break from now on.";
 		}
+
+		// since count did not exceed threshold, the only way we can get here 
+		// is if term is an openpar, and we need to pop it.
+		semanticStack.pop_back();
 		
 		// this will be the function name! keep it
 		term = getNextTerminalFromSemanticStack();
@@ -465,9 +497,9 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		GTerminal* functionIdToken = new GTerminal(term);
 		semanticStack.pop_back();
 
-		// if no more terminals, then we're in current scope
+		// if no more terminals, or if next terminal is not a dot, then we're in current scope
 		term = getNextTerminalFromSemanticStack();
-		if (term == NULL) {	
+		if (term == NULL || term->getType() != GTerminal::DOT) {	
 			currentScope->search(functionIdToken->getValue(), record, found);
 			if (!found) {
 				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '"+ functionIdToken->getValue() + " at line " + std::to_string(functionIdToken->getPosition().first) + "' is not defined in current scope (" + currentScope->getTableName() + ")");
@@ -899,6 +931,8 @@ void Parser::createSemanticVariableAndLeaveOnStack() {
 
 	// create variable
 	SemanticVariable* var = createSemanticVariable(false);
+	var->setDeclared();
+	currentScope->insert(var->getIdentifier(), var);
 
 	// push back the id token, for the assignment statement to run correctly
 	semanticStack.push_back(varIDToken);
@@ -1093,3 +1127,5 @@ void Parser::skipErrors(int errorCode) {
 		std::getchar();
 	}
 }
+
+//const std::list<GTerminal::TerminalTypes> Parser::operationsForProcessExpr[9] = { GTerminal::GT, GTerminal::GE, GTerminal::LE, GTerminal::LT, GTerminal::EQ, GTerminal::NE, GTerminal::PLUS, GTerminal::MINUS, GTerminal::OR };
