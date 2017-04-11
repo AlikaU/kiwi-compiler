@@ -17,7 +17,7 @@ bool askFile = true;
 bool runAll = true;
 const int goodProgramsIndex = 8;
 std::string fileNames[] = { "CODEgen", "full_valid_program", "SEMmultipleid", "SEMtypecheckAsgExpSuccess", 
-"SYNcomplicatedExpr", "SYNfreefunction", "SYNgood1", "SYNgood5", "SYNvarDecl"
+"SYNcomplicatedExpr", "SYNfreefunction", "SYNgood1", "SYNgood5", "SYNvarDecl",
 "SEMtypecheckAsgExpError", "SEMtypemismatch", "SEMundefClass", "SEMundefFunction", "SEMundefVar", 
 "SYNbad1", "SYNbad2", "SYNbad3", "SYNbad4", "SYNbad5"};
 std::string inputFolder = "../TestFiles/DemoTestCases/";

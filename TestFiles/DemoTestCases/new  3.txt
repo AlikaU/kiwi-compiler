@@ -1,9 +1,9 @@
 Names of input files: 
 
-SYNTAX
+SYNTAX (print to file)
 
 1. Syntax error detection, reporting, recovery:
-	SYNbad5, SYNbad4, SYNbad3, SYNbad2, SYNbad1
+	SYNbad5, (SYNbad4, SYNbad3, SYNbad2, SYNbad1)
 	
 2. Main function, free functions: SYNfreefunction
 
@@ -16,7 +16,7 @@ SYNTAX
 
 SEMANTIC
 
-1. Undefined id, var, class, function:
+1. Undefined var, class, function:
 	SEMundefVar
 	SEMundefFunction
 	SEMundefClass
@@ -26,8 +26,8 @@ SEMANTIC
 
 2. Type checking of an assign + complex expr + function return type:
 	SEMtypemismatch
-	SEMtypecheckAsgExprSuccess
-	SEMtypecheckAsgExprError
+	SEMtypecheckAsgExpSuccess
+	SEMtypecheckAsgExpError
 
 CODE GENERATION
 

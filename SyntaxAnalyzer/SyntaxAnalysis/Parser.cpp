@@ -67,14 +67,8 @@ bool Parser::passCode() {
 	currentScannedToken = scanner->getNextToken();
 
 	while ( !(parsingStack.top()->isDollarSign()) ) {
-		if (!insideFinalPass) {
-			if (printDeriv) {
-				printDerivation();
-			}
-			if (printDerivToConsole) {
-				printDerivationToConsole();
-			}
-		}
+
+		
 		
 		//printSemanticStack();
 	
@@ -82,6 +76,16 @@ bool Parser::passCode() {
 
 		// Terminal on top of stack
 		if (topSymbol->getSymbolType() == GSymbol::terminal) {
+
+			if (!insideFinalPass) {
+				if (printDeriv) {
+					printDerivation();
+				}
+				if (printDerivToConsole) {
+					printDerivationToConsole();
+				}
+			}
+
 			if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
 				error = true;
 				break;
@@ -121,6 +125,16 @@ bool Parser::passCode() {
 
 		// NonTerminal on top of stack
 		else if(topSymbol->getSymbolType() == GSymbol::nonTerminal){
+
+			if (!insideFinalPass) {
+				if (printDeriv) {
+					printDerivation();
+				}
+				if (printDerivToConsole) {
+					printDerivationToConsole();
+				}
+			}
+
 			GNonTerminal* nonterm = static_cast<GNonTerminal*>(topSymbol);
 			
 			GTerminal* term = new GTerminal(currentScannedToken);
@@ -156,11 +170,13 @@ bool Parser::passCode() {
 		
 	} // end while
 
-	if (printDeriv) {
-		printDerivation();
-	}
-	if (printDerivToConsole) {
-		printDerivationToConsole();
+	if (!insideFinalPass) {
+		if (printDeriv) {
+			printDerivation();
+		}
+		if (printDerivToConsole) {
+			printDerivationToConsole();
+		}
 	}
 
 	
@@ -414,8 +430,9 @@ bool Parser::processAssignment() {
 		
 	}
 	if ((*rec)->getSemanticType() != termType) {
-		if (insideFinalPass) {
-			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nType mismatch: right side of assign statement does not match the type of left side, on line " + idTerm->getPosition().first);
+		if (!insideFinalPass) {
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\n");
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Type mismatch: right side of assign statement does not match the type of left side, on line " + std::to_string(idTerm->getPosition().first));
 		}
 		error = true;
 		return false;
