@@ -1,0 +1,9 @@
+class Utility
+{
+int bananas;
+float melons;
+
+int apples[3];
+int kiwis[2][3][4];
+};
+program {};

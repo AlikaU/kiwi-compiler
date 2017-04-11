@@ -18,12 +18,16 @@ public:
 		
 		// erase log files from previous run		
 		executable_filepath = EXECUTABLE_FOLDER + filename + ".m";
-		remove(executable_filepath.c_str());		
+		remove(executable_filepath.c_str());			
 	}
 
 	CodeGenerator() {
 		exeFileStream.close();
 	}
+
+	void genEntryPoint();
+
+	void genHaltPoint();
 
 	void genVariableDecl(SemanticVariable* varRecord);
 

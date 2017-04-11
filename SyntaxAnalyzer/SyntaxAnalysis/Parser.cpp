@@ -48,8 +48,10 @@ bool Parser::parse() {
 	scanner = new Scanner(filepathStr.c_str());
 	semanticStack.clear();
 	parsingStack = std::stack<GSymbol*>();
-	return passCode();
-	
+	codeGen->genEntryPoint();
+	success = passCode();
+	codeGen->genHaltPoint();
+	return success;
 }
 
 bool Parser::passCode() {

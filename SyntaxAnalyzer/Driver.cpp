@@ -88,7 +88,7 @@ int main(int argc, char** argv)
 	}
 	ParseTable pTable;
 
-	std::string inputFolder = "../TestFiles/CodeGen/";
+	std::string inputFolder = "../TestFiles/DemoTestCases/";
 	
 	/*
 	testWrongInput("bad_circular_depend", &pTable);
