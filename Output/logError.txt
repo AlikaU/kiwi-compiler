@@ -1,0 +1,11 @@
+
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)

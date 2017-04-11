@@ -1104,7 +1104,9 @@ void Parser::createSemanticClassAndTable() {
 		SymbolTable* classTable = new SymbolTable(currentScope, className);
 		std::list<int> myList;
 		SemanticClass* classRecord = new SemanticClass(className, myList, 0, classTable, term->getPosition());
-		currentScope->insert(className, classRecord);
+		if (!insideFinalPass) {
+			currentScope->insert(className, classRecord);
+		}		
 		currentScope = classTable;
 		classRecord->setDeclared();
 		semanticStack.pop_back();

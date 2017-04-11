@@ -1,24 +1,7 @@
 
 
-Symbol Table for valid file: ../TestFiles/DemoTestCases/SEMtypecheckAsgExpSuccess
+Symbol Table for valid file: ../TestFiles/DemoTestCases/SYNcomplicatedExpr
 
-RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+RECORD: A, declared: true, CLASS, CLASS, local symbol table: 
 {
 }
-
-RECORD: var0, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var1, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var2, declared: true, INT, ARRAY, array dimension: [3], int, NORMAL
-RECORD: var3, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var4, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var5, declared: true, INT, ARRAY, array dimension: [5][4], int, NORMAL
-RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
-{
-}
-
-RECORD: var0, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var1, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var2, declared: true, INT, ARRAY, array dimension: [3], int, NORMAL
-RECORD: var3, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var4, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: var5, declared: true, INT, ARRAY, array dimension: [5][4], int, NORMAL

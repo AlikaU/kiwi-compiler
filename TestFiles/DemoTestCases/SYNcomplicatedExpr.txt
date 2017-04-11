@@ -1,0 +1,9 @@
+class A
+{
+};
+program {
+B = x[y][y+1][z[1+x]];
+a.b.c.d.e.f[g.h.i.j[0][a]][1] = 5;
+c = 1 and b or c + d - e * f / g or i > j >= k < l <= m == n <> o;
+
+};
