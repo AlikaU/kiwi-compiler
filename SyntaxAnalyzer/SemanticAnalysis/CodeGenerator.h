@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "SemanticVariable.h"
 
 #define EXECUTABLE_FOLDER "../Moon/moon/"
 
@@ -19,6 +20,7 @@ public:
 
 		// erase log files from previous run
 		std::string str = EXECUTABLE_FOLDER + filename + ".m";
+		str = "../" + str;
 		executable_filepath = str.c_str();
 		remove(executable_filepath);
 		std::ofstream exeFileStream(executable_filepath, std::fstream::out | std::fstream::app);
