@@ -1,0 +1,6 @@
+class Utility
+{
+int bananas;
+int apples;
+};
+program {};
