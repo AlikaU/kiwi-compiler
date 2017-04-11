@@ -199,10 +199,13 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	{
 		SemanticVariable* varRecord = createSemanticVariable(false);
 		varRecord->setDeclared();
-		currentScope->insert(varRecord->getIdentifier(), varRecord);
+		if (!insideFinalPass) {
+			currentScope->insert(varRecord->getIdentifier(), varRecord);
+		}		
 		if (insideFinalPass) {
-			codeGen->genVariableDecl(varRecord);			
-		}
+			codeGen->genVariableDecl(varRecord);
+			delete varRecord;
+		}		
 	}		
 		break;
 	case (SemanticAction::createSemanticFunctionAndTable):

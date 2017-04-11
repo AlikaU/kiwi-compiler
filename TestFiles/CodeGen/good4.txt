@@ -3,6 +3,6 @@ class Utility
 int bananas;
 int apples[3];
 
-
+int kiwis[2][5];
 };
 program {};
