@@ -1,1 +1,2 @@
-Identifier var1 was not defined in the current scope!Identifier var2 was not defined in the current scope!Identifier var3 was not defined in the current scope!Identifier var4 was not defined in the current scope!Identifier var5 was not defined in the current scope!
+
+Cannot insert record with identifier MyClass1 at line 1, column 7. Another record with the same name exists.

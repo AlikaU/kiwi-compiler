@@ -13,6 +13,7 @@ Parser::Parser(ParseTable* t, bool p, bool c, std::string folder, std::string fi
 	printDerivToConsole = c;
 	insideFinalPass = false;
 	codeGen = new CodeGenerator(filename);
+	
 }
 
 Parser::~Parser() {
@@ -177,7 +178,10 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	
 	switch (action->getType()) {
 	case (SemanticAction::createProgTable):
-		globalSymbolTable = new SymbolTable(GLOBAL_TABLE_NAME);
+		if (!insideFinalPass) {
+			globalSymbolTable = new SymbolTable(GLOBAL_TABLE_NAME);
+		}
+		
 		currentScope = globalSymbolTable;
 		break;
 	case (SemanticAction::startCollecting):
@@ -706,7 +710,8 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 			}
 			else {
 				if (insideFinalPass) {
-					Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + IDToken->getValue() + " was not defined in the current scope!");
+					Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + IDToken->getValue() + 
+						" at line " + std::to_string(IDToken->getPosition().first) + " was not defined in the current scope (" + currentScope->getTableName() + ")" );
 				}
 				semanticStack.pop_back();
 				return false;
@@ -930,10 +935,16 @@ void Parser::scopeIn() {
 			if (hold->getRecord()->getSemanticType() == SemanticRecord::FUNCTION) {
 				semanticStack.pop_back();
 				currentScope = static_cast<SemanticFunction*>(hold->getRecord())->getLocalSymbolTable();
+				if (currentScope == NULL) {
+					std::cout << "";
+				}
 			}
 			else if(hold->getRecord()->getSemanticType() == SemanticRecord::CLASS_T) {
 				semanticStack.pop_back();
 				currentScope = static_cast<SemanticClass*>(hold->getRecord())->getLocalSymbolTable();
+				if (currentScope == NULL) {
+					std::cout << "";
+				}
 			}
 			else {
 				if (insideFinalPass) {
