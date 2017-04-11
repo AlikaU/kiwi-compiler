@@ -5,7 +5,3 @@ Symbol Table for valid file: ../TestFiles/DemoTestCases/SYNfreefunction
 RECORD: randomize, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
 {
 }
-
-RECORD: randomize, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
-{
-}

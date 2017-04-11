@@ -67,13 +67,15 @@ bool Parser::passCode() {
 	currentScannedToken = scanner->getNextToken();
 
 	while ( !(parsingStack.top()->isDollarSign()) ) {
-
-		if (printDeriv) {
-			printDerivation();
-		}		
-		if (printDerivToConsole) {
-			printDerivationToConsole();
+		if (!insideFinalPass) {
+			if (printDeriv) {
+				printDerivation();
+			}
+			if (printDerivToConsole) {
+				printDerivationToConsole();
+			}
 		}
+		
 		//printSemanticStack();
 	
 		GSymbol* topSymbol = parsingStack.top();
@@ -162,7 +164,7 @@ bool Parser::passCode() {
 	}
 
 	
-	if (globalSymbolTable) {
+	if (globalSymbolTable && !insideFinalPass) {
 		globalSymbolTable->print();
 	}
 	if (currentScannedToken->getType() != Token::DOLLAR_SIGN || error || !(parsingStack.top()->isDollarSign())) {
@@ -1091,9 +1093,12 @@ void Parser::createSemanticFunctionAndTable() {
 	}
 	std::list<int> myList;
 	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0, funcIDtoken->getPosition()), funcIDtoken->getPosition());
-	if (!(currentScope->insert(funcRecord->getIdentifier(), funcRecord))) {
-		error = true;
+	if (!insideFinalPass) {
+		if (!(currentScope->insert(funcRecord->getIdentifier(), funcRecord))) {
+			error = true;
+		}
 	}
+	
 	funcRecord->setDeclared();
 	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
 }
@@ -1254,6 +1259,7 @@ void Parser::printDerivation() {
 	for (GSymbol* symbol : derivationParsed) {
 		Logger::getLogger()->log(Logger::DERIV, static_cast<GTerminal*>(symbol)->getValue() + " ");
 	}
+	Logger::getLogger()->log(Logger::DERIV, " ||| ");
 	for (GSymbol* symbol : derivationToBeParsed) {
 		if (symbol->getSymbolType() == GSymbol::terminal) {
 			Logger::getLogger()->log(Logger::DERIV, GTerminal::getTerminalTypeString(static_cast<int>((static_cast<GTerminal*>(symbol)->getType()))) + " ");
