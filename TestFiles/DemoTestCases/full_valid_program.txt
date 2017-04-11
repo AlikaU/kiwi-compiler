@@ -52,7 +52,7 @@ minValue = utility.findMin(sample);
 float randomize()
 {
 float value;
-value = 100 * (2 + 3.0 / 7.0006);
+value = 100.0 * (2.0 + 3.0 / 7.0006);
 value = 1.05 + ((2.04 * 2.47) - 3.0) + 7.0006 ;
 //return (value);
 };

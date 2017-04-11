@@ -608,9 +608,10 @@ bool Parser::processOperation( const std::list<GTerminal::TerminalTypes> operati
 
 		SemanticRecord::SemanticRecordType t = recHolder->getRecord()->getSemanticType();
 		if (t != termType) {
-			if (insideFinalPass) {
-				std::cout << "Type mismatch: " << SemanticRecord::typeStrings[t] << " and " << SemanticRecord::typeStrings[termType]
-					<< " at line " << multOp->getPosition().first << ", column " << multOp->getPosition().second;
+			if (!insideFinalPass) {
+				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nType mismatch: " + SemanticRecord::typeStrings[t] + " and " + SemanticRecord::typeStrings[termType]
+					+ " at line " + std::to_string(multOp->getPosition().first) + ", column " + std::to_string(multOp->getPosition().second));
+				error = true;
 			}
 			return false;
 		}

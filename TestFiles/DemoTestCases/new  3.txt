@@ -13,8 +13,9 @@ SYNTAX (print to file)
 	SYNcomplicatedExpr
 
 5. Conditional, loop, class declarations: full_valid_program 
+	Also show SymbolTable!
 
-SEMANTIC
+SEMANTIC (see table)
 
 1. Undefined var, class, function:
 	SEMundefVar
@@ -32,4 +33,4 @@ SEMANTIC
 CODE GENERATION
 
 1. Int and float variable memory allocation
-	CODEgen.txt
+	CODEgen
