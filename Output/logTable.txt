@@ -1,33 +1,17 @@
 
 
-Symbol Table for valid file: ../TestFiles/DemoTestCases/full_valid_program
+Symbol Table for valid file: ../TestFiles/DemoTestCases/SEMtypecheckAsgExpSuccess
 
-RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
-RECORD: var1, declared: true, INT, ARRAY, array dimension: [0][1][9][8][7][5][4], int, NORMAL
-RECORD: var2, declared: true, FLOAT, SIMPLE, float, NORMAL
-RECORD: findMax, declared: true, FUNCTION, ARRAY, array dimension: [100], 1 parameters: {INT, }local symbol table: 
-{
-RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
 }
 
-RECORD: findMin, declared: true, FUNCTION, ARRAY, array dimension: [100], 1 parameters: {INT, }local symbol table: 
+RECORD: var0, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: var1, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: var2, declared: true, INT, ARRAY, array dimension: [3], int, NORMAL
+RECORD: var3, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: var4, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: var5, declared: true, INT, ARRAY, array dimension: [5][4], int, NORMAL
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
-RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
-}
-
-}
-
-RECORD: sample, declared: true, INT, ARRAY, array dimension: [100], int, NORMAL
-RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: utility, declared: true, CLASS, CLASS, class, NORMAL
-RECORD: arrayUtility, declared: true, CLASS, ARRAY, array dimension: [7][6][3][2], class, NORMAL
-RECORD: t, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: randomize, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
-{
-RECORD: value, declared: true, FLOAT, SIMPLE, float, NORMAL
 }

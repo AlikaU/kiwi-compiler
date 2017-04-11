@@ -1,5 +1,1 @@
-
-Identifier array at line 8 is not defined in the current scope(findMax)
-Identifier array at line 13 is not defined in the current scope(findMax)
-Identifier array at line 21 is not defined in the current scope(findMin)
-Identifier array at line 25 is not defined in the current scope(findMin)
+Identifier var1 was not defined in the current scope!Identifier var2 was not defined in the current scope!Identifier var3 was not defined in the current scope!Identifier var4 was not defined in the current scope!Identifier var5 was not defined in the current scope!

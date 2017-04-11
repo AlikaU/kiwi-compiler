@@ -322,8 +322,9 @@ bool Parser::processVariableUse() {
 	currentScope->search(idTerm->getValue(), rec, found);
 	if (!found) {
 		// at this point, the variable might not have been defined, but maybe it's defined later
-		
-		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		if (!insideFinalPass) {
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		}
 		error = true;
 		return false;
 	}
@@ -426,18 +427,19 @@ void Parser::searchInScope(SymbolTable* scope, std::string identifier, SemanticR
 		SemanticRecord** func = &ptr;
 		bool b = false;
 		bool& foundFunc = b;
-		scope->getParent()->search(scope->getTableName(), func, foundFunc);
-		if (!foundFunc || !func || (*func)->getSemanticType() != SemanticRecord::FUNCTION) {
-			std::cout << "\nsomething really wrong happened here";
-			return;
-		}		
-		
-		SemanticFunction* myFunc = static_cast<SemanticFunction*>(*func);			
-		if (myFunc->hasParam(identifier)) {
-			found = true;
-			*record = myFunc->getParam(identifier);
+		if (scope->getParent() != NULL) {
+			scope->getParent()->search(scope->getTableName(), func, foundFunc);
+			if (!foundFunc || !func || (*func)->getSemanticType() != SemanticRecord::FUNCTION) {
+				std::cout << "\nsomething really wrong happened here";
+				return;
+			}
+			SemanticFunction* myFunc = static_cast<SemanticFunction*>(*func);			
+			if (myFunc->hasParam(identifier)) {
+				found = true;
+				*record = myFunc->getParam(identifier);
+			}
 		}
-		
+
 	}
 }
 
@@ -696,6 +698,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		// idNestList might be epsilon, so check:
 		GTerminal* term = getNextTerminalFromSemanticStack();
 		if (term == NULL || term->getType() != GTerminal::DOT) {
+			
 			searchInScope(currentScope, IDToken->getValue(), record, found);
 			if (found) {
 				allGood = true;
@@ -703,7 +706,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 			}
 			else {
 				if (insideFinalPass) {
-					Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+					Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + IDToken->getValue() + " was not defined in the current scope!");
 				}
 				semanticStack.pop_back();
 				return false;
@@ -719,7 +722,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 					}
 					else {
 						if (insideFinalPass) {
-							Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "Identifier " + IDToken->getValue() + " was not defined in the current scope!");
+							Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + IDToken->getValue() + " was not defined in the current scope!");
 						}
 						semanticStack.pop_back();
 						return false;
@@ -1163,7 +1166,7 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 			bool b = false;
 			bool& found = b;
 			currentScope->search(varTypeToken->getValue(), rec, found);
-			if (!found) {			
+			if (!found) {					
 				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + varTypeToken->getValue() + " at line " + std::to_string(varTypeToken->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
 				error = true;
 				return false;
