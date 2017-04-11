@@ -1,0 +1,3 @@
+
+ERROR: Parser.cpp: Syntax error encountered at token '$' at line 1, column 0
+ERROR: Parser.cpp: Handling error: POP (abandoned trying to parse prog)

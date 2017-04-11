@@ -4,9 +4,8 @@
 #define UNKNOWN_VALUE "Some unknown value"
 
 Parser::Parser(ParseTable* t, bool p, bool c, std::string folder, std::string filename) {
-	std::string str = folder + filename + ".txt";
-	filepath = str.c_str();
-	scanner = new Scanner(filepath);;
+	filepathStr = folder + filename + ".txt";
+	scanner = new Scanner(filepathStr.c_str());
 	table = t;
 	error = false;
 	semanticError = false;
@@ -46,7 +45,7 @@ bool Parser::parse() {
 	std::cout << "\nDoing second pass";
 	insideFinalPass = true;
 	delete scanner;
-	scanner = new Scanner(filepath);
+	scanner = new Scanner(filepathStr.c_str());
 	semanticStack.clear();
 	parsingStack = std::stack<GSymbol*>();
 	return passCode();
@@ -199,6 +198,9 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		SemanticVariable* varRecord = createSemanticVariable(false);
 		varRecord->setDeclared();
 		currentScope->insert(varRecord->getIdentifier(), varRecord);
+		if (insideFinalPass) {
+			codeGen->genVariableDecl(varRecord);			
+		}
 	}		
 		break;
 	case (SemanticAction::createSemanticFunctionAndTable):

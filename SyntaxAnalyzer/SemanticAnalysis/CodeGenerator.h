@@ -9,34 +9,23 @@
 class CodeGenerator {
 
 	std::ofstream exeFileStream;
-	const char* executable_filepath;
+	std::string executable_filepath;
 
 
 public:
 
 	CodeGenerator(std::string filename) {
-
-		std::cout << "inside codegen constructor";
-
-		// erase log files from previous run
-		std::string str = EXECUTABLE_FOLDER + filename + ".m";
-		str = "../" + str;
-		executable_filepath = str.c_str();
-		remove(executable_filepath);
-		std::ofstream exeFileStream(executable_filepath, std::fstream::out | std::fstream::app);
-		if (exeFileStream.is_open()) {
-			exeFileStream << "\nWORKING";
-		}
-		else {
-			std::cout << "\nCould not open executableFile for writing!";
-		}
+		
+		// erase log files from previous run		
+		executable_filepath = EXECUTABLE_FOLDER + filename + ".m";
+		remove(executable_filepath.c_str());		
 	}
 
 	CodeGenerator() {
 		exeFileStream.close();
 	}
 
-	bool genVariableDecl();
+	void genVariableDecl(SemanticVariable* varRecord);
 
 	bool genExpr();
 
