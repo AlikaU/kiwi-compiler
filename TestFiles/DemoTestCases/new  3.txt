@@ -1,10 +1,35 @@
 Names of input files: 
 
+SYNTAX
+
 1. Syntax error detection, reporting, recovery:
 	SYNbad5, SYNbad4, SYNbad3, SYNbad2, SYNbad1
 	
-2. Output derivation: 
-	full_valid_program
-	
-3. Main function, free functions: 
-	SYNfreefunction
+2. Main function, free functions: SYNfreefunction
+
+3. Variable declarations: SYNvarDecl
+
+4. Complex expressions, access to class members, arrays: 
+	SYNcomplicatedExpr
+
+5. Conditional, loop, class declarations: full_valid_program 
+
+SEMANTIC
+
+1. Undefined id, var, class, function:
+	SEMundefVar
+	SEMundefFunction
+	SEMundefClass
+
+2. Mulitply defined id:
+	SEMmultipleid
+
+2. Type checking of an assign + complex expr + function return type:
+	SEMtypemismatch
+	SEMtypecheckAsgExprSuccess
+	SEMtypecheckAsgExprError
+
+CODE GENERATION
+
+1. Int and float variable memory allocation
+	CODEgen.txt

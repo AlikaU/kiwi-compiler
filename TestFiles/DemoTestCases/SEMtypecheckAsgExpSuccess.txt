@@ -1,5 +1,5 @@
 class MyClass1 {
-
+int findMax(){};
 };
 program {
 
@@ -14,6 +14,9 @@ int var5[4][5];
 
 var0 = var1 + var2[1] * var3 - var4 / var5[2][3];
 
+// type checking of function return type
+MyClass1 myInstance;
+var0 = myInstance.findMax();
 
 
 };
