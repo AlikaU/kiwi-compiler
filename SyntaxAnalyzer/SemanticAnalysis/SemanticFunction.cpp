@@ -3,8 +3,8 @@
 
 SemanticFunction::SemanticFunction(std::string identifier,
 	SemanticStructure sStruct, std::list<int>arrDimension, int addr,
-	std::list<SemanticVariable*>* prms, SymbolTable* lSymbols, SemanticType* rType)
-	: SemanticRecord(identifier, SemanticRecord::FUNCTION, sStruct, arrDimension, addr) {
+	std::list<SemanticVariable*>* prms, SymbolTable* lSymbols, SemanticType* rType, std::pair<int, int> position)
+	: SemanticRecord(identifier, SemanticRecord::FUNCTION, sStruct, arrDimension, addr, position) {
 	params = prms;
 	returnType = rType;
 	int count = 0;

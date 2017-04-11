@@ -18,7 +18,7 @@ void SymbolTable::search(std::string identifier, SemanticRecord** ptr, bool &fou
 void SymbolTable::insert(std::string identifier, SemanticRecord* ptr) {
 	for (SemanticRecord* record : *records) {
 		if (record->getIdentifier() == identifier) {
-			std::cout << "\nCannot insert record with identifier " << identifier << ". Another record with the same name exists.";
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nCannot insert record with identifier " + identifier + " at line " + " Another record with the same name exists.");
 			return;
 		}
 	}

@@ -14,7 +14,7 @@ class SemanticFunction : public SemanticRecord {
 
 public: 
 	SemanticFunction(std::string, SemanticStructure, std::list<int>, int,
-		std::list<SemanticVariable*>* prms, SymbolTable* lSymbols, SemanticType* rType);
+		std::list<SemanticVariable*>* prms, SymbolTable* lSymbols, SemanticType* rType, std::pair<int, int>);
 	~SemanticFunction();
 	SymbolTable* getLocalSymbolTable() { return localSymbolTable; }
 	void printDetail();

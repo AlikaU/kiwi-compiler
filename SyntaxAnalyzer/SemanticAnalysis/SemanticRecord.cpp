@@ -2,7 +2,7 @@
 #include <string>
 
 SemanticRecord::SemanticRecord(std::string i, SemanticRecordType st, 
-	SemanticStructure ss, std::list<int> arrD, int addr) {
+	SemanticStructure ss, std::list<int> arrD, int addr, std::pair<int, int> pos) {
 	identifier = i;
 	declared = false;
 	semanticType = st;
@@ -10,6 +10,8 @@ SemanticRecord::SemanticRecord(std::string i, SemanticRecordType st,
 
 	arrayDimension = std::list<int>(arrD);
 	address = addr;
+	position.first = pos.first;
+	position.second = pos.second;
 }
 
 void SemanticRecord::print() {

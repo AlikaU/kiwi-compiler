@@ -1,0 +1,43 @@
+class MyClass1 {
+
+// multiply defined id
+int x;
+int x;
+
+};
+program {
+
+
+
+// variables for type checking of an assignment statement and a complex expression
+// (I don't allow mixing int and float)
+int var0;
+float var1;
+int var2[3];
+int var3;
+int var4;
+int var5[4][5];
+
+// variables for type mismatch
+int a;
+int b;
+float c;
+
+// undefined class
+someClass m3;
+
+// undefined variable
+someVar=1;
+
+// undefined function
+b = someFunction(a);
+
+// type checking of an assignment statement and a complex expression (2/2) 
+// (I don't allow mixing int and float)
+var0 = var1 + var2[1] * var3 - var4 / var5[2][3];
+
+// type mismatch
+a=2.5;
+b = c;
+
+};

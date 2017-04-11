@@ -5,7 +5,7 @@ class SemanticVariable : public SemanticRecord {
 
 public:
 	enum VariableKind {NORMAL = 0, PARAM = 1};
-	SemanticVariable(std::string, SemanticRecordType, SemanticStructure, std::list<int>, int, VariableKind);
+	SemanticVariable(std::string, SemanticRecordType, SemanticStructure, std::list<int>, int, VariableKind, std::pair<int, int>);
 	std::string VariableKindString[2] = { "NORMAL", "PARAM" };
 	void printDetail();
 	

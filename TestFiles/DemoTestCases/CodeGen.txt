@@ -1,9 +1,13 @@
 class Utility
 {
+
+// int and float memory allocation
 int bananas;
 float melons;
 
+// array memory allocation
 int apples[3];
 int kiwis[2][3][4];
+
 };
 program {};

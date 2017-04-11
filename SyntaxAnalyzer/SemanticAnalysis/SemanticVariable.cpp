@@ -2,8 +2,8 @@
 #include <string>
 
 SemanticVariable::SemanticVariable(std::string identifier, SemanticRecordType sType,
-	SemanticStructure sStruct, std::list<int> arrDimension, int addr, VariableKind k)
-		: SemanticRecord (identifier, sType, sStruct, arrDimension, addr) {
+	SemanticStructure sStruct, std::list<int> arrDimension, int addr, VariableKind k, std::pair<int, int> position)
+		: SemanticRecord (identifier, sType, sStruct, arrDimension, addr, position) {
 	kind = k;
 }
 
