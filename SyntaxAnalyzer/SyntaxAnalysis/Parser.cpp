@@ -887,7 +887,9 @@ bool Parser::processArraySizeList() {
 			logSymbolErrorAndSetFlag(GTerminal::getTerminalTypeString(expectedTypes[expectedType]));
 			return false;
 		}
-		currentArraySizeList.push_front(new GTerminal(term));
+		if (term->getType() == GTerminal::INTNUM) {
+			currentArraySizeList.emplace_back(atoi(term->getValue().c_str()));
+		}		
 		semanticStack.pop_back();
 		term = getNextTerminalFromSemanticStack();
 		if (term == NULL) { return false; }
@@ -956,13 +958,13 @@ void Parser::createSemanticFunctionAndTable() {
 
 	SemanticRecord::SemanticStructure recordStructure;
 	bool isInt = false;
-	int arrayDimension = 0;
+	std::list<int> arrayDimension;
 	if (funcRetTypeToken->getType() == GTerminal::INTWORD) { recordStructure = SemanticRecord::SIMPLE; isInt = true; }
 	else if (funcRetTypeToken->getType() == GTerminal::FLOATWORD) { recordStructure = SemanticRecord::SIMPLE; }
 	else { recordStructure = SemanticRecord::CLASS_S; }
 	if (!(currentArraySizeList.empty())) {
 		recordStructure = SemanticRecord::ARRAY;
-		arrayDimension = currentArraySizeList.size() / 3;
+		arrayDimension = std::list<int>(currentArraySizeList);
 	}
 	SymbolTable* functionTable = new SymbolTable(currentScope, funcIDtoken->getValue());
 
@@ -982,7 +984,8 @@ void Parser::createSemanticFunctionAndTable() {
 		}
 		return;
 	}
-	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, 0, 0));
+	std::list<int> myList;
+	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, &arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, 0, 0));
 	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
 	funcRecord->setDeclared();
 	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
@@ -1062,13 +1065,13 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 	SemanticRecord::SemanticRecordType recordType;
 	SemanticRecord::SemanticStructure recordStructure;
 	bool isInt = false;
-	int arrayDimension = 0;
+	std::list<int> arrayDimension;
 	if (varTypeToken->getType() == GTerminal::INTWORD) { recordType = SemanticRecord::INT; recordStructure = SemanticRecord::SIMPLE; isInt = true; }
 	else if (varTypeToken->getType() == GTerminal::FLOATWORD) { recordType = SemanticRecord::FLOAT; recordStructure = SemanticRecord::SIMPLE;}
 	else { recordType = SemanticRecord::CLASS_T; recordStructure = SemanticRecord::CLASS_S;	}
 	if (!(currentArraySizeList.empty())) {
 		recordStructure = SemanticRecord::ARRAY;
-		arrayDimension = currentArraySizeList.size() / 3;
+		arrayDimension = std::list<int>(currentArraySizeList);
 	}
 	SemanticVariable::VariableKind varKind;
 	if (fParam) {
@@ -1078,7 +1081,7 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 		varKind = SemanticVariable::NORMAL;
 	}
 
-	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, varKind);
+	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, &arrayDimension, 0, varKind);
 	return varRecord;
 }
 

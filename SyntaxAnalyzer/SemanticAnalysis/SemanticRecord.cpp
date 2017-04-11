@@ -21,14 +21,15 @@ void SemanticRecord::print() {
 	//std::cout << "\nRECORD: " << identifier << ", " << declared  << ", " 
 		//<< typeStrings[static_cast<int>(semanticType)]
 		//<< ", " << structureStrings[static_cast<int>(semanticStructure)];
-
-	if (arrayDimension->empty() == false) {
-		Logger::getLogger()->log(Logger::TABLE, ", array dimension: ");
-		for (int dim : *arrayDimension) {
-			std::string str = "[" + dim ;
-			str = str + "]";
-			Logger::getLogger()->log(Logger::TABLE, str);
-		}		
+	if (arrayDimension != NULL) {
+		if (arrayDimension->empty() == false) {
+			Logger::getLogger()->log(Logger::TABLE, ", array dimension: ");
+			for (int dim : *arrayDimension) {
+				std::string str = "[" + dim;
+				str = str + "]";
+				Logger::getLogger()->log(Logger::TABLE, str);
+			}
+		}
 	}
 
 	printDetail();	

@@ -52,7 +52,7 @@ class Parser {
 	bool isCollecting;
 	SymbolTable* globalSymbolTable;
 	SymbolTable* currentScope;
-	std::list<GTerminal*> currentArraySizeList;
+	std::list<int> currentArraySizeList;
 	SemanticVariable* createSemanticVariable(bool);
 	void createSemanticClassAndTable();
 	void createSemanticFunctionAndTable();

@@ -18,15 +18,3 @@ TOKEN: PUNCTUATION: "{", line 6, column 9
 TOKEN: PUNCTUATION: "}", line 6, column 10
 TOKEN: PUNCTUATION: ";", line 6, column 10
 TOKEN: $: "$", line 6, column 10
-TOKEN: RESERVED_WORD: "class", line 1, column 1
-TOKEN: IDENTIFIER: "Utility", line 1, column 7
-TOKEN: PUNCTUATION: "{", line 2, column 1
-TOKEN: RESERVED_WORD: "int", line 3, column 1
-TOKEN: IDENTIFIER: "bananas", line 3, column 5
-TOKEN: PUNCTUATION: ";", line 3, column 12
-TOKEN: RESERVED_WORD: "int", line 4, column 1
-TOKEN: IDENTIFIER: "apples", line 4, column 5
-TOKEN: PUNCTUATION: "[", line 4, column 11
-TOKEN: INT: "3", line 4, column 12
-TOKEN: PUNCTUATION: "]", line 4, column 13
-TOKEN: PUNCTUATION: ";", line 4, column 14
