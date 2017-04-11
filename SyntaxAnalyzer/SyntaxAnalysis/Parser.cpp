@@ -102,7 +102,7 @@ bool Parser::passCode() {
 				currentScannedToken = scanner->getNextToken();				
 			}
 			else {		
-				if (insideFinalPass) {
+				if (!insideFinalPass) {
 					Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Syntax error encountered at token '" + term.getValue()
 						+ "' at line " + std::to_string(term.getPosition().first) + ", column " + std::to_string(term.getPosition().second));
 				}			

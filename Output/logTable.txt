@@ -1,6 +1,6 @@
 
 
-Symbol Table for valid file: ../TestFiles/DemoTestCases/SYNcomplicatedExpr
+Symbol Table for valid file: ../TestFiles/DemoTestCases/bad5
 
 RECORD: A, declared: true, CLASS, CLASS, local symbol table: 
 {

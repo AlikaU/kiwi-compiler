@@ -11,6 +11,8 @@ bool printDerivationToConsole = false;
 //bool skipLongFiles = true;
 bool success = true;
 int answer;
+bool askQs = true; // ask questions in console
+
 
 void testCorrectInput(std::string folder, std::string filename, ParseTable* pTable) {
 	std::cout << "\n\nNow parsing valid file: " << folder << filename;
@@ -82,7 +84,7 @@ void askQuestions() {
 
 int main(int argc, char** argv)
 {
-	bool askQs = false;
+	
 	if (askQs) {
 		askQuestions();
 	}
@@ -99,7 +101,7 @@ int main(int argc, char** argv)
 	testWrongInput("bad_type_mismatch", &pTable);
 	*/
 	//testCorrectInput("full_valid_program2", &pTable);
-	testCorrectInput(inputFolder, "SYNcomplicatedExpr", &pTable);
+	testCorrectInput(inputFolder, "bad5", &pTable);
 
 	
 		
