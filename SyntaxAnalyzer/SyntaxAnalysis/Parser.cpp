@@ -85,6 +85,8 @@ bool Parser::passCode() {
 			if (term.getPosition().first == 41 && term.getPosition().second == 26) {
 				std::cout << "";
 			}
+			delete lastTerminal;
+			lastTerminal = new GTerminal(&term);
 
 			// if the scanned token is the same as the one we have on the top of the stack
 			if (static_cast<GTerminal*>(topSymbol)->getType() == term.getType()) {
@@ -1182,6 +1184,20 @@ void Parser::inverseRHSMultiplePush(int ruleNo) {
 
 	while (!(rule.empty())) {
 		if (! (rule.back()->isEpsilon())) {
+
+			if (rule.back()->getSymbolType() == GSymbol::semanticAction) {
+				std::pair<int, int> pos;
+				if (lastTerminal == NULL) {
+					pos.first = 0;
+					pos.second = 0;
+				}
+				else {
+					pos = lastTerminal->getPosition();
+				}
+				
+				SemanticAction* act = static_cast<SemanticAction*>(rule.back());
+				act->setPosition(pos);
+			}
 
 			parsingStack.push(rule.back());
 

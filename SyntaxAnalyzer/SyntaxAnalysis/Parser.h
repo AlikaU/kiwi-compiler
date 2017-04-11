@@ -78,6 +78,7 @@ class Parser {
 	bool insideFinalPass;
 	bool passCode();
 	std::string filepathStr;
+	GTerminal* lastTerminal;
 	
 public: 
 	Parser(ParseTable* t, bool p, bool c, std::string, std::string);

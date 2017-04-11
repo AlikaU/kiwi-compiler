@@ -57,6 +57,10 @@ public:
 	std::string getSemanticTypeString() { return SemanticTypeStrings[static_cast<int>(type)]; }
 	GSymbol * clone() const;
 	GSymbolTypes getSymbolType();
+	void setPosition(std::pair<int, int> pos) {
+		position.first = pos.first;
+		position.second = pos.second;
+	}
 
 private: 
 	SemanticActionTypes type;
