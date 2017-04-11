@@ -208,7 +208,9 @@ void Parser::processSemanticAction(SemanticAction* action) {
 			varRecord->setDeclared();
 		}		
 		if (!insideFinalPass) {
-			currentScope->insert(varRecord->getIdentifier(), varRecord);
+			if (!(currentScope->insert(varRecord->getIdentifier(), varRecord))) {
+				error = true;
+			}
 		}		
 		if (insideFinalPass && varRecord != NULL) {
 			codeGen->genVariableDecl(varRecord);
@@ -1091,7 +1093,9 @@ void Parser::createSemanticFunctionAndTable() {
 	}
 	std::list<int> myList;
 	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0, funcIDtoken->getPosition()), funcIDtoken->getPosition());
-	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
+	if (!(currentScope->insert(funcRecord->getIdentifier(), funcRecord))) {
+		error = true;
+	}
 	funcRecord->setDeclared();
 	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
 }
@@ -1105,7 +1109,9 @@ void Parser::createSemanticClassAndTable() {
 		std::list<int> myList;
 		SemanticClass* classRecord = new SemanticClass(className, myList, 0, classTable, term->getPosition());
 		if (!insideFinalPass) {
-			currentScope->insert(className, classRecord);
+			if (!(currentScope->insert(className, classRecord))) {
+				error = true;
+			}
 		}		
 		currentScope = classTable;
 		classRecord->setDeclared();
@@ -1140,7 +1146,9 @@ void Parser::createSemanticVariableAndLeaveOnStack() {
 	// create variable
 	SemanticVariable* var = createSemanticVariable(false);
 	var->setDeclared();
-	currentScope->insert(var->getIdentifier(), var);
+	if (!(currentScope->insert(var->getIdentifier(), var))) {
+		error = true;
+	}
 
 	// push back the id token, for the assignment statement to run correctly
 	semanticStack.push_back(varIDToken);

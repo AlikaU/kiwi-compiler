@@ -1,14 +1,13 @@
 
 
-Symbol Table for valid file: ../TestFiles/DemoTestCases/SYNvarDecl
+Symbol Table for valid file: ../TestFiles/DemoTestCases/SEMmultipleid
 
-RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
+RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
 }
 
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+{
 RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: y, declared: true, FLOAT, SIMPLE, float, NORMAL
-RECORD: z, declared: true, CLASS, CLASS, class, NORMAL
-RECORD: a, declared: true, CLASS, ARRAY, array dimension: [3], class, NORMAL
-RECORD: b, declared: true, INT, ARRAY, array dimension: [4], int, NORMAL
-RECORD: c, declared: true, FLOAT, ARRAY, array dimension: [2], float, NORMAL
+}

@@ -18,7 +18,7 @@ public:
 	void clearTable() { records->clear(); }
 	SymbolTable* getParent() { return parent; }
 	void search(std::string identifier, SemanticRecord**, bool&);
-	void insert(std::string identifier, SemanticRecord*);
+	bool insert(std::string identifier, SemanticRecord*);
 	void print();
 
 
