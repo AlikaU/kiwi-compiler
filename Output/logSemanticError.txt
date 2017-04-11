@@ -1,2 +1,3 @@
 
-Cannot insert record with identifier x. Another record with the same name exists.
+Identifier someFunction at line 9 is not defined in the current scope(GlobalSymbolTable)
+Identifier a at line 9 is not defined in the current scope(GlobalSymbolTable)

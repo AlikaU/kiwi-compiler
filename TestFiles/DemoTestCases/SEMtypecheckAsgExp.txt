@@ -1,0 +1,19 @@
+class MyClass1 {
+
+};
+program {
+
+// type checking of an assignment statement and a complex expression
+// (I don't allow mixing int and float)
+int var0;
+float var1;
+int var2[3];
+int var3;
+int var4;
+int var5[4][5];
+
+var0 = var1 + var2[1] * var3 - var4 / var5[2][3];
+
+
+
+};

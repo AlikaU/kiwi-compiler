@@ -26,6 +26,7 @@ public:
 	SemanticStructure getSemanticStructure() const { return semanticStructure; }
 	std::list<int> getArrayDimension() const { return arrayDimension; }
 	int getAddress() const { return address; }
+	std::pair<int, int> getPosition() { return position; }
 	
 
 protected:

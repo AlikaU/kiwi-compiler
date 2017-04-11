@@ -200,11 +200,13 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::createSemanticVariable):
 	{
 		SemanticVariable* varRecord = createSemanticVariable(false);
-		varRecord->setDeclared();
+		if (varRecord != NULL) {
+			varRecord->setDeclared();
+		}		
 		if (!insideFinalPass) {
 			currentScope->insert(varRecord->getIdentifier(), varRecord);
 		}		
-		if (insideFinalPass) {
+		if (insideFinalPass && varRecord != NULL) {
 			codeGen->genVariableDecl(varRecord);
 			delete varRecord;
 		}		
@@ -218,6 +220,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		break;
 	
 	case (SemanticAction::processVariableUse):
+		processVariableUse();
 		break;
 	case (SemanticAction::processExpression): 
 		processExpression();
@@ -245,6 +248,44 @@ void Parser::processSemanticAction(SemanticAction* action) {
 		break;
 	}
 	//semanticStack.push_back(action);
+}
+
+bool Parser::processVariableUse() {
+	GSymbol* symbol;
+	if (!(semanticStack.empty())) {
+		symbol = semanticStack.back();
+	}
+	else return false;
+
+	if (symbol->getSymbolType() != GSymbol::terminal) {
+		if (insideFinalPass) {
+			std::cout << "\nExpected terminal";
+		}
+		return false;
+	}
+	GTerminal* idTerm = static_cast<GTerminal*>(symbol);
+
+	if (idTerm->getType() != GTerminal::ID) {
+		if (insideFinalPass) {
+			std::cout << "\nExpected ID";
+		}
+		return false;
+	}
+	
+	SemanticRecord* ptr = NULL;
+	SemanticRecord** rec = &ptr;
+	bool b = false;
+	bool& found = b;
+	currentScope->search(idTerm->getValue(), rec, found);
+	if (!found) {
+		// at this point, the variable might not have been defined, but maybe it's defined later
+		
+		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+		
+		error = true;
+		return false;
+
+	}
 }
 
 bool Parser::processAssignment() {
@@ -659,7 +700,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 			currentType = funcRecord->getReturnType()->getSemanticType();
 		}
 		std::list<int> myList;
-		SemanticType* typeRecord = new SemanticType(currentType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0);
+		SemanticType* typeRecord = new SemanticType(currentType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0, idRecord->getPosition());
 		semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 		return true;
 	}
@@ -832,7 +873,7 @@ void Parser::processNum() {
 		return;
 	}
 	std::list<int> myList;
-	SemanticType* typeRecord = new SemanticType(currentType, term->getValue(), SemanticRecord::SIMPLE, myList, 0);
+	SemanticType* typeRecord = new SemanticType(currentType, term->getValue(), SemanticRecord::SIMPLE, myList, 0, term->getPosition());
 	semanticStack.pop_back();
 	semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 }
@@ -994,7 +1035,7 @@ void Parser::createSemanticFunctionAndTable() {
 		return;
 	}
 	std::list<int> myList;
-	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0));
+	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0, funcIDtoken->getPosition()), funcIDtoken->getPosition());
 	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
 	funcRecord->setDeclared();
 	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
@@ -1007,7 +1048,7 @@ void Parser::createSemanticClassAndTable() {
 		std::string className = term->getValue();
 		SymbolTable* classTable = new SymbolTable(currentScope, className);
 		std::list<int> myList;
-		SemanticClass* classRecord = new SemanticClass(className, myList, 0, classTable);
+		SemanticClass* classRecord = new SemanticClass(className, myList, 0, classTable, term->getPosition());
 		currentScope->insert(className, classRecord);
 		currentScope = classTable;
 		classRecord->setDeclared();
@@ -1072,6 +1113,23 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 	GTerminal* varTypeToken = new GTerminal(term);
 	semanticStack.pop_back();
 
+
+	// if ID, then it's a class. If in final pass, verify if it is declared
+	if (insideFinalPass) {
+		if (varTypeToken->getType() == GTerminal::ID) {
+			SemanticRecord* ptr = NULL;
+			SemanticRecord** rec = &ptr;
+			bool b = false;
+			bool& found = b;
+			currentScope->search(varTypeToken->getValue(), rec, found);
+			if (!found) {			
+				Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + varTypeToken->getValue() + " at line " + std::to_string(varTypeToken->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+				error = true;
+				return false;
+			}
+		}
+	}
+
 	SemanticRecord::SemanticRecordType recordType;
 	SemanticRecord::SemanticStructure recordStructure;
 	bool isInt = false;
@@ -1090,8 +1148,8 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 	else {
 		varKind = SemanticVariable::NORMAL;
 	}
-
-	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, varKind);
+	
+	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, varKind, varIDToken->getPosition());
 	return varRecord;
 }
 

@@ -5,7 +5,7 @@ program {
 
 int x;
 
-// undefined function
-x = someFunction(a);
+// undefined variable
+someVar=1;
 
 };

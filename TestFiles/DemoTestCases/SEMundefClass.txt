@@ -1,0 +1,12 @@
+class MyClass1 {
+
+};
+program {
+
+
+
+// undefined class
+someClass m3;
+
+
+};
