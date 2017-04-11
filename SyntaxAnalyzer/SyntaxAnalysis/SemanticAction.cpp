@@ -19,7 +19,8 @@ std::string SemanticAction::SemanticTypeStrings[NUM_OF_SEMTYPES] = {
 	"processArithExpr",
 	"processRelExpr",
 	"processNum", 
-	"createSemanticVariableAndLeaveOnStack"
+	"createSemanticVariableAndLeaveOnStack", 
+	"processFunctionUse"
 };
 
 SemanticAction::SemanticActionTypes SemanticAction::stringExclMarkToType(std::string s) {

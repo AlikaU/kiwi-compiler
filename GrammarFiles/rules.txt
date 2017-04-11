@@ -68,7 +68,7 @@
 68	idNestListThenIdThenIndiceList1 → '.' idNestListThenIdThenIndiceList	'.'
 69	idNestListThenIdThenIndiceList1 → ε	'=', ')'
 70	idNestListIdThenIndiceListOrAParams → 'id' idNestListIdThenIndiceListOrAParams1	'id'
-71	idNestListIdThenIndiceListOrAParams1 → !processVariableUse indiceList !processIndiceList idNestListIdThenIndiceListOrAParams2	'', '.'
+71	idNestListIdThenIndiceListOrAParams1 → indiceList !processIndiceList !processVariableUse idNestListIdThenIndiceListOrAParams2	'', '.'
 72	idNestListIdThenIndiceListOrAParams1 → !processFunctionUse '(' aParams ')'	'('
 73	idNestListIdThenIndiceListOrAParams2 → '.' idNestListIdThenIndiceListOrAParams	'.'
 74	idNestListIdThenIndiceListOrAParams2 → ε	'*', '/', 'and', '+', '-', 'or', '==', '<>', '<', '>', '<=', '>=', '', ')', ';', ','

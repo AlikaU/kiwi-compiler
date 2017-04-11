@@ -99,7 +99,7 @@ int main(int argc, char** argv)
 	testWrongInput("bad_type_mismatch", &pTable);
 	*/
 	//testCorrectInput("full_valid_program2", &pTable);
-	testCorrectInput(inputFolder, "SemanticBad", &pTable);
+	testCorrectInput(inputFolder, "full_valid_program", &pTable);
 
 	
 		

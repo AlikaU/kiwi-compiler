@@ -246,8 +246,51 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	case (SemanticAction::createSemanticVariableAndLeaveOnStack):
 		createSemanticVariableAndLeaveOnStack();
 		break;
+	case (SemanticAction::processFunctionUse):
+		processFunctionUse();
+		break;
 	}
 	//semanticStack.push_back(action);
+}
+
+bool Parser::processFunctionUse() {
+	GSymbol* symbol;
+	if (!(semanticStack.empty())) {
+		symbol = semanticStack.back();
+	}
+	else return false;
+
+	if (symbol->getSymbolType() != GSymbol::terminal) {
+		if (insideFinalPass) {
+			std::cout << "\nExpected terminal";
+		}
+		return false;
+	}
+	GTerminal* idTerm = static_cast<GTerminal*>(symbol);
+
+	if (idTerm->getType() != GTerminal::ID) {
+		if (insideFinalPass) {
+			std::cout << "\nExpected ID";
+		}
+		return false;
+	}
+
+	if (insideFinalPass) {
+		SemanticRecord* ptr = NULL;
+		SemanticRecord** rec = &ptr;
+		bool b = false;
+		bool& found = b;
+		currentScope->search(idTerm->getValue(), rec, found);
+		if (!found) {
+
+			Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nFunction " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
+
+			error = true;
+			return false;
+		}
+	}
+
+	return true;
 }
 
 bool Parser::processVariableUse() {
@@ -281,10 +324,8 @@ bool Parser::processVariableUse() {
 		// at this point, the variable might not have been defined, but maybe it's defined later
 		
 		Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier " + idTerm->getValue() + " at line " + std::to_string(idTerm->getPosition().first) + " is not defined in the current scope(" + currentScope->getTableName() + ")");
-		
 		error = true;
 		return false;
-
 	}
 }
 
@@ -622,7 +663,7 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 			if (!found) {
 				// at this point, function might not have been defined, but later it's maybe defined, so wait till second pass
 				if (insideFinalPass) {
-					Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '" + functionIdToken->getValue() + " at line " + std::to_string(functionIdToken->getPosition().first) + "' is not defined in current scope (" + currentScope->getTableName() + ")");
+					//Logger::getLogger()->log(Logger::SEMANTIC_ERROR, "\nIdentifier '" + functionIdToken->getValue() + " at line " + std::to_string(functionIdToken->getPosition().first) + "' is not defined in current scope (" + currentScope->getTableName() + ")");
 					error = true;
 				}
 			}

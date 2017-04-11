@@ -80,6 +80,7 @@ class Parser {
 	std::string filepathStr;
 	GTerminal* lastTerminal;
 	bool processVariableUse();
+	bool processFunctionUse();
 	
 public: 
 	Parser(ParseTable* t, bool p, bool c, std::string, std::string);

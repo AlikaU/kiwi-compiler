@@ -6,6 +6,6 @@ program {
 int x;
 
 // undefined function
-x = someFunction(a);
+x = someFunction(1);
 
 };
