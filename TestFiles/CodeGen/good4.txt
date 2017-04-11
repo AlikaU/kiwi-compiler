@@ -1,6 +1,6 @@
 class Utility
 {
 int bananas;
-int apples;
+int apples[3];
 };
 program {};

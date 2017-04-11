@@ -5,11 +5,5 @@ Symbol Table for valid file: ../TestFiles/CodeGen/good4
 RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
 {
 RECORD: bananas, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: apples, declared: true, INT, SIMPLE, int, NORMAL
-}
-
-RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
-{
-RECORD: bananas, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: apples, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: apples, declared: true, INT, ARRAY, int, NORMAL
 }

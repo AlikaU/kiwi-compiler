@@ -8,7 +8,7 @@ void CodeGenerator::genVariableDecl(SemanticVariable* varRecord) {
 	if (varRecord->getSemanticType() == SemanticRecord::INT || varRecord->getSemanticType() == SemanticRecord::FLOAT) {
 		std::ofstream exeFileStream(executable_filepath.c_str(), std::fstream::out | std::fstream::app);
 		// not array
-		if (varRecord->getArrayDimension() > 0) {
+		if (varRecord->getArrayDimension()->empty() == true) {
 
 			if (exeFileStream.is_open()) {
 				exeFileStream << "\n" << varRecord->getIdentifier() << "\t" << "dw 0";

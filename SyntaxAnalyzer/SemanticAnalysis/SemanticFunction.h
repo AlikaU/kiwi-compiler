@@ -13,7 +13,7 @@ class SemanticFunction : public SemanticRecord {
 	SymbolTable* localSymbolTable;
 
 public: 
-	SemanticFunction(std::string, SemanticStructure, int, int,
+	SemanticFunction(std::string, SemanticStructure, std::list<int>*, int,
 		std::list<SemanticVariable*>* prms, SymbolTable* lSymbols, SemanticType* rType);
 	~SemanticFunction();
 	SymbolTable* getLocalSymbolTable() { return localSymbolTable; }

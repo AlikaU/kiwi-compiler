@@ -2,7 +2,7 @@
 #include <string>
 
 SemanticFunction::SemanticFunction(std::string identifier,
-	SemanticStructure sStruct, int arrDimension, int addr, 
+	SemanticStructure sStruct, std::list<int>* arrDimension, int addr,
 	std::list<SemanticVariable*>* prms, SymbolTable* lSymbols, SemanticType* rType)
 	: SemanticRecord(identifier, SemanticRecord::FUNCTION, sStruct, arrDimension, addr) {
 	params = prms;

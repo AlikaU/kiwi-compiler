@@ -13,7 +13,7 @@ public:
 	enum SemanticStructure { SIMPLE = 0, ARRAY = 1, CLASS_S = 2};
 	static const std::string structureStrings[3];
 
-	SemanticRecord(std::string, SemanticRecordType, SemanticStructure, int, int);
+	SemanticRecord(std::string, SemanticRecordType, SemanticStructure, std::list<int>*, int);
 	~SemanticRecord() {}
 
 	std::string getIdentifier() const { return identifier; }
@@ -24,7 +24,7 @@ public:
 	}
 	SemanticRecordType getSemanticType() const { return semanticType; }
 	SemanticStructure getSemanticStructure() const { return semanticStructure; }
-	int getArrayDimension() const { return arrayDimension; }
+	std::list<int>* getArrayDimension() const { return arrayDimension; }
 	int getAddress() const { return address; }
 	
 
@@ -33,7 +33,7 @@ protected:
 	std::string identifier;
 	bool declared;	
 	SemanticStructure semanticStructure;
-	int arrayDimension;
+	std::list<int>* arrayDimension;
 	int address;
 
 
