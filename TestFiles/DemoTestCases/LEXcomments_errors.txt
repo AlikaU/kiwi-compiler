@@ -1,0 +1,10 @@
+// Total: 0 tokens, 3 errors
+// close comment without opening
+*/
+
+///*
+*/
+
+// open comment without closing
+/* NotAToken
+

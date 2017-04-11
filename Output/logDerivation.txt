@@ -1,0 +1,162 @@
+
+
+Derivation for valid file: ../TestFiles/DemoTestCases/SYNvarDecl
+prog 
+classDeclList progBody 
+classDeclList progBody 
+classDecl classDeclList progBody 
+'class' 'id' '{' varThenFuncList '}' ';' classDeclList progBody 
+class 'id' '{' varThenFuncList '}' ';' classDeclList progBody 
+class 'id' '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility { varThenFuncList '}' ';' classDeclList progBody 
+class Utility { '}' ';' classDeclList progBody 
+class Utility { } ';' classDeclList progBody 
+class Utility { } ';' classDeclList progBody 
+class Utility { } ; classDeclList progBody 
+class Utility { } ; classDeclList progBody 
+class Utility { } ; progBody 
+class Utility { } ; 'program' funcBody ';' funcDefList 
+class Utility { } ; program funcBody ';' funcDefList 
+class Utility { } ; program '{' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; 'float' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; 'float' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; 'id' varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; 'id' varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; 'id' varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; 'id' varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a arraySize arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a '[' 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b arraySize arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b '[' 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; 'float' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; 'float' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c arraySize arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c '[' 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; prog 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; classDecl classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; 'class' 'id' '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class 'id' '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class 'id' '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility '{' varThenFuncList '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { varThenFuncList '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { '}' ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ';' classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; classDeclList progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; progBody 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; 'program' funcBody ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program funcBody ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program '{' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; 'float' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; 'float' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; 'id' varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; 'id' varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; 'id' varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; 'id' varThenStatList1 '}' ';' 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility varThenStatList1 '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a arraySize arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a '[' 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; 'int' 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int 'id' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b arraySize arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b '[' 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 'numInt' ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ] ; float c [ 2 ] ; } ; class Utility { } ; program { int x ; float y ; Utility z ; Utility a [ 3 ] ; int b [ 4 ']' arraySizeList ';' varThenStatList '}' ';' funcDefList 
+class Utility { } ; program { int 

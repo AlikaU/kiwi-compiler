@@ -1,5 +1,0 @@
-
-ERROR: Parser.cpp: Syntax error encountered at token '>' at line 10, column 10
-ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
-ERROR: Parser.cpp: Syntax error encountered at token '1' at line 10, column 12
-ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)

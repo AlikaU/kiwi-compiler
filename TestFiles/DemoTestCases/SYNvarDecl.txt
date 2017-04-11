@@ -1,0 +1,11 @@
+class Utility
+{
+};
+program {
+int x;
+float y;
+Utility z; 
+Utility a[3];
+int b[4];
+float c[2];
+};

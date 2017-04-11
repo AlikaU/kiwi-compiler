@@ -1,0 +1,35 @@
+// ids: 8 ids
+l1 l2 l3 l4 l5 l0 l_ a_S_d_F
+
+// reserved words: 14 res words
+and not or if then else for class 
+int float get put return program
+
+// misspelled res words (scanned as 1 token): 43 ids
+aif aelse aand fnot nor xthen qelse cfor  //8
+sclass iint ffloat hget cput xreturn oprogram //7
+andd note orw ifi thenq elsee forc class1 //8
+inta floats getb putw returnh prog_ramt //6
+annd nogt orr isf thhen ellse foor claass //8
+innt flooat geet puut retuurn proogram_ //6
+
+// int/float before res words/ids (2 tokens): 6 ints, 3 floats, 7 res words, 2 ids
+1and 2not 4or 5if 13.6get 10.0program 0.000001put
+1oiu 532e2
+
+// int after res words (1 token): 6 ids
+then6 else7 for8 class9 int2222 float130
+
+// float before to ids or res words (2 tokens): 3 floats, 3 res words
+12.1and 1.0not 3.3then 
+
+// float after to ids or res words (3 tokens): 3 ids, 3 ops, 3 ints
+and12.1 not1.0 then3.300001 
+
+// ops/punct next to ids/res words (2 tokens): 21 ids, 5 res w, 9 punct, 18 ops
+as; ew, wg+ wd-asd( asd) {ew}w[]wds // 9 ids, 8 punct, 2 ops
+er_=ck1==ci1n/p_pp*meow_s.sg // 6 ids, 5 ops
+<s_a>we>=sb <>asdb s<=a_1 // 6 ids, 5 ops
+<if>(program.not*or- and== //5 res words, 1 punct, 6 ops
+
+//total: 83 ids, 29 res w, 9 ints, 6 floats, 21 ops, 9 punct

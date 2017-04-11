@@ -101,7 +101,7 @@ int main(int argc, char** argv)
 	testWrongInput("bad_type_mismatch", &pTable);
 	*/
 	//testCorrectInput("full_valid_program2", &pTable);
-	testCorrectInput(inputFolder, "bad5", &pTable);
+	testCorrectInput(inputFolder, "SYNvarDecl", &pTable);
 
 	
 		

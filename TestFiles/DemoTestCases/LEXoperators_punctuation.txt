@@ -1,0 +1,10 @@
+;,+ - ( ){ } [] === /.*<<=>>=<> // 8 punct, 12 ops
+
+< <> <= >= = == // 6 ops
+
+>.; >+ +-+ {] [) ,./ // 9 ops, 6 punctuation
+
+// errors
+>_ -_- !@#_ ! @ # $ %^& \~ ` // 3 ops, 16 errors
+
+// total: 14 punct, 30 ops, 16 errors

@@ -1,0 +1,38 @@
+
+// line comments: 1 id
+//
+// NotAToken//
+ValidToken//NotAToken
+
+// block comments: 0 tokens
+/* NotAToken*/
+/* NotAToken
+	/* NotAToken$#$#%#^*
+	*/ /___NotAToken/
+*/
+
+// line inside block: 1 id
+/* NotAToken // NotAToken
+	// NotAToken
+*/ ValidToken // NotAToken
+
+/* //NotAToken */
+
+// block inside line: 1 id
+// /*
+ValidToken 
+/* NotAToken */
+///* NotAToken */
+
+/* 
+NotAToken 
+// */
+ValidToken 
+
+
+///*
+//*/
+ValidToken 
+
+//total: 4 ids
+
