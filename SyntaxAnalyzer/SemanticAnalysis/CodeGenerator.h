@@ -2,43 +2,35 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "SemanticVariable.h"
 
 #define EXECUTABLE_FOLDER "../Moon/moon/"
 
 class CodeGenerator {
 
 	std::ofstream exeFileStream;
-	const char* executable_filepath;
+	std::string executable_filepath;
 
 
 public:
 
 	CodeGenerator(std::string filename) {
 
-		std::cout << "inside codegen constructor";
-
 		// erase log files from previous run
-		std::string str = EXECUTABLE_FOLDER + filename + ".m";
-		executable_filepath = str.c_str();
-		remove(executable_filepath);
-		std::ofstream exeFileStream(executable_filepath, std::fstream::out | std::fstream::app);
-		if (exeFileStream.is_open()) {
-			exeFileStream << "\nWORKING";
-		}
-		else {
-			std::cout << "\nCould not open executableFile for writing!";
-		}
+		executable_filepath = EXECUTABLE_FOLDER + filename + ".m";
+		remove(executable_filepath.c_str());
 	}
 
 	CodeGenerator() {
 		exeFileStream.close();
 	}
 
-	bool genVariableDecl();
+	// for now only works for INT and FLOAT and assigns 1 word to both
+	void genVariableDecl(SemanticVariable* varRecord);
 
-	bool genExpr();
+	void genExpr();
 
-	bool genAssignment();
+	void genAssignment();
 
 	bool genLoop();
 

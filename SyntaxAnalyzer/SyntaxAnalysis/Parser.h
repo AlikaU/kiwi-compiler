@@ -21,7 +21,8 @@
 #define GLOBAL_TABLE_NAME "GlobalSymbolTable"
 
 class Parser {
-
+	
+	std::string filepathStr;
 	CodeGenerator* codeGen;
 	Scanner* scanner;
 	ParseTable* table;
@@ -77,7 +78,7 @@ class Parser {
 	void createSemanticVariableAndLeaveOnStack();
 	bool insideFinalPass;
 	bool passCode();
-	const char* filepath;
+	
 	
 public: 
 	Parser(ParseTable* t, bool p, bool c, std::string, std::string);

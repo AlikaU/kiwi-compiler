@@ -1,3 +1,15 @@
 
 
-Symbol Table for valid file: ../TestFiles/Semantic/full_valid_program
+Symbol Table for valid file: ../TestFiles/Semantic/good4
+
+RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
+{
+RECORD: kiwi, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: mango, declared: true, INT, SIMPLE, int, NORMAL
+}
+
+RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
+{
+RECORD: kiwi, declared: true, INT, SIMPLE, int, NORMAL
+RECORD: mango, declared: true, INT, SIMPLE, int, NORMAL
+}
