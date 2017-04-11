@@ -1,0 +1,10 @@
+Names of input files: 
+
+1. Syntax error detection, reporting, recovery:
+	SYNbad5, SYNbad4, SYNbad3, SYNbad2, SYNbad1
+	
+2. Output derivation: 
+	full_valid_program
+	
+3. Main function, free functions: 
+	SYNfreefunction

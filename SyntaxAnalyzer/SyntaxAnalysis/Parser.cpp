@@ -129,12 +129,10 @@ bool Parser::passCode() {
 				parsingStack.pop();
 				inverseRHSMultiplePush(ruleNo);
 			}
-			else {		
-				if (insideFinalPass) {
-					Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Syntax error encountered at token '" + term->getValue()
-						+ "' at line " + std::to_string(term->getPosition().first) + ", column " + std::to_string(term->getPosition().second));
-				}
-				
+			else {					
+				Logger::getLogger()->log(Logger::ERROR, "Parser.cpp: Syntax error encountered at token '" + term->getValue()
+					+ "' at line " + std::to_string(term->getPosition().first) + ", column " + std::to_string(term->getPosition().second));
+								
 				skipErrors(ruleNo);
 				if (currentScannedToken->getType() == Token::DOLLAR_SIGN) {
 					std::cout << "\nEof reached!";

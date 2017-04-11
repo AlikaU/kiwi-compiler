@@ -1,13 +1,11 @@
 
 
-Symbol Table for valid file: ../TestFiles/DemoTestCases/SEMmultipleid
+Symbol Table for valid file: ../TestFiles/DemoTestCases/SYNfreefunction
 
-RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+RECORD: randomize, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
 {
-RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
 }
 
-RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+RECORD: randomize, declared: true, FUNCTION, SIMPLE, 0 parameters: {}local symbol table: 
 {
-RECORD: x, declared: true, INT, SIMPLE, int, NORMAL
 }
