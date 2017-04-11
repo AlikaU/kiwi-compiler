@@ -7,7 +7,7 @@ class SemanticType : public SemanticRecord {
 	std::string value;
 
 public: 
-	SemanticType(SemanticRecordType sType, std::string v, SemanticStructure sStructure, std::list<int>* aDimension, int addr)
+	SemanticType(SemanticRecordType sType, std::string v, SemanticStructure sStructure, std::list<int> aDimension, int addr)
 		: SemanticRecord("Type placeholder ", sType, sStructure, aDimension, addr) {
 		value = v;
 	}

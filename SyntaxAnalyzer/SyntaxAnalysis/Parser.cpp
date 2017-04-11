@@ -651,7 +651,8 @@ bool Parser::processIdNestListIdThenIndiceListOrAParams() {
 		else if (funcRecord != NULL) {
 			currentType = funcRecord->getReturnType()->getSemanticType();
 		}
-		SemanticType* typeRecord = new SemanticType(currentType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, 0, 0);
+		std::list<int> myList;
+		SemanticType* typeRecord = new SemanticType(currentType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0);
 		semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 		return true;
 	}
@@ -823,7 +824,8 @@ void Parser::processNum() {
 		//std::cout << "Could not process num, the symbol on top of stack is not int nor float";
 		return;
 	}
-	SemanticType* typeRecord = new SemanticType(currentType, term->getValue(), SemanticRecord::SIMPLE, 0, 0);
+	std::list<int> myList;
+	SemanticType* typeRecord = new SemanticType(currentType, term->getValue(), SemanticRecord::SIMPLE, myList, 0);
 	semanticStack.pop_back();
 	semanticStack.push_back(new SemanticRecordHolder(typeRecord));
 }
@@ -985,7 +987,7 @@ void Parser::createSemanticFunctionAndTable() {
 		return;
 	}
 	std::list<int> myList;
-	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, &arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, 0, 0));
+	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0));
 	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
 	funcRecord->setDeclared();
 	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
@@ -997,7 +999,8 @@ void Parser::createSemanticClassAndTable() {
 		GTerminal* term = static_cast<GTerminal*>(symbol);
 		std::string className = term->getValue();
 		SymbolTable* classTable = new SymbolTable(currentScope, className);
-		SemanticClass* classRecord = new SemanticClass(className, 0, 0, classTable);
+		std::list<int> myList;
+		SemanticClass* classRecord = new SemanticClass(className, myList, 0, classTable);
 		currentScope->insert(className, classRecord);
 		currentScope = classTable;
 		classRecord->setDeclared();
@@ -1081,7 +1084,7 @@ SemanticVariable* Parser::createSemanticVariable(bool fParam) {
 		varKind = SemanticVariable::NORMAL;
 	}
 
-	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, &arrayDimension, 0, varKind);
+	SemanticVariable* varRecord = new SemanticVariable(varIDToken->getValue(), recordType, recordStructure, arrayDimension, 0, varKind);
 	return varRecord;
 }
 

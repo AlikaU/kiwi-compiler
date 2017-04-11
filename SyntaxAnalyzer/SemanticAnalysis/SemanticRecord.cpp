@@ -2,12 +2,13 @@
 #include <string>
 
 SemanticRecord::SemanticRecord(std::string i, SemanticRecordType st, 
-	SemanticStructure ss, std::list<int>* arrD, int addr) {
+	SemanticStructure ss, std::list<int> arrD, int addr) {
 	identifier = i;
 	declared = false;
 	semanticType = st;
 	semanticStructure = ss;
-	arrayDimension = arrD;
+
+	arrayDimension = std::list<int>(arrD);
 	address = addr;
 }
 
@@ -21,16 +22,14 @@ void SemanticRecord::print() {
 	//std::cout << "\nRECORD: " << identifier << ", " << declared  << ", " 
 		//<< typeStrings[static_cast<int>(semanticType)]
 		//<< ", " << structureStrings[static_cast<int>(semanticStructure)];
-	if (arrayDimension != NULL) {
-		if (arrayDimension->empty() == false) {
-			Logger::getLogger()->log(Logger::TABLE, ", array dimension: ");
-			for (int dim : *arrayDimension) {
-				std::string str = "[" + dim;
-				str = str + "]";
-				Logger::getLogger()->log(Logger::TABLE, str);
-			}
+	
+	if (arrayDimension.empty() == false) {
+		Logger::getLogger()->log(Logger::TABLE, ", array dimension: ");
+		for (int dim : arrayDimension) {
+			Logger::getLogger()->log(Logger::TABLE, "[" + std::to_string(dim) + "]");
 		}
 	}
+	
 
 	printDetail();	
 }
