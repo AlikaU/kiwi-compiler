@@ -213,6 +213,7 @@ void Parser::processSemanticAction(SemanticAction* action) {
 	}		
 		break;
 	case (SemanticAction::createSemanticFunctionAndTable):
+		
 		createSemanticFunctionAndTable();
 		break;
 	case (SemanticAction::processAssignment):
@@ -1006,12 +1007,14 @@ void Parser::createSemanticFunctionAndTable() {
 	while (term->getType() == GTerminal::INTWORD || term->getType() == GTerminal::FLOATWORD || term->getType() == GTerminal::ID ||
 		term->getType() == GTerminal::OPENSQUARE || term->getType() == GTerminal::CLOSESQUARE || term->getType() == GTerminal::INTNUM ||
 		term->getType() == GTerminal::COMMA) {
+
 		if (term->getType() == GTerminal::COMMA) {
 			semanticStack.pop_back();
 			term = getNextTerminalFromSemanticStack();
 			if (term == NULL) { return; }
 			continue;
 		}
+
 		SemanticVariable* varRecord = createSemanticVariable(true);
 		if (varRecord == NULL) { return; }
 		varRecord->setDeclared();
@@ -1077,9 +1080,31 @@ void Parser::createSemanticFunctionAndTable() {
 	}
 	std::list<int> myList;
 	SemanticFunction* funcRecord = new SemanticFunction(funcIDtoken->getValue(), recordStructure, arrayDimension, 0, paramList, functionTable, new SemanticType(returnType, UNKNOWN_VALUE, SemanticRecord::SIMPLE, myList, 0, funcIDtoken->getPosition()), funcIDtoken->getPosition());
-	currentScope->insert(funcRecord->getIdentifier(), funcRecord);
-	funcRecord->setDeclared();
-	semanticStack.push_back(new SemanticRecordHolder(funcRecord));
+	for (SemanticVariable* var : *paramList) {
+		funcRecord->getLocalSymbolTable()->insert(var->getIdentifier(), var);
+	}
+	if (!insideFinalPass) {
+		currentScope->insert(funcRecord->getIdentifier(), funcRecord);
+		funcRecord->setDeclared();
+	}
+
+	SemanticRecordHolder* holder; 
+	if (insideFinalPass) {
+		SemanticRecord* ptr = NULL;
+		SemanticRecord** rec = &ptr;
+		bool b = false;
+		bool& found = b;
+		currentScope->search(funcRecord->getIdentifier(), rec, found);
+		if (!found) {
+			std::cout << "Could not find function record, but it should've been creaed in the first pass! Something went really wrong";			
+			return;
+		}
+		holder = new SemanticRecordHolder(*rec);
+	}
+	else {
+		holder = new SemanticRecordHolder(funcRecord);
+	}
+	semanticStack.push_back(holder);
 }
 
 void Parser::createSemanticClassAndTable() {

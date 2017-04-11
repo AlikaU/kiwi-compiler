@@ -8,19 +8,21 @@ RECORD: var1, declared: true, INT, ARRAY, array dimension: [0][1][9][8][7][5][4]
 RECORD: var2, declared: true, FLOAT, SIMPLE, float, NORMAL
 RECORD: findMax, declared: true, FUNCTION, ARRAY, array dimension: [100], 1 parameters: {INT, }local symbol table: 
 {
+RECORD: array, declared: true, INT, ARRAY, array dimension: [100], int, PARAM
 RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
 RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
 }
 
 RECORD: findMin, declared: true, FUNCTION, ARRAY, array dimension: [100], 1 parameters: {INT, }local symbol table: 
 {
+RECORD: array, declared: true, INT, ARRAY, array dimension: [100], int, PARAM
 RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
 RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
 }
 
 }
 
-RECORD: sample, declared: true, INT, ARRAY, array dimension: [100], int, NORMAL
+RECORD: sample, declared: true, INT, ARRAY, array dimension: [100]
 RECORD: idx, declared: true, INT, SIMPLE, int, NORMAL
 RECORD: maxValue, declared: true, INT, SIMPLE, int, NORMAL
 RECORD: minValue, declared: true, INT, SIMPLE, int, NORMAL
