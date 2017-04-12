@@ -1,0 +1,11 @@
+class MyClass1 {
+
+};
+program {
+
+int x;
+
+// undefined variable
+someVar=1;
+
+};

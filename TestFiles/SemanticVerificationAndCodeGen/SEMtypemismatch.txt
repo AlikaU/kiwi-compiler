@@ -1,0 +1,14 @@
+class MyClass1 {
+
+};
+program {
+
+// type mismatch
+int a;
+int b;
+float c;
+
+a=2.5;
+b = c;
+
+};

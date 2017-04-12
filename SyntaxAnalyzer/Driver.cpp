@@ -15,12 +15,10 @@ std::string answerStr;
 bool askQs = true; // ask questions in console
 bool askFile = true;
 bool runAll = true;
-const int goodProgramsIndex = 8;
+const int goodProgramsIndex = 4;
 std::string fileNames[] = { "CODEgen", "full_valid_program", "SEMmultipleid", "SEMtypecheckAsgExpSuccess", 
-"SYNcomplicatedExpr", "SYNfreefunction", "SYNgood1", "SYNgood5", "SYNvarDecl",
-"SEMtypecheckAsgExpError", "SEMtypemismatch", "SEMundefClass", "SEMundefFunction", "SEMundefVar", 
-"SYNbad1", "SYNbad2", "SYNbad3", "SYNbad4", "SYNbad5"};
-std::string inputFolder = "../TestFiles/DemoTestCases/";
+"SEMtypecheckAsgExpError", "SEMtypemismatch", "SEMundefClass", "SEMundefFunction", "SEMundefVar"};
+std::string inputFolder = "../TestFiles/SemanticVerificationAndCodeGen/";
 
 std::string askForFilename();
 void askQuestions();
