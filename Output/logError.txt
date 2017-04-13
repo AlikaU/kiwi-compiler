@@ -1,0 +1,45 @@
+
+ERROR: Parser.cpp: Syntax error encountered at token '(' at line 2, column 10
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '4' at line 2, column 11
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ')' at line 2, column 12
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 2, column 13
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '}' at line 3, column 1
+ERROR: Parser.cpp: Handling error: POP (abandoned trying to parse varThenStatList1)
+ERROR: Parser.cpp: Syntax error encountered at token '1' at line 6, column 16
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 6, column 17
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '}' at line 7, column 5
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'else' at line 7, column 7
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '{' at line 7, column 12
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'return' at line 8, column 9
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'fibonacci' at line 8, column 16
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '+' at line 8, column 31
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'fibonacci' at line 8, column 33
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '(' at line 8, column 42
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'x' at line 8, column 43
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '-' at line 8, column 44
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '2' at line 8, column 45
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ')' at line 8, column 46
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 9, column 6
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '}' at line 10, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 10, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)

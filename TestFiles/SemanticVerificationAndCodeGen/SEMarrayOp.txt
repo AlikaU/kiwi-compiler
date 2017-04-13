@@ -1,0 +1,5 @@
+program {
+int sample[100];
+int b;
+b = sample + 2;
+};

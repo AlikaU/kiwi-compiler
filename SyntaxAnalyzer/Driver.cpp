@@ -17,7 +17,8 @@ bool askFile = true;
 bool runAll = true;
 const int goodProgramsIndex = 3;
 std::string fileNames[] = { "CODEgen", "full_valid_program", "SEMtypecheckAsgExpSuccess", "SEMmultipleid", 
-"SEMtypecheckAsgExpError", "SEMtypemismatch", "SEMundefClass", "SEMundefFunction", "SEMundefVar"};
+"SEMtypecheckAsgExpError", "SEMtypemismatch", "SEMundefClass", "SEMundefFunction", "SEMundefVar", "SEMarrayOp", 
+"SEMfuncOverload", "SEMrecursion"};
 std::string inputFolder = "../TestFiles/SemanticVerificationAndCodeGen/";
 
 std::string askForFilename();
@@ -84,7 +85,13 @@ std::string askForFilename() {
 		std::cout << "\n\tSEMtypemismatch (should fail)";
 		std::cout << "\n\tSEMundefClass (should fail)";
 		std::cout << "\n\tSEMundefFunction (should fail)";
-		std::cout << "\n\tSEMundefVar (should fail)\n";
+		std::cout << "\n\tSEMundefVar (should fail)";
+		std::cout << "\n\tSEMarrayOp (should fail)";
+		std::cout << "\n\tSEMfuncOverload (should fail)";
+		std::cout << "\n\tSEMrecursion (should fail)";
+		std::cout << "\n";
+
+		
 		
 
 		std::cin >> answerStr;

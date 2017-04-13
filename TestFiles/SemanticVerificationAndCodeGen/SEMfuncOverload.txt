@@ -1,0 +1,8 @@
+program {
+};
+float randomize()
+{
+};
+float randomize(int x, float y)
+{
+};

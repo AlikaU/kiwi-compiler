@@ -1,9 +1,7 @@
 
 
-Symbol Table for valid file: ../TestFiles/SemanticVerificationAndCodeGen/SEMundefVar
+Symbol Table for valid file: ../TestFiles/SemanticVerificationAndCodeGen/SEMrecursion
 
-RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
+RECORD: fibonacci, declared: true, FUNCTION, SIMPLE, 1 parameters: {INT, }local symbol table: 
 {
 }
-
-RECORD: x, declared: true, INT, SIMPLE, int, NORMAL

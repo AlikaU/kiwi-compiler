@@ -1,40 +1,4 @@
 
-DEBUG: current state is: START and we just read a c (ascii 99) 
-DEBUG: current state is: WORD and we just read a l (ascii 108) 
-DEBUG: current state is: WORD and we just read a a (ascii 97) 
-DEBUG: current state is: WORD and we just read a s (ascii 115) 
-DEBUG: current state is: WORD and we just read a s (ascii 115) 
-DEBUG: current state is: WORD and we just read a   (ascii 32) 
-TOKEN: RESERVED_WORD: "class", line 1, column 1
-DEBUG: current state is: START and we just read a   (ascii 32) 
-DEBUG: current state is: START and we just read a M (ascii 77) 
-DEBUG: current state is: WORD and we just read a y (ascii 121) 
-DEBUG: current state is: WORD and we just read a C (ascii 67) 
-DEBUG: current state is: WORD and we just read a l (ascii 108) 
-DEBUG: current state is: WORD and we just read a a (ascii 97) 
-DEBUG: current state is: WORD and we just read a s (ascii 115) 
-DEBUG: current state is: WORD and we just read a s (ascii 115) 
-DEBUG: current state is: WORD and we just read a 1 (ascii 49) 
-DEBUG: current state is: WORD and we just read a   (ascii 32) 
-TOKEN: IDENTIFIER: "MyClass1", line 1, column 7
-DEBUG: current state is: START and we just read a   (ascii 32) 
-DEBUG: current state is: START and we just read a { (ascii 123) 
-DEBUG: current state is: OPENCURLY and we just read a 
- (ascii 10) 
-TOKEN: PUNCTUATION: "{", line 1, column 16
-DEBUG: current state is: START and we just read a 
- (ascii 10) 
-DEBUG: current state is: START and we just read a 
- (ascii 10) 
-DEBUG: current state is: START and we just read a } (ascii 125) 
-DEBUG: current state is: CLOSECURLY and we just read a ; (ascii 59) 
-TOKEN: PUNCTUATION: "}", line 3, column 1
-DEBUG: current state is: START and we just read a ; (ascii 59) 
-DEBUG: current state is: SEMICOLON and we just read a 
- (ascii 10) 
-TOKEN: PUNCTUATION: ";", line 3, column 2
-DEBUG: current state is: START and we just read a 
- (ascii 10) 
 DEBUG: current state is: START and we just read a p (ascii 112) 
 DEBUG: current state is: WORD and we just read a r (ascii 114) 
 DEBUG: current state is: WORD and we just read a o (ascii 111) 
@@ -43,95 +7,320 @@ DEBUG: current state is: WORD and we just read a r (ascii 114)
 DEBUG: current state is: WORD and we just read a a (ascii 97) 
 DEBUG: current state is: WORD and we just read a m (ascii 109) 
 DEBUG: current state is: WORD and we just read a   (ascii 32) 
-TOKEN: RESERVED_WORD: "program", line 4, column 1
+TOKEN: RESERVED_WORD: "program", line 1, column 1
 DEBUG: current state is: START and we just read a   (ascii 32) 
 DEBUG: current state is: START and we just read a { (ascii 123) 
 DEBUG: current state is: OPENCURLY and we just read a 
  (ascii 10) 
-TOKEN: PUNCTUATION: "{", line 4, column 9
+TOKEN: PUNCTUATION: "{", line 1, column 9
 DEBUG: current state is: START and we just read a 
  (ascii 10) 
+DEBUG: current state is: START and we just read a f (ascii 102) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a b (ascii 98) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a ( (ascii 40) 
+TOKEN: IDENTIFIER: "fibonacci", line 2, column 1
+DEBUG: current state is: START and we just read a ( (ascii 40) 
+DEBUG: current state is: OPENPAR and we just read a 4 (ascii 52) 
+TOKEN: PUNCTUATION: "(", line 2, column 10
+ERROR: Parser.cpp: Syntax error encountered at token '(' at line 2, column 10
+DEBUG: current state is: START and we just read a 4 (ascii 52) 
+DEBUG: current state is: INT and we just read a ) (ascii 41) 
+TOKEN: INT: "4", line 2, column 11
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '4' at line 2, column 11
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a ; (ascii 59) 
+TOKEN: PUNCTUATION: ")", line 2, column 12
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ')' at line 2, column 12
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 2, column 13
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 2, column 13
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a } (ascii 125) 
+DEBUG: current state is: CLOSECURLY and we just read a ; (ascii 59) 
+TOKEN: PUNCTUATION: "}", line 3, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '}' at line 3, column 1
+ERROR: Parser.cpp: Handling error: POP (abandoned trying to parse varThenStatList1)
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 3, column 2
 DEBUG: current state is: START and we just read a 
  (ascii 10) 
 DEBUG: current state is: START and we just read a i (ascii 105) 
 DEBUG: current state is: WORD and we just read a n (ascii 110) 
 DEBUG: current state is: WORD and we just read a t (ascii 116) 
 DEBUG: current state is: WORD and we just read a   (ascii 32) 
-TOKEN: RESERVED_WORD: "int", line 6, column 1
+TOKEN: RESERVED_WORD: "int", line 4, column 1
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a f (ascii 102) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a b (ascii 98) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a ( (ascii 40) 
+TOKEN: IDENTIFIER: "fibonacci", line 4, column 5
+DEBUG: current state is: START and we just read a ( (ascii 40) 
+DEBUG: current state is: OPENPAR and we just read a i (ascii 105) 
+TOKEN: PUNCTUATION: "(", line 4, column 14
+DEBUG: current state is: START and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "int", line 4, column 15
 DEBUG: current state is: START and we just read a   (ascii 32) 
 DEBUG: current state is: START and we just read a x (ascii 120) 
-DEBUG: current state is: WORD and we just read a ; (ascii 59) 
-TOKEN: IDENTIFIER: "x", line 6, column 5
-DEBUG: current state is: START and we just read a ; (ascii 59) 
-DEBUG: current state is: SEMICOLON and we just read a 
- (ascii 10) 
-TOKEN: PUNCTUATION: ";", line 6, column 6
-DEBUG: current state is: START and we just read a 
- (ascii 10) 
-DEBUG: current state is: START and we just read a 
- (ascii 10) 
-DEBUG: current state is: START and we just read a / (ascii 47) 
-DEBUG: current state is: DIVIDE and we just read a / (ascii 47) 
-DEBUG: current state is: LINE_COMMENT and we just read a   (ascii 32) 
-DEBUG: Entering line comment
-
+DEBUG: current state is: WORD and we just read a ) (ascii 41) 
+TOKEN: IDENTIFIER: "x", line 4, column 19
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a   (ascii 32) 
+TOKEN: PUNCTUATION: ")", line 4, column 20
 DEBUG: current state is: START and we just read a   (ascii 32) 
-DEBUG: current state is: START and we just read a u (ascii 117) 
-DEBUG: current state is: WORD and we just read a n (ascii 110) 
-DEBUG: current state is: WORD and we just read a d (ascii 100) 
-DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: START and we just read a { (ascii 123) 
+DEBUG: current state is: OPENCURLY and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: "{", line 4, column 22
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a i (ascii 105) 
 DEBUG: current state is: WORD and we just read a f (ascii 102) 
-DEBUG: current state is: WORD and we just read a i (ascii 105) 
-DEBUG: current state is: WORD and we just read a n (ascii 110) 
-DEBUG: current state is: WORD and we just read a e (ascii 101) 
-DEBUG: current state is: WORD and we just read a d (ascii 100) 
 DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "if", line 5, column 5
 DEBUG: current state is: START and we just read a   (ascii 32) 
-DEBUG: current state is: START and we just read a v (ascii 118) 
-DEBUG: current state is: WORD and we just read a a (ascii 97) 
-DEBUG: current state is: WORD and we just read a r (ascii 114) 
-DEBUG: current state is: WORD and we just read a i (ascii 105) 
-DEBUG: current state is: WORD and we just read a a (ascii 97) 
-DEBUG: current state is: WORD and we just read a b (ascii 98) 
-DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: START and we just read a ( (ascii 40) 
+DEBUG: current state is: OPENPAR and we just read a x (ascii 120) 
+TOKEN: PUNCTUATION: "(", line 5, column 8
+DEBUG: current state is: START and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: IDENTIFIER: "x", line 5, column 9
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a = (ascii 61) 
+DEBUG: current state is: ASSIGNMENT and we just read a = (ascii 61) 
+DEBUG: current state is: EQUALS and we just read a   (ascii 32) 
+TOKEN: OPERATOR: "==", line 5, column 11
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a ) (ascii 41) 
+TOKEN: INT: "1", line 5, column 14
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a   (ascii 32) 
+TOKEN: PUNCTUATION: ")", line 5, column 15
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a h (ascii 104) 
 DEBUG: current state is: WORD and we just read a e (ascii 101) 
-DEBUG: current state is: WORD and we just read a 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "then", line 5, column 17
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a { (ascii 123) 
+DEBUG: current state is: OPENCURLY and we just read a 
  (ascii 10) 
-DEBUG: 
-Exiting line comment
-
+TOKEN: PUNCTUATION: "{", line 5, column 22
 DEBUG: current state is: START and we just read a 
  (ascii 10) 
-DEBUG: current state is: START and we just read a s (ascii 115) 
-DEBUG: current state is: WORD and we just read a o (ascii 111) 
-DEBUG: current state is: WORD and we just read a m (ascii 109) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a r (ascii 114) 
 DEBUG: current state is: WORD and we just read a e (ascii 101) 
-DEBUG: current state is: WORD and we just read a V (ascii 86) 
-DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a u (ascii 117) 
 DEBUG: current state is: WORD and we just read a r (ascii 114) 
-DEBUG: current state is: WORD and we just read a = (ascii 61) 
-TOKEN: IDENTIFIER: "someVar", line 9, column 1
-DEBUG: current state is: START and we just read a = (ascii 61) 
-DEBUG: current state is: ASSIGNMENT and we just read a 1 (ascii 49) 
-TOKEN: OPERATOR: "=", line 9, column 8
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "return", line 6, column 9
+DEBUG: current state is: START and we just read a   (ascii 32) 
 DEBUG: current state is: START and we just read a 1 (ascii 49) 
 DEBUG: current state is: INT and we just read a ; (ascii 59) 
-TOKEN: INT: "1", line 9, column 9
+TOKEN: INT: "1", line 6, column 16
+ERROR: Parser.cpp: Syntax error encountered at token '1' at line 6, column 16
 DEBUG: current state is: START and we just read a ; (ascii 59) 
 DEBUG: current state is: SEMICOLON and we just read a 
  (ascii 10) 
-TOKEN: PUNCTUATION: ";", line 9, column 10
+TOKEN: PUNCTUATION: ";", line 6, column 17
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 6, column 17
 DEBUG: current state is: START and we just read a 
  (ascii 10) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a } (ascii 125) 
+DEBUG: current state is: CLOSECURLY and we just read a   (ascii 32) 
+TOKEN: PUNCTUATION: "}", line 7, column 5
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '}' at line 7, column 5
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a l (ascii 108) 
+DEBUG: current state is: WORD and we just read a s (ascii 115) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "else", line 7, column 7
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'else' at line 7, column 7
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a { (ascii 123) 
+DEBUG: current state is: OPENCURLY and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: "{", line 7, column 12
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '{' at line 7, column 12
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a e (ascii 101) 
+DEBUG: current state is: WORD and we just read a t (ascii 116) 
+DEBUG: current state is: WORD and we just read a u (ascii 117) 
+DEBUG: current state is: WORD and we just read a r (ascii 114) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a   (ascii 32) 
+TOKEN: RESERVED_WORD: "return", line 8, column 9
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'return' at line 8, column 9
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a f (ascii 102) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a b (ascii 98) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a ( (ascii 40) 
+TOKEN: IDENTIFIER: "fibonacci", line 8, column 16
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'fibonacci' at line 8, column 16
+DEBUG: current state is: START and we just read a ( (ascii 40) 
+DEBUG: current state is: OPENPAR and we just read a x (ascii 120) 
+TOKEN: PUNCTUATION: "(", line 8, column 25
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+DEBUG: current state is: START and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a - (ascii 45) 
+TOKEN: IDENTIFIER: "x", line 8, column 26
+DEBUG: current state is: START and we just read a - (ascii 45) 
+DEBUG: current state is: MINUS and we just read a 1 (ascii 49) 
+TOKEN: OPERATOR: "-", line 8, column 27
+DEBUG: current state is: START and we just read a 1 (ascii 49) 
+DEBUG: current state is: INT and we just read a ) (ascii 41) 
+TOKEN: INT: "1", line 8, column 28
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a   (ascii 32) 
+TOKEN: PUNCTUATION: ")", line 8, column 29
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a + (ascii 43) 
+DEBUG: current state is: PLUS and we just read a   (ascii 32) 
+TOKEN: OPERATOR: "+", line 8, column 31
+ERROR: Parser.cpp: Syntax error encountered at token '+' at line 8, column 31
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a f (ascii 102) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a b (ascii 98) 
+DEBUG: current state is: WORD and we just read a o (ascii 111) 
+DEBUG: current state is: WORD and we just read a n (ascii 110) 
+DEBUG: current state is: WORD and we just read a a (ascii 97) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a c (ascii 99) 
+DEBUG: current state is: WORD and we just read a i (ascii 105) 
+DEBUG: current state is: WORD and we just read a ( (ascii 40) 
+TOKEN: IDENTIFIER: "fibonacci", line 8, column 33
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'fibonacci' at line 8, column 33
+DEBUG: current state is: START and we just read a ( (ascii 40) 
+DEBUG: current state is: OPENPAR and we just read a x (ascii 120) 
+TOKEN: PUNCTUATION: "(", line 8, column 42
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '(' at line 8, column 42
+DEBUG: current state is: START and we just read a x (ascii 120) 
+DEBUG: current state is: WORD and we just read a - (ascii 45) 
+TOKEN: IDENTIFIER: "x", line 8, column 43
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token 'x' at line 8, column 43
+DEBUG: current state is: START and we just read a - (ascii 45) 
+DEBUG: current state is: MINUS and we just read a 2 (ascii 50) 
+TOKEN: OPERATOR: "-", line 8, column 44
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '-' at line 8, column 44
+DEBUG: current state is: START and we just read a 2 (ascii 50) 
+DEBUG: current state is: INT and we just read a ) (ascii 41) 
+TOKEN: INT: "2", line 8, column 45
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '2' at line 8, column 45
+DEBUG: current state is: START and we just read a ) (ascii 41) 
+DEBUG: current state is: CLOSEPAR and we just read a ; (ascii 59) 
+TOKEN: PUNCTUATION: ")", line 8, column 46
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ')' at line 8, column 46
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 8, column 47
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+DEBUG: current state is: START and we just read a 
+ (ascii 10) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a   (ascii 32) 
+DEBUG: current state is: START and we just read a } (ascii 125) 
+DEBUG: current state is: CLOSECURLY and we just read a ; (ascii 59) 
+TOKEN: PUNCTUATION: "}", line 9, column 5
+DEBUG: current state is: START and we just read a ; (ascii 59) 
+DEBUG: current state is: SEMICOLON and we just read a 
+ (ascii 10) 
+TOKEN: PUNCTUATION: ";", line 9, column 6
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 9, column 6
 DEBUG: current state is: START and we just read a 
  (ascii 10) 
 DEBUG: current state is: START and we just read a } (ascii 125) 
 DEBUG: current state is: CLOSECURLY and we just read a ; (ascii 59) 
-TOKEN: PUNCTUATION: "}", line 11, column 1
+TOKEN: PUNCTUATION: "}", line 10, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token '}' at line 10, column 1
 DEBUG: current state is: START and we just read a ; (ascii 59) 
 DEBUG: End of file reached. Attempting to create a token with last characters read
-TOKEN: PUNCTUATION: ";", line 11, column 1
+TOKEN: PUNCTUATION: ";", line 10, column 1
 DEBUG: Last token found.
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
+ERROR: Parser.cpp: Syntax error encountered at token ';' at line 10, column 1
 DEBUG: End of file reached. Attempting to create a token with last characters read
 DEBUG: No new tokens found
-TOKEN: $: "$", line 11, column 1
+TOKEN: $: "$", line 10, column 1
+ERROR: Parser.cpp: Handling error: SCAN (skipped input token that caused error)
