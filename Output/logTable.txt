@@ -1,11 +1,9 @@
 
 
-Symbol Table for valid file: ../TestFiles/DemoTestCases/CODEgen
+Symbol Table for valid file: ../TestFiles/SemanticVerificationAndCodeGen/SEMundefVar
 
-RECORD: Utility, declared: true, CLASS, CLASS, local symbol table: 
+RECORD: MyClass1, declared: true, CLASS, CLASS, local symbol table: 
 {
-RECORD: bananas, declared: true, INT, SIMPLE, int, NORMAL
-RECORD: melons, declared: true, FLOAT, SIMPLE, float, NORMAL
-RECORD: apples, declared: true, INT, ARRAY, array dimension: [3], int, NORMAL
-RECORD: kiwis, declared: true, INT, ARRAY, array dimension: [4][3][2], int, NORMAL
 }
+
+RECORD: x, declared: true, INT, SIMPLE, int, NORMAL

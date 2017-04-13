@@ -1,0 +1,2 @@
+
+Identifier someVar at line 9 is not defined in the current scope(GlobalSymbolTable)

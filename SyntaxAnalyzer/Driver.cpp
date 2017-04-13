@@ -15,8 +15,8 @@ std::string answerStr;
 bool askQs = true; // ask questions in console
 bool askFile = true;
 bool runAll = true;
-const int goodProgramsIndex = 4;
-std::string fileNames[] = { "CODEgen", "full_valid_program", "SEMmultipleid", "SEMtypecheckAsgExpSuccess", 
+const int goodProgramsIndex = 3;
+std::string fileNames[] = { "CODEgen", "full_valid_program", "SEMtypecheckAsgExpSuccess", "SEMmultipleid", 
 "SEMtypecheckAsgExpError", "SEMtypemismatch", "SEMundefClass", "SEMundefFunction", "SEMundefVar"};
 std::string inputFolder = "../TestFiles/SemanticVerificationAndCodeGen/";
 
@@ -43,7 +43,7 @@ int main(int argc, char** argv)
 		for (i = 0; i < goodProgramsIndex; ++i) {
 			testCorrectInput(inputFolder, fileNames[i], &pTable);
 		}
-		for (i; i < sizeof(fileNames); ++i) {
+		for (i; i < 9; ++i) {
 			testWrongInput(inputFolder, fileNames[i], &pTable);
 		}
 	}
@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 	else {
 		std::cout << "\n\nFAILED: At least one test case has failed.";
 	}
-	std::cout << "\nYou can find all log files in the Output folder. Please see the symbol table in Output/logTable.txt and the semantic error output in Output/logSemanticError.txt";
+	std::cout << "\nYou can find all log files in the Output folder. Please see the semantic error output in Output/logSemanticError.txt and the generated Moon code in Moon/moon folder";
 
 	std::cin >> answer;
 }
@@ -75,7 +75,18 @@ std::string askForFilename() {
 	std::cin.clear();
 	if (answer == 2) {
 		runAll = false;
-		std::cout << "\nPlease type the name of input file";
+		std::cout << "\nPlease type the name of input file. Here are your possible choices: ";
+		std::cout << "\n\tCODEgen (should pass)";
+		std::cout << "\n\tfull_valid_program (should pass)";
+		std::cout << "\n\tSEMtypecheckAsgExpSuccess (should pass)";
+		std::cout << "\n\tSEMmultipleid (should fail)";
+		std::cout << "\n\tSEMtypecheckAsgExpError (should fail)";
+		std::cout << "\n\tSEMtypemismatch (should fail)";
+		std::cout << "\n\tSEMundefClass (should fail)";
+		std::cout << "\n\tSEMundefFunction (should fail)";
+		std::cout << "\n\tSEMundefVar (should fail)\n";
+		
+
 		std::cin >> answerStr;
 		while (true) {
 			for (std::string fileName : fileNames) {
